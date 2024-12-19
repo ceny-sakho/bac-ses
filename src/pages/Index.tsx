@@ -1,4 +1,7 @@
 import { CourseNavigation } from "@/components/CourseNavigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronRight } from "lucide-react";
 
 const Index = () => {
   return (
@@ -11,60 +14,81 @@ const Index = () => {
         }} />
         <div className="relative z-10">
           <h1 className="text-4xl font-bold mb-3">Sciences Économiques et Sociales</h1>
-          <p className="text-xl opacity-90">
+          <p className="text-xl opacity-90 mb-6">
             Ressources pédagogiques pour les lycéens
           </p>
+          <div className="flex gap-4 justify-center">
+            <Button variant="outline" className="bg-white text-[#333333] hover:bg-gray-100">
+              Découvrir le programme
+            </Button>
+            <Button className="bg-blue-600 hover:bg-blue-700">
+              Accéder aux cours
+            </Button>
+          </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-12">
-        <section className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 mb-12 backdrop-blur-sm bg-white/90">
-          <h2 className="text-2xl font-semibold text-center mb-8 text-[#333333]">
-            Programme par niveau
-          </h2>
+        <section className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 mb-12">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-semibold text-[#333333]">
+              Programme par niveau
+            </h2>
+            <Button variant="outline" className="text-[#333333]">
+              Voir tout le programme
+            </Button>
+          </div>
           <CourseNavigation />
         </section>
 
-        <section className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-xl text-center group hover:transform hover:scale-105 transition-all duration-300">
-            <div className="h-48 mb-4 overflow-hidden rounded-lg">
-              <img
-                src="https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&q=80"
-                alt="Seconde"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-[#333333]">Seconde</h3>
-            <p className="text-[#8E9196]">
-              Introduction aux concepts fondamentaux des SES
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-xl text-center group hover:transform hover:scale-105 transition-all duration-300">
-            <div className="h-48 mb-4 overflow-hidden rounded-lg">
-              <img
-                src="https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&q=80"
-                alt="Première"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-[#333333]">Première</h3>
-            <p className="text-[#8E9196]">
-              Approfondissement des notions économiques et sociales
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-xl text-center group hover:transform hover:scale-105 transition-all duration-300">
-            <div className="h-48 mb-4 overflow-hidden rounded-lg">
-              <img
-                src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80"
-                alt="Terminale"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-[#333333]">Terminale</h3>
-            <p className="text-[#8E9196]">
-              Préparation au baccalauréat et concepts avancés
-            </p>
-          </div>
+        <section className="max-w-5xl mx-auto space-y-8">
+          {[
+            {
+              level: "Seconde",
+              image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&q=80",
+              description: "Introduction aux concepts fondamentaux des SES",
+              resources: ["24 cours", "12 exercices", "6 évaluations"]
+            },
+            {
+              level: "Première",
+              image: "https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&q=80",
+              description: "Approfondissement des notions économiques et sociales",
+              resources: ["30 cours", "15 exercices", "8 évaluations"]
+            },
+            {
+              level: "Terminale",
+              image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80",
+              description: "Préparation au baccalauréat et concepts avancés",
+              resources: ["36 cours", "18 exercices", "10 évaluations"]
+            }
+          ].map((item) => (
+            <Card key={item.level} className="overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="h-full">
+                  <img
+                    src={item.image}
+                    alt={item.level}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="col-span-2 p-6">
+                  <h3 className="text-2xl font-semibold mb-3 text-[#333333]">{item.level}</h3>
+                  <p className="text-[#8E9196] mb-4">{item.description}</p>
+                  <div className="flex gap-4 mb-6">
+                    {item.resources.map((resource, index) => (
+                      <span key={index} className="bg-gray-100 px-3 py-1 rounded-full text-sm text-[#333333]">
+                        {resource}
+                      </span>
+                    ))}
+                  </div>
+                  <Button className="group">
+                    Accéder aux ressources
+                    <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
         </section>
       </main>
 
