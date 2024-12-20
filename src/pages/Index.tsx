@@ -20,11 +20,6 @@ const Index = () => {
           <p className="text-xl opacity-90 mb-6">
             Ressources pédagogiques pour les lycéens
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button className="bg-white text-[#333333] hover:bg-[#FEF7CD] transition-colors">
-              Accéder aux cours
-            </Button>
-          </div>
         </div>
       </header>
 
