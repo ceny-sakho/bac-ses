@@ -114,7 +114,7 @@ const SubjectView = () => {
                 >
                   <div className="aspect-video relative">
                     <img
-                      src={`https://images.unsplash.com/${chapterImages[chapter.id as keyof typeof chapterImages]}`}
+                      src="/lovable-uploads/c21162f1-9bbc-4d32-8435-a041ed4b9d60.png"
                       alt={chapter.title}
                       className="w-full h-full object-cover"
                     />
