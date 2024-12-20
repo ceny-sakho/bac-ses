@@ -49,14 +49,18 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           <BookOpen className="w-5 h-5" />
           DÉCOUVRIR LE COURS
         </Button>
-        <Button size="lg" variant="outline" className="flex items-center gap-2">
+        <Button 
+          size="lg" 
+          variant="outline" 
+          className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
+        >
           <BookOpenText className="w-5 h-5" />
           SYNTHÈSE
         </Button>
         <Button 
           size="lg" 
           variant="outline" 
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
           onClick={() => navigate('/sujets-bac')}
         >
           <GraduationCap className="w-5 h-5" />
