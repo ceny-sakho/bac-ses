@@ -20,7 +20,6 @@ export const ChapterDetail = () => {
         title={chapter.title}
         category={chapter.category}
         level={chapter.level}
-        objectives={chapter.objectives}
         image={chapter.image}
       />
       {showBacSubjects && (

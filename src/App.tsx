@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import SubjectView from "./pages/SubjectView";
-import LevelView from "./pages/LevelView";
-import ChapterDetail from "./pages/ChapterDetail";
-import BacSubjects from "./pages/BacSubjects";
+import { SubjectView } from "./pages/SubjectView";
+import { LevelView } from "./pages/LevelView";
+import { ChapterDetail } from "./pages/ChapterDetail";
+import { BacSubjects } from "./pages/BacSubjects";
 
 function App() {
   return (
