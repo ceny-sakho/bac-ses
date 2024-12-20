@@ -1,38 +1,65 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { ChapterHeader } from '@/components/ChapterHeader';
-import { chaptersData } from '@/data/chaptersData';
-import { BacSubjectsTerminaleCh1 } from '@/components/BacSubjectsTerminaleCh1';
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { chaptersData, ChapterData } from "@/data/chaptersData";
+import { ChapterHeader } from "@/components/ChapterHeader";
+import { ChapterContent } from "@/components/ChapterContent";
 
-export const ChapterDetail = () => {
+const normalizeString = (str: string): string => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+};
+
+const ChapterDetail = () => {
   const { chapterId } = useParams();
-  const chapter = chaptersData[chapterId as keyof typeof chaptersData];
-  const [currentTab, setCurrentTab] = useState('science-eco');
+  const navigate = useNavigate();
+
+  // Normalize the chapterId to handle accents
+  const normalizedChapterId = chapterId ? normalizeString(chapterId) : "";
+  
+  // Find the chapter by comparing normalized keys
+  const chapter = Object.entries(chaptersData).find(([key]) => 
+    normalizeString(key) === normalizedChapterId
+  );
 
   if (!chapter) {
-    return <div>Chapter not found</div>;
+    return <div className="p-4">Chapitre non trouvé</div>;
   }
 
-  const showBacSubjects = chapterId === 'terminale-ch1';
+  const chapterData = chapter[1] as ChapterData;
 
-  const getCurrentTab = () => currentTab;
-  const handleTabChange = (value: string) => setCurrentTab(value);
+  const getCurrentTab = () => {
+    const chapterNumber = parseInt(chapterId?.split('ch')[1] || "1");
+    if (chapterId?.startsWith('seconde')) {
+      if (chapterNumber >= 1 && chapterNumber <= 3) return "science-eco";
+      if (chapterNumber >= 4 && chapterNumber <= 5) return "socio";
+      return "regards";
+    }
+    if (chapterId?.startsWith('premiere') || chapterId?.startsWith('terminale')) {
+      if (chapterNumber >= 1 && chapterNumber <= 5) return "science-eco";
+      if (chapterNumber >= 6 && chapterNumber <= 10) return "socio";
+      return "regards";
+    }
+    return "science-eco";
+  };
+
+  const handleTabChange = (value: string) => {
+    navigate(`/matiere/${value}`);
+  };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50">
       <ChapterHeader
-        title={chapter.title}
-        category={chapter.category}
-        level={chapter.level}
+        category={chapterData.category}
+        level={chapterData.level}
+        title={chapterData.title}
         getCurrentTab={getCurrentTab}
         handleTabChange={handleTabChange}
       />
-      {showBacSubjects && (
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Sujets de Bac</h2>
-          <BacSubjectsTerminaleCh1 />
-        </div>
-      )}
+      <ChapterContent
+        objectives={chapterData.objectives}
+        image={chapterData.image}
+      />
     </div>
   );
 };
+
+export default ChapterDetail;
