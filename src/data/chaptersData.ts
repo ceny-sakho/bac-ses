@@ -1,4 +1,12 @@
-export const chaptersData = {
+export type ChapterData = {
+  title: string;
+  category: string;
+  level: string;
+  objectives: string[];
+  image: string;
+};
+
+export const chaptersData: Record<string, ChapterData> = {
   // Seconde
   "seconde-ch1": {
     title: "Comment les économistes, les sociologues et les politistes raisonnent-ils et travaillent-ils ?",
