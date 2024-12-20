@@ -43,14 +43,14 @@ const Index = () => {
             {
               level: "seconde",
               title: "Seconde",
-              image: "/lovable-uploads/44d16e39-dc67-4ec8-be27-ffbe573a44ea.png",
+              image: "/lovable-uploads/89254e68-90c5-4556-971b-28dec56ab9d6.png",
               description: "Introduction aux concepts fondamentaux des SES",
               resources: ["24 cours", "12 exercices", "6 évaluations"]
             },
             {
               level: "premiere",
               title: "Première",
-              image: "https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&q=80",
+              image: "https://images.unsplash.com/photo-1527576539890-deb4988cc6c0?auto=format&fit=crop&q=80",
               description: "Approfondissement des notions économiques et sociales",
               resources: ["30 cours", "15 exercices", "8 évaluations"]
             },
