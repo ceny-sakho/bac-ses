@@ -12,14 +12,6 @@ export const ChapterDetail = () => {
     return <div>Chapter not found</div>;
   }
 
-  const getCurrentTab = () => {
-    return 'science-eco'; // Default tab
-  };
-
-  const handleTabChange = (value: string) => {
-    console.log('Tab changed to:', value);
-  };
-
   const showBacSubjects = chapterId === 'terminale-ch1';
 
   return (
@@ -28,8 +20,8 @@ export const ChapterDetail = () => {
         title={chapter.title}
         category={chapter.category}
         level={chapter.level}
-        getCurrentTab={getCurrentTab}
-        handleTabChange={handleTabChange}
+        objectives={chapter.objectives}
+        image={chapter.image}
       />
       {showBacSubjects && (
         <div className="mt-8">
