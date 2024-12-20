@@ -65,7 +65,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les agents de socialisation",
       "Analyser les effets de la socialisation sur le comportement"
     ],
-    image: "/lovable-uploads/cedefef7-cfe5-43e3-b3d4-39497e91d0a7.png"
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80"
   },
   "premiere-ch7": {
     title: "Comment se construisent et évoluent les liens sociaux ?",
