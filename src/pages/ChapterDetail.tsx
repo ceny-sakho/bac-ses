@@ -32,8 +32,42 @@ const ChapterDetail = () => {
 
   const handleTabChange = (value: string) => {
     const currentLevel = chapterId?.split('-')[0]; // seconde, premiere, terminale
-    const newChapterId = `${currentLevel}-ch${value}`;
+    const currentChapterNumber = parseInt(chapterId?.split('ch')[1] || "1");
+    
+    // Déterminer le nouveau chapitre en fonction de la catégorie
+    let newChapterNumber;
+    switch (value) {
+      case "science-eco":
+        newChapterNumber = currentLevel === "seconde" ? 1 : 1;
+        break;
+      case "socio":
+        newChapterNumber = currentLevel === "seconde" ? 4 : 6;
+        break;
+      case "regards":
+        newChapterNumber = currentLevel === "seconde" ? 6 : 11;
+        break;
+      default:
+        newChapterNumber = 1;
+    }
+    
+    const newChapterId = `${currentLevel}-ch${newChapterNumber}`;
     navigate(`/chapitre/${newChapterId}`);
+  };
+
+  // Déterminer l'onglet actif en fonction du numéro de chapitre
+  const getCurrentTab = () => {
+    const chapterNumber = parseInt(chapterId?.split('ch')[1] || "1");
+    if (chapterId?.startsWith('seconde')) {
+      if (chapterNumber >= 1 && chapterNumber <= 3) return "science-eco";
+      if (chapterNumber >= 4 && chapterNumber <= 5) return "socio";
+      return "regards";
+    }
+    if (chapterId?.startsWith('premiere') || chapterId?.startsWith('terminale')) {
+      if (chapterNumber >= 1 && chapterNumber <= 5) return "science-eco";
+      if (chapterNumber >= 6 && chapterNumber <= 10) return "socio";
+      return "regards";
+    }
+    return "science-eco";
   };
 
   return (
@@ -41,13 +75,15 @@ const ChapterDetail = () => {
       <header className="bg-white border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-orange-500 font-medium">{chapter.category}</span>
-              <Badge variant="secondary" className="bg-gray-100 text-gray-600">
-                {chapter.level}
-              </Badge>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-orange-500 font-medium">{chapter.category}</span>
+                <Badge variant="secondary" className="bg-gray-100 text-gray-600 cursor-pointer" onClick={() => navigate('/')}>
+                  {chapter.level}
+                </Badge>
+              </div>
             </div>
-            <Tabs defaultValue="science-eco" className="w-full">
+            <Tabs defaultValue={getCurrentTab()} className="w-full" onValueChange={handleTabChange}>
               <TabsList className="w-full justify-start">
                 <TabsTrigger value="science-eco" className="flex-1">
                   Science économique
