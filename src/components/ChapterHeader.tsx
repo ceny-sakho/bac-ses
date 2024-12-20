@@ -27,7 +27,7 @@ export const ChapterHeader: React.FC<ChapterHeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Button 
           variant="ghost" 
-          className="mb-4 hover:bg-[#F97316] hover:text-white transition-colors"
+          className="mb-4 hover:bg-[#FFD700] hover:text-white transition-colors"
           onClick={() => navigate(-1)}
         >
           <ChevronLeft className="mr-2 h-4 w-4" />
