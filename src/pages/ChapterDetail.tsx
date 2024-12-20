@@ -1,7 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const chaptersData = {
   "seconde-ch1": {
@@ -22,15 +23,22 @@ const chaptersData = {
 
 const ChapterDetail = () => {
   const { chapterId } = useParams();
+  const navigate = useNavigate();
   const chapter = chaptersData[chapterId as keyof typeof chaptersData];
 
   if (!chapter) {
     return <div>Chapitre non trouvé</div>;
   }
 
+  const handleTabChange = (value: string) => {
+    const currentLevel = chapterId?.split('-')[0]; // seconde, premiere, terminale
+    const newChapterId = `${currentLevel}-ch${value}`;
+    navigate(`/chapitre/${newChapterId}`);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b">
+      <header className="bg-white border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
@@ -39,6 +47,19 @@ const ChapterDetail = () => {
                 {chapter.level}
               </Badge>
             </div>
+            <Tabs defaultValue="science-eco" className="w-full">
+              <TabsList className="w-full justify-start">
+                <TabsTrigger value="science-eco" className="flex-1">
+                  Science économique
+                </TabsTrigger>
+                <TabsTrigger value="socio" className="flex-1">
+                  Sociologie / Science politique
+                </TabsTrigger>
+                <TabsTrigger value="regards" className="flex-1">
+                  Regards croisés
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
             <h1 className="text-4xl font-bold text-gray-900">
               Chapitre - {chapter.title}
             </h1>
