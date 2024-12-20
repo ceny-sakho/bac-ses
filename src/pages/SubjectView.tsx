@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -66,8 +66,19 @@ interface ChaptersPerSubject {
 const SubjectView = () => {
   const { subject } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedLevel, setSelectedLevel] = React.useState("all");
+  
+  // Déterminer le niveau initial en fonction de l'URL
+  const getInitialLevel = () => {
+    const pathParts = location.pathname.split('/');
+    if (pathParts.includes('seconde')) return 'seconde';
+    if (pathParts.includes('premiere')) return 'premiere';
+    if (pathParts.includes('terminale')) return 'terminale';
+    return 'all';
+  };
+
+  const [selectedLevel, setSelectedLevel] = React.useState(getInitialLevel());
 
   const getChaptersForSubject = (): ChaptersData => {
     const chaptersData: ChaptersPerSubject = {
@@ -193,12 +204,12 @@ const SubjectView = () => {
                     <Label htmlFor="all">Toutes les étiquettes</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="premiere" id="premiere" />
-                    <Label htmlFor="premiere">niveau première</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
                     <RadioGroupItem value="seconde" id="seconde" />
                     <Label htmlFor="seconde">niveau seconde</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="premiere" id="premiere" />
+                    <Label htmlFor="premiere">niveau première</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="terminale" id="terminale" />
