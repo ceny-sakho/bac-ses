@@ -18,9 +18,9 @@ const chapterImages = {
   "seconde-ch1": "photo-1488590528505-98d2b5aba04b",
   "seconde-ch2": "photo-1460925895917-afdab827c52f",
   "seconde-ch3": "photo-1498050108023-c5249f4df085",
-  "seconde-ch4": "photo-1521791136064-7986c2920216", // Sociologie image
-  "seconde-ch5": "photo-1517486808906-6ca8b3f04846", // Sociologie image
-  "seconde-ch6": "photo-1454165804606-c3d57bc86b40", // Regards croisés image
+  "seconde-ch4": "photo-1521791136064-7986c2920216",
+  "seconde-ch5": "photo-1517486808906-6ca8b3f04846",
+  "seconde-ch6": "photo-1454165804606-c3d57bc86b40",
   "premiere-ch1": "photo-1605810230434-7631ac76ec81",
   "premiere-ch2": "photo-1518770660439-4636190af475",
   "premiere-ch3": "photo-1461749280684-dccba630e2f6",
@@ -28,11 +28,11 @@ const chapterImages = {
   "premiere-ch5": "photo-1486406146926-c627a92ad1ab",
   "premiere-ch6": "photo-1472396961693-142e6e269027",
   "premiere-ch7": "/lovable-uploads/a5f1310e-ceff-42ea-a90a-c09524fbb165.png",
-  "premiere-ch8": "photo-1583526243717-ed85159989cd",
+  "premiere-ch8": "/lovable-uploads/148e9917-062b-42c9-b94f-36843bdcdfca.png",
   "premiere-ch9": "photo-1477281765962-ef34e8bb0967",
   "premiere-ch10": "photo-1540910419892-4a36d2c3266c",
-  "premiere-ch11": "photo-1454165804606-c3d57bc86b40", // Regards croisés image
-  "premiere-ch12": "photo-1486406146926-c627a92ad1ab", // Regards croisés image
+  "premiere-ch11": "photo-1454165804606-c3d57bc86b40",
+  "premiere-ch12": "photo-1486406146926-c627a92ad1ab",
   "terminale-ch1": "photo-1526304640581-d334cdbbf45e",
   "terminale-ch2": "photo-1507679799987-c73779587ccf",
   "terminale-ch3": "photo-1611095973763-414019e72400",
@@ -42,9 +42,9 @@ const chapterImages = {
   "terminale-ch7": "photo-1523050854058-8df90110c9f1",
   "terminale-ch8": "photo-1491438590914-bc09fcaaf77a",
   "terminale-ch9": "photo-1664575602276-acd073f104c1",
-  "terminale-ch10": "photo-1591189824935-c2cdb0edf98e",
-  "terminale-ch11": "photo-1454165804606-c3d57bc86b40", // Regards croisés image
-  "terminale-ch12": "photo-1486406146926-c627a92ad1ab" // Regards croisés image
+  "terminale-ch10": "/lovable-uploads/124e4bf1-3216-478f-a781-a9415a9ef5c3.png",
+  "terminale-ch11": "photo-1454165804606-c3d57bc86b40",
+  "terminale-ch12": "photo-1486406146926-c627a92ad1ab"
 } as const;
 
 interface Chapter {
