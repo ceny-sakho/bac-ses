@@ -21,9 +21,6 @@ const Index = () => {
             Ressources pédagogiques pour les lycéens
           </p>
           <div className="flex gap-4 justify-center">
-            <Button variant="outline" className="bg-white text-[#333333] hover:bg-gray-100">
-              Découvrir le programme
-            </Button>
             <Button className="bg-[#333333] hover:bg-[#444444] text-white">
               Accéder aux cours
             </Button>
@@ -37,9 +34,6 @@ const Index = () => {
             <h2 className="text-2xl font-semibold text-[#333333]">
               Programme par niveau
             </h2>
-            <Button variant="outline" className="text-[#333333]">
-              Voir tout le programme
-            </Button>
           </div>
           <CourseNavigation />
         </section>
@@ -88,7 +82,7 @@ const Index = () => {
                     ))}
                   </div>
                   <Button 
-                    className="group"
+                    className="bg-white text-[#333333] border border-[#333333] hover:bg-[#FEF7CD] transition-colors"
                     onClick={() => navigate(`/niveau/${item.level}`)}
                   >
                     Accéder aux ressources
