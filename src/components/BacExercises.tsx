@@ -1,7 +1,6 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const BacExercises = () => {
   return (
@@ -15,42 +14,16 @@ export const BacExercises = () => {
         </TabsList>
         <TabsContent value="dissertation">
           <Card>
-            <CardContent className="p-6 space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Dissertation s'appuyant sur un dossier documentaire</h3>
-                <h4 className="text-lg font-medium">Objectifs de l'épreuve : compétences et connaissances évaluées</h4>
-                <p className="text-gray-700">Il est demandé au candidat :</p>
-                <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                  <li>de répondre à la question posée par le sujet ;</li>
-                  <li>de construire une argumentation à partir d'une problématique qu'il devra élaborer ;</li>
-                  <li>de mobiliser des connaissances et des informations pertinentes pour traiter le sujet, notamment celles figurant dans le dossier ;</li>
-                  <li>de rédiger en utilisant le vocabulaire économique et social spécifique approprié à la question et en organisant le développement sous la forme d'un plan cohérent qui ménage l'équilibre des parties.</li>
-                </ul>
-              </div>
-
-              <div className="mt-8 space-y-4">
-                <h3 className="text-xl font-semibold">Chapitre 1 : Quels sont les sources et les défis de la croissance économique ?</h3>
-                <ScrollArea className="h-[400px] rounded-md border p-4">
-                  <div className="space-y-4">
-                    {[
-                      "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
-                      "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
-                      "Comment le progrès technique favorise-t-il la croissance économique ?",
-                      "L'accroissement de la productivité globale des facteurs suffit-il à expliquer la croissance économique ?",
-                      "Comment l'innovation peut-elle contribuer à reculer les limites écologiques d'une croissance soutenable ?",
-                      "Quel est le rôle de l'innovation sur la croissance économique ?",
-                      "L'accumulation des facteurs de production est-elle la seule source de croissance économique ?",
-                      "Les limites écologiques sont-elles le seul défi posé par la croissance économique ?",
-                      "L'accumulation des facteurs de production permet-elle, à elle seule, d'expliquer la croissance économique ?",
-                      "Quelles sont les sources de la croissance économique ?"
-                    ].map((sujet, index) => (
-                      <div key={index} className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                        <p className="text-gray-800">{sujet}</p>
-                      </div>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
+            <CardContent className="p-6 space-y-4">
+              <h3 className="text-xl font-semibold mb-4">Dissertation s'appuyant sur un dossier documentaire</h3>
+              <h4 className="text-lg font-medium">Objectifs de l'épreuve : compétences et connaissances évaluées</h4>
+              <p className="text-gray-700">Il est demandé au candidat :</p>
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>de répondre à la question posée par le sujet ;</li>
+                <li>de construire une argumentation à partir d'une problématique qu'il devra élaborer ;</li>
+                <li>de mobiliser des connaissances et des informations pertinentes pour traiter le sujet, notamment celles figurant dans le dossier ;</li>
+                <li>de rédiger en utilisant le vocabulaire économique et social spécifique approprié à la question et en organisant le développement sous la forme d'un plan cohérent qui ménage l'équilibre des parties.</li>
+              </ul>
             </CardContent>
           </Card>
         </TabsContent>
