@@ -13,7 +13,7 @@ const BacSubjects = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" />
           Retour
