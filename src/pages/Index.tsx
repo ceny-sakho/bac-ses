@@ -20,26 +20,22 @@ const Index = () => {
           <p className="text-xl opacity-90 mb-6">
             Ressources pédagogiques pour les lycéens
           </p>
+          <div className="flex gap-4 justify-center">
+            <Button className="bg-white text-[#333333] hover:bg-[#FEF7CD] transition-colors">
+              Accéder aux cours
+            </Button>
+          </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-12">
-        <section className="max-w-4xl mx-auto bg-white/95 rounded-lg shadow-xl p-8 mb-12 relative">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="/lovable-uploads/a5162db5-633a-4547-87db-526768b48f43.png" 
-              alt="Sciences Économiques et Sociales" 
-              className="w-full h-full object-cover rounded-lg opacity-10"
-            />
+        <section className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 mb-12">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-semibold text-[#333333]">
+              Programme par niveau
+            </h2>
           </div>
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-semibold text-[#333333]">
-                Programme par niveau
-              </h2>
-            </div>
-            <CourseNavigation />
-          </div>
+          <CourseNavigation />
         </section>
 
         <section className="max-w-5xl mx-auto space-y-8">
