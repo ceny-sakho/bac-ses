@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ChevronLeft } from "lucide-react";
 
 const chaptersData = {
   // Seconde
@@ -79,6 +80,14 @@ const ChapterDetail = () => {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-6">
+          <Button 
+            variant="ghost" 
+            className="mb-4"
+            onClick={() => navigate(-1)}
+          >
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Retour
+          </Button>
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">

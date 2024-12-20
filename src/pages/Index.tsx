@@ -24,7 +24,7 @@ const Index = () => {
             <Button variant="outline" className="bg-white text-[#333333] hover:bg-gray-100">
               Découvrir le programme
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button className="bg-[#333333] hover:bg-[#444444] text-white">
               Accéder aux cours
             </Button>
           </div>

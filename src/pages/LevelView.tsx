@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 const subjects = [
   {
@@ -38,6 +38,14 @@ const LevelView = () => {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
+          <Button 
+            variant="ghost" 
+            className="mb-4"
+            onClick={() => navigate(-1)}
+          >
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Retour
+          </Button>
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-4">
             <button onClick={() => navigate("/")} className="hover:text-gray-900">
               Accueil
