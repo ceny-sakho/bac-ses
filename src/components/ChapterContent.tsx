@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import { BookOpen, GraduationCap, BookOpenText } from "lucide-react";
 
 interface ChapterContentProps {
   objectives: string[];
@@ -40,9 +41,18 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
         </div>
       </div>
 
-      <div className="mt-8 flex justify-center">
-        <Button size="lg" className="bg-[#B69B7D] hover:bg-[#9F876C]">
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <Button size="lg" className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2">
+          <BookOpen className="w-5 h-5" />
           DÉCOUVRIR LE COURS
+        </Button>
+        <Button size="lg" variant="outline" className="flex items-center gap-2">
+          <BookOpenText className="w-5 h-5" />
+          SYNTHÈSE
+        </Button>
+        <Button size="lg" variant="outline" className="flex items-center gap-2">
+          <GraduationCap className="w-5 h-5" />
+          SUJETS BAC
         </Button>
       </div>
     </main>
