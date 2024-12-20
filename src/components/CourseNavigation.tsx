@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -65,9 +66,20 @@ const courseStructure = {
   },
 };
 
-const ChapterCard = ({ chapter }: { chapter: string }) => {
+const ChapterCard = ({ chapter, index, level, subject }: { 
+  chapter: string; 
+  index: number;
+  level: string;
+  subject: string;
+}) => {
+  const navigate = useNavigate();
+  const chapterId = `${level.toLowerCase()}-ch${index + 1}`;
+
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-200">
+    <Card 
+      className="hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+      onClick={() => navigate(`/chapitre/${chapterId}`)}
+    >
       <CardContent className="p-4">
         <h3 className="text-sm font-medium text-gray-900 mb-2">{chapter}</h3>
         <div className="flex gap-4 text-sm text-gray-600">
@@ -107,8 +119,14 @@ export const CourseNavigation = () => {
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
-                        {chapters.map((chapter) => (
-                          <ChapterCard key={chapter} chapter={chapter} />
+                        {chapters.map((chapter, index) => (
+                          <ChapterCard 
+                            key={chapter} 
+                            chapter={chapter} 
+                            index={index}
+                            level={level}
+                            subject={subject}
+                          />
                         ))}
                       </div>
                     </AccordionContent>
