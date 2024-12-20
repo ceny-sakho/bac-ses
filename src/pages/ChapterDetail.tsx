@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { chaptersData, ChapterData } from "@/data/chaptersData";
+import { chaptersData } from "@/data/chaptersData";
+import { ChapterData } from "@/data/types";
 import { ChapterHeader } from "@/components/ChapterHeader";
 import { ChapterContent } from "@/components/ChapterContent";
 
