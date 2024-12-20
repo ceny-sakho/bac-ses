@@ -1,8 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const BacExercises = () => {
+  const navigate = useNavigate();
+  
+  const dissertationChapters = [
+    { id: '1', title: 'Croissance économique' },
+    { id: '2', title: 'Commerce international' },
+    { id: '3', title: 'Chômage' },
+    { id: '4', title: 'Crises financières' },
+    { id: '5', title: 'Politiques économiques européennes' },
+    { id: '6', title: 'Structure sociale' },
+    { id: '7', title: "L'École" },
+    { id: '8', title: 'Mobilité sociale' },
+    { id: '9', title: 'Mutations du travail' },
+    { id: '10', title: 'Engagement politique' },
+    { id: '11', title: 'Justice sociale' },
+    { id: '12', title: "L'Environnement" },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Tabs defaultValue="dissertation" className="w-full">
@@ -16,14 +34,20 @@ export const BacExercises = () => {
           <Card>
             <CardContent className="p-6 space-y-4">
               <h3 className="text-xl font-semibold mb-4">Dissertation s'appuyant sur un dossier documentaire</h3>
-              <h4 className="text-lg font-medium">Objectifs de l'épreuve : compétences et connaissances évaluées</h4>
-              <p className="text-gray-700">Il est demandé au candidat :</p>
-              <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                <li>de répondre à la question posée par le sujet ;</li>
-                <li>de construire une argumentation à partir d'une problématique qu'il devra élaborer ;</li>
-                <li>de mobiliser des connaissances et des informations pertinentes pour traiter le sujet, notamment celles figurant dans le dossier ;</li>
-                <li>de rédiger en utilisant le vocabulaire économique et social spécifique approprié à la question et en organisant le développement sous la forme d'un plan cohérent qui ménage l'équilibre des parties.</li>
-              </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {dissertationChapters.map((chapter) => (
+                  <Card 
+                    key={chapter.id}
+                    className="cursor-pointer hover:shadow-lg transition-shadow"
+                    onClick={() => navigate(`/dissertation/${chapter.id}`)}
+                  >
+                    <CardContent className="p-4">
+                      <h4 className="font-medium">Chapitre {chapter.id}</h4>
+                      <p className="text-sm text-gray-600">{chapter.title}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
