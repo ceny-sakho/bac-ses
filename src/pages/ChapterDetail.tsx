@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const chaptersData = {
+  // Seconde
   "seconde-ch1": {
     title: "Comment les économistes, les sociologues et les politistes raisonnent-ils et travaillent-ils ?",
     category: "SCIENCE ÉCONOMIQUE",
@@ -17,8 +18,33 @@ const chaptersData = {
       "À partir d'exemples, comprendre la distinction entre la causalité et corrélation et savoir mettre en évidence un lien de causalité"
     ],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+  },
+  // Première
+  "premiere-ch1": {
+    title: "Comment un marché concurrentiel fonctionne-t-il ?",
+    category: "SCIENCE ÉCONOMIQUE",
+    level: "niveau première",
+    objectives: [
+      "Savoir que le marché est une institution et savoir distinguer les marchés selon leur degré de concurrence",
+      "Savoir que le marché suppose notamment l'existence d'institutions et de conventions",
+      "Savoir identifier les défaillances du marché"
+    ],
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80"
+  },
+  // Terminale
+  "terminale-ch1": {
+    title: "Quels sont les sources et les défis de la croissance économique ?",
+    category: "SCIENCE ÉCONOMIQUE",
+    level: "niveau terminale",
+    objectives: [
+      "Comprendre le processus de croissance économique et les sources de la croissance",
+      "Comprendre que le progrès technique est endogène et qu'il résulte en particulier de l'innovation",
+      "Comprendre comment les institutions influent sur la croissance en affectant l'incitation à investir et innover",
+      "Savoir mesurer et comprendre les sources de la croissance"
+    ],
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80"
   }
-  // ... Ajouter les autres chapitres de la même manière
+  // ... Vous pouvez ajouter d'autres chapitres de la même manière
 };
 
 const ChapterDetail = () => {
