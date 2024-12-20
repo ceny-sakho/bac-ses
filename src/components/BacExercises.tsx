@@ -62,14 +62,6 @@ export const BacExercises = () => {
           </Card>
         </TabsContent>
       </Tabs>
-
-      <div className="mt-8">
-        <img
-          src="/lovable-uploads/124e4bf1-3216-478f-a781-a9415a9ef5c3.png"
-          alt="Évaluation des compétences en sciences économiques et sociales"
-          className="w-full max-w-3xl mx-auto rounded-lg shadow-md"
-        />
-      </div>
     </div>
   );
 };
