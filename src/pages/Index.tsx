@@ -50,14 +50,14 @@ const Index = () => {
             {
               level: "premiere",
               title: "Première",
-              image: "https://images.unsplash.com/photo-1527576539890-deb4988cc6c0?auto=format&fit=crop&q=80",
+              image: "/lovable-uploads/fbecfe6a-7020-4ea6-8f5d-d888a3c53444.png",
               description: "Approfondissement des notions économiques et sociales",
               resources: ["30 cours", "15 exercices", "8 évaluations"]
             },
             {
               level: "terminale",
               title: "Terminale",
-              image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80",
+              image: "/lovable-uploads/0f742317-47f2-4e9e-95fb-9d47abe06d84.png",
               description: "Préparation au baccalauréat et concepts avancés",
               resources: ["36 cours", "18 exercices", "10 évaluations"]
             }
