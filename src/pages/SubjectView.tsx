@@ -1,11 +1,10 @@
 import React from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { SearchFilter } from "@/components/subject/SearchFilter";
+import { LevelFilter } from "@/components/subject/LevelFilter";
+import { ChapterCard } from "@/components/subject/ChapterCard";
 
 const subjectTitles = {
   "science-eco": "Science économique (SES)",
@@ -40,12 +39,12 @@ const chapterImages = {
   "terminale-ch4": "photo-1579532537598-459ecdaf39cc",
   "terminale-ch5": "photo-1551836022-deb4988cc6c0",
   "terminale-ch6": "photo-1502602898657-3e91760cbb34",
-  "terminale-ch7": "photo-1517486808906-6ca8b3f04846", // Sociologie image
-  "terminale-ch8": "photo-1590650153855-d9e808231d41", // Sociologie image
-  "terminale-ch9": "photo-1494172892981-ce47ca32a82a", // Sociologie image
-  "terminale-ch10": "photo-1577563908411-5077b6dc7624", // Sociologie image
+  "terminale-ch7": "photo-1523050854058-8df90110c9f1",
+  "terminale-ch8": "photo-1491438590914-bc09fcaaf77a",
+  "terminale-ch9": "photo-1664575602276-acd073f104c1",
+  "terminale-ch10": "photo-1591189824935-c2cdb0edf98e",
   "terminale-ch11": "photo-1454165804606-c3d57bc86b40", // Regards croisés image
-  "terminale-ch12": "photo-1486406146926-c627a92ad1ab", // Regards croisés image
+  "terminale-ch12": "photo-1486406146926-c627a92ad1ab" // Regards croisés image
 } as const;
 
 interface Chapter {
@@ -184,63 +183,21 @@ const SubjectView = () => {
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-8">
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Recherche</h2>
-              <Input 
-                type="search" 
-                placeholder="Votre recherche.." 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Niveaux</h2>
-              <RadioGroup value={selectedLevel} onValueChange={setSelectedLevel}>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="all" id="all" />
-                    <Label htmlFor="all">Toutes les étiquettes</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="seconde" id="seconde" />
-                    <Label htmlFor="seconde">niveau seconde</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="premiere" id="premiere" />
-                    <Label htmlFor="premiere">niveau première</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="terminale" id="terminale" />
-                    <Label htmlFor="terminale">niveau terminale</Label>
-                  </div>
-                </div>
-              </RadioGroup>
-            </div>
+            <SearchFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <LevelFilter selectedLevel={selectedLevel} setSelectedLevel={setSelectedLevel} />
           </div>
 
           <div className="md:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredChapters.map((chapter) => (
-                <Card 
+                <ChapterCard
                   key={chapter.id}
-                  className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+                  id={chapter.id}
+                  title={chapter.title}
+                  level={chapter.level}
+                  image={chapterImages[chapter.id as keyof typeof chapterImages]}
                   onClick={() => navigate(`/chapitre/${chapter.id}`)}
-                >
-                  <div className="aspect-video relative">
-                    <img
-                      src={chapterImages[chapter.id as keyof typeof chapterImages].startsWith('/') 
-                        ? chapterImages[chapter.id as keyof typeof chapterImages]
-                        : `https://images.unsplash.com/${chapterImages[chapter.id as keyof typeof chapterImages]}`}
-                      alt={chapter.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-medium text-lg mb-2">{chapter.title}</h3>
-                    <p className="text-sm text-gray-500">Niveau {chapter.level}</p>
-                  </CardContent>
-                </Card>
+                />
               ))}
             </div>
           </div>
