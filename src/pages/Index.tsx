@@ -43,7 +43,7 @@ const Index = () => {
             {
               level: "seconde",
               title: "Seconde",
-              image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&q=80",
+              image: "/lovable-uploads/44d16e39-dc67-4ec8-be27-ffbe573a44ea.png",
               description: "Introduction aux concepts fondamentaux des SES",
               resources: ["24 cours", "12 exercices", "6 évaluations"]
             },
