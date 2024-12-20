@@ -65,7 +65,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les agents de socialisation",
       "Analyser les effets de la socialisation sur le comportement"
     ],
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/cedefef7-cfe5-43e3-b3d4-39497e91d0a7.png"
   },
   "premiere-ch7": {
     title: "Comment se construisent et évoluent les liens sociaux ?",
@@ -76,7 +76,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les différents types de liens sociaux",
       "Analyser les facteurs qui influencent l'évolution des liens sociaux"
     ],
-    image: "/lovable-uploads/a5f1310e-ceff-42ea-a90a-c09524fbb165.png"
+    image: "/lovable-uploads/cedefef7-cfe5-43e3-b3d4-39497e91d0a7.png"
   },
   "premiere-ch8": {
     title: "Quels sont les processus sociaux qui contribuent à la déviance ?",
