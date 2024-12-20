@@ -66,7 +66,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Savoir identifier les inégalités sociales",
       "Analyser les enjeux de la structure sociale pour la cohésion"
     ],
-    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625"
+    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&q=80"
   },
   "terminale-ch7": {
     title: "Quelle est l'action de l'École sur les destins individuels et sur l'évolution de la société ?",
@@ -77,7 +77,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Savoir identifier les inégalités d'accès à l'éducation",
       "Analyser les conséquences de l'éducation sur les trajectoires individuelles"
     ],
-    image: "https://images.unsplash.com/photo-1493397212122-2b85dda8106b"
+    image: "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?auto=format&fit=crop&q=80"
   },
   "terminale-ch8": {
     title: "Quels sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
@@ -88,7 +88,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs qui influencent la mobilité",
       "Analyser les enjeux de la mobilité sociale pour la société"
     ],
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22"
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80"
   },
   "terminale-ch9": {
     title: "Quelles mutations du travail et de l'emploi ?",
@@ -99,7 +99,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Savoir identifier les nouvelles formes d'emploi",
       "Analyser les enjeux des mutations du travail pour les individus"
     ],
-    image: "https://images.unsplash.com/photo-1439886183900-e79d8363d4f3"
+    image: "https://images.unsplash.com/photo-1439886183900-e79d8363d4f3?auto=format&fit=crop&q=80"
   },
   "terminale-ch10": {
     title: "Comment expliquer l'engagement politique dans les sociétés démocratiques ?",
@@ -110,7 +110,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Savoir identifier les différentes formes d'engagement",
       "Analyser les enjeux de l'engagement pour la démocratie"
     ],
-    image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d"
+    image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?auto=format&fit=crop&q=80"
   },
   "terminale-ch11": {
     title: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
