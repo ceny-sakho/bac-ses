@@ -21,7 +21,7 @@ const Index = () => {
             Ressources pédagogiques pour les lycéens
           </p>
           <div className="flex gap-4 justify-center">
-            <Button className="bg-[#333333] hover:bg-[#444444] text-white">
+            <Button className="bg-white text-[#333333] hover:bg-[#FEF7CD] transition-colors">
               Accéder aux cours
             </Button>
           </div>
