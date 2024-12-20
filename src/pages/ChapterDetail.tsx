@@ -1,65 +1,34 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { chaptersData, ChapterData } from "@/data/chaptersData";
-import { ChapterHeader } from "@/components/ChapterHeader";
-import { ChapterContent } from "@/components/ChapterContent";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { ChapterHeader } from '@/components/ChapterHeader';
+import { chaptersData } from '@/data/chaptersData';
+import { BacSubjectsTerminaleCh1 } from '@/components/BacSubjectsTerminaleCh1';
 
-const normalizeString = (str: string): string => {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-};
-
-const ChapterDetail = () => {
+export const ChapterDetail = () => {
   const { chapterId } = useParams();
-  const navigate = useNavigate();
-
-  // Normalize the chapterId to handle accents
-  const normalizedChapterId = chapterId ? normalizeString(chapterId) : "";
-  
-  // Find the chapter by comparing normalized keys
-  const chapter = Object.entries(chaptersData).find(([key]) => 
-    normalizeString(key) === normalizedChapterId
-  );
+  const chapter = chaptersData[chapterId as keyof typeof chaptersData];
 
   if (!chapter) {
-    return <div className="p-4">Chapitre non trouvé</div>;
+    return <div>Chapter not found</div>;
   }
 
-  const chapterData = chapter[1] as ChapterData;
-
-  const getCurrentTab = () => {
-    const chapterNumber = parseInt(chapterId?.split('ch')[1] || "1");
-    if (chapterId?.startsWith('seconde')) {
-      if (chapterNumber >= 1 && chapterNumber <= 3) return "science-eco";
-      if (chapterNumber >= 4 && chapterNumber <= 5) return "socio";
-      return "regards";
-    }
-    if (chapterId?.startsWith('premiere') || chapterId?.startsWith('terminale')) {
-      if (chapterNumber >= 1 && chapterNumber <= 5) return "science-eco";
-      if (chapterNumber >= 6 && chapterNumber <= 10) return "socio";
-      return "regards";
-    }
-    return "science-eco";
-  };
-
-  const handleTabChange = (value: string) => {
-    navigate(`/matiere/${value}`);
-  };
+  const showBacSubjects = chapterId === 'terminale-ch1';
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="container mx-auto px-4 py-8">
       <ChapterHeader
-        category={chapterData.category}
-        level={chapterData.level}
-        title={chapterData.title}
-        getCurrentTab={getCurrentTab}
-        handleTabChange={handleTabChange}
+        title={chapter.title}
+        category={chapter.category}
+        level={chapter.level}
+        objectives={chapter.objectives}
+        image={chapter.image}
       />
-      <ChapterContent
-        objectives={chapterData.objectives}
-        image={chapterData.image}
-      />
+      {showBacSubjects && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold mb-4">Sujets de Bac</h2>
+          <BacSubjectsTerminaleCh1 />
+        </div>
+      )}
     </div>
   );
 };
-
-export default ChapterDetail;
