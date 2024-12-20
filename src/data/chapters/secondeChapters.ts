@@ -45,7 +45,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Savoir que la socialisation est un processus",
       "Comprendre le rôle des différentes instances de socialisation"
     ],
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80"
   },
   "seconde-ch5": {
     title: "Comment s'organise la vie politique ?",
@@ -56,7 +56,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Connaître les principales institutions politiques",
       "Comprendre le rôle des partis politiques"
     ],
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&q=80"
   },
   "seconde-ch6": {
     title: "Quelles relations entre diplôme, emploi et salaire ?",

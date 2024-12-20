@@ -87,7 +87,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs de déviance",
       "Analyser les conséquences de la déviance sur la société"
     ],
-    image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1583526243717-ed85159989cd?auto=format&fit=crop&q=80"
   },
   "premiere-ch9": {
     title: "Comment se forme et s'exprime l'opinion publique ?",
@@ -98,7 +98,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs qui influencent l'opinion publique",
       "Analyser les enjeux de l'opinion publique dans la démocratie"
     ],
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?auto=format&fit=crop&q=80"
   },
   "premiere-ch10": {
     title: "Voter : une affaire individuelle ou collective ?",
@@ -109,7 +109,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs qui influencent le vote",
       "Analyser les conséquences du vote sur la démocratie"
     ],
-    image: "https://images.unsplash.com/photo-1473177104440-7436c2a45eb2?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80"
   },
   "premiere-ch11": {
     title: "Comment l'assurance et la protection sociale contribuent-elles à la gestion des risques dans les sociétés développées ?",
@@ -133,4 +133,3 @@ export const premiereChapters: Record<string, ChapterData> = {
     ],
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
   }
-};
