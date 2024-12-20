@@ -32,7 +32,7 @@ const Index = () => {
         <section className="max-w-4xl mx-auto bg-white/95 rounded-lg shadow-xl p-8 mb-12 relative">
           <div className="absolute inset-0 z-0">
             <img 
-              src="/lovable-uploads/d2e95d46-3f08-4c8c-9551-238cf5935e8b.png" 
+              src="/lovable-uploads/a5162db5-633a-4547-87db-526768b48f43.png" 
               alt="Sciences Économiques et Sociales" 
               className="w-full h-full object-cover rounded-lg opacity-10"
             />
