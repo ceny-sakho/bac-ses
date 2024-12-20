@@ -264,7 +264,7 @@ export const chaptersData: Record<string, ChapterData> = {
       "Savoir identifier les instruments de politique économique",
       "Analyser les conséquences des politiques économiques sur les États membres"
     ],
-    image: "/lovable-uploads/7fcbd633-220d-4420-9241-3270be14e270.png"
+    image: "/lovable-uploads/29daff80-7d7e-40b5-af77-a53af448bd41.png"
   },
   "terminale-ch6": {
     title: "Comment est structurée la société française actuelle ?",
