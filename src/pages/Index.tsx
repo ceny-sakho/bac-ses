@@ -1,9 +1,12 @@
 import { CourseNavigation } from "@/components/CourseNavigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F6F6F7] to-[#8E9196]">
       <header className="bg-[#333333] text-white py-12 px-4 text-center relative overflow-hidden">
@@ -44,19 +47,22 @@ const Index = () => {
         <section className="max-w-5xl mx-auto space-y-8">
           {[
             {
-              level: "Seconde",
+              level: "seconde",
+              title: "Seconde",
               image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&q=80",
               description: "Introduction aux concepts fondamentaux des SES",
               resources: ["24 cours", "12 exercices", "6 évaluations"]
             },
             {
-              level: "Première",
+              level: "premiere",
+              title: "Première",
               image: "https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&q=80",
               description: "Approfondissement des notions économiques et sociales",
               resources: ["30 cours", "15 exercices", "8 évaluations"]
             },
             {
-              level: "Terminale",
+              level: "terminale",
+              title: "Terminale",
               image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80",
               description: "Préparation au baccalauréat et concepts avancés",
               resources: ["36 cours", "18 exercices", "10 évaluations"]
@@ -67,12 +73,12 @@ const Index = () => {
                 <div className="h-full">
                   <img
                     src={item.image}
-                    alt={item.level}
+                    alt={item.title}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="col-span-2 p-6">
-                  <h3 className="text-2xl font-semibold mb-3 text-[#333333]">{item.level}</h3>
+                  <h3 className="text-2xl font-semibold mb-3 text-[#333333]">{item.title}</h3>
                   <p className="text-[#8E9196] mb-4">{item.description}</p>
                   <div className="flex gap-4 mb-6">
                     {item.resources.map((resource, index) => (
@@ -81,7 +87,10 @@ const Index = () => {
                       </span>
                     ))}
                   </div>
-                  <Button className="group">
+                  <Button 
+                    className="group"
+                    onClick={() => navigate(`/niveau/${item.level}`)}
+                  >
                     Accéder aux ressources
                     <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
