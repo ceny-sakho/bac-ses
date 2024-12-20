@@ -34,14 +34,13 @@ export const BacExercises = () => {
           <Card>
             <CardContent className="p-6 space-y-4">
               <div className="mb-6 bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Objectifs de la dissertation</h3>
-                <p className="text-gray-700 mb-2">La dissertation est un exercice qui permet d'évaluer votre capacité à :</p>
+                <h3 className="text-xl font-semibold mb-3">Objectifs de l'épreuve : compétences et connaissances évaluées</h3>
+                <p className="text-gray-700 mb-2">Il est demandé au candidat :</p>
                 <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                  <li>Analyser un sujet et construire une problématique</li>
-                  <li>Mobiliser vos connaissances de manière pertinente</li>
-                  <li>Organiser votre réflexion de façon cohérente</li>
-                  <li>Argumenter de façon rigoureuse</li>
-                  <li>Exploiter un dossier documentaire</li>
+                  <li>de répondre à la question posée par le sujet ;</li>
+                  <li>de construire une argumentation à partir d'une problématique qu'il devra élaborer ;</li>
+                  <li>de mobiliser des connaissances et des informations pertinentes pour traiter le sujet, notamment celles figurant dans le dossier ;</li>
+                  <li>de rédiger en utilisant le vocabulaire économique et social spécifique approprié à la question et en organisant le développement sous la forme d'un plan cohérent qui ménage l'équilibre des parties.</li>
                 </ul>
               </div>
               <h3 className="text-xl font-semibold mb-4">Dissertation s'appuyant sur un dossier documentaire</h3>
