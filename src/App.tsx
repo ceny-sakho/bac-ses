@@ -1,30 +1,23 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import ChapterDetail from "./pages/ChapterDetail";
 import SubjectView from "./pages/SubjectView";
 import LevelView from "./pages/LevelView";
+import ChapterDetail from "./pages/ChapterDetail";
+import BacSubjects from "./pages/BacSubjects";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
-          <Route path="/matiere/:subject" element={<SubjectView />} />
-          <Route path="/niveau/:level" element={<LevelView />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/matiere/:subject" element={<SubjectView />} />
+        <Route path="/niveau/:level" element={<LevelView />} />
+        <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
+        <Route path="/sujets-bac" element={<BacSubjects />} />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;

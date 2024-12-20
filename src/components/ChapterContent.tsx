@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, BookOpenText } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 interface ChapterContentProps {
   objectives: string[];
@@ -11,6 +12,8 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   objectives,
   image
 }) => {
+  const navigate = useNavigate();
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid md:grid-cols-2 gap-8">
@@ -50,7 +53,12 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           <BookOpenText className="w-5 h-5" />
           SYNTHÈSE
         </Button>
-        <Button size="lg" variant="outline" className="flex items-center gap-2">
+        <Button 
+          size="lg" 
+          variant="outline" 
+          className="flex items-center gap-2"
+          onClick={() => navigate('/sujets-bac')}
+        >
           <GraduationCap className="w-5 h-5" />
           SUJETS BAC
         </Button>
