@@ -98,7 +98,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs qui influencent l'opinion publique",
       "Analyser les enjeux de l'opinion publique dans la démocratie"
     ],
-    image: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
   },
   "premiere-ch10": {
     title: "Voter : une affaire individuelle ou collective ?",
@@ -109,7 +109,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs qui influencent le vote",
       "Analyser les conséquences du vote sur la démocratie"
     ],
-    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1473177104440-7436c2a45eb2"
   },
   "premiere-ch11": {
     title: "Comment l'assurance et la protection sociale contribuent-elles à la gestion des risques dans les sociétés développées ?",
