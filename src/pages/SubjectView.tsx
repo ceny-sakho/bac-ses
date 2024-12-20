@@ -10,7 +10,9 @@ const subjectTitles = {
   "science-eco": "Science économique (SES)",
   "socio": "Sociologie / Science Politique (SES)",
   "regards": "Regards croisés (SES)"
-};
+} as const;
+
+type SubjectTitle = keyof typeof subjectTitles;
 
 const chapterImages = {
   "seconde-ch1": "photo-1488590528505-98d2b5aba04b",
@@ -19,7 +21,22 @@ const chapterImages = {
   "premiere-ch1": "photo-1605810230434-7631ac76ec81",
   "premiere-ch2": "photo-1518770660439-4636190af475",
   "premiere-ch3": "photo-1461749280684-dccba630e2f6",
-};
+} as const;
+
+interface Chapter {
+  id: string;
+  title: string;
+}
+
+interface ChaptersData {
+  seconde: Chapter[];
+  premiere: Chapter[];
+  terminale: Chapter[];
+}
+
+interface ChaptersPerSubject {
+  [key: string]: ChaptersData;
+}
 
 const SubjectView = () => {
   const { subject } = useParams();
@@ -27,8 +44,8 @@ const SubjectView = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectedLevel, setSelectedLevel] = React.useState("all");
 
-  const getChaptersForSubject = () => {
-    const chaptersData = {
+  const getChaptersForSubject = (): ChaptersData => {
+    const chaptersData: ChaptersPerSubject = {
       "science-eco": {
         seconde: [
           { id: "seconde-ch1", title: "Comment les économistes, les sociologues et les politistes raisonnent-ils et travaillent-ils ?" },
@@ -43,9 +60,12 @@ const SubjectView = () => {
           { id: "terminale-ch1", title: "Quels sont les sources et les défis de la croissance économique ?" }
         ]
       },
-      // ... Ajouter les autres matières de la même manière
     };
-    return chaptersData[subject as keyof typeof chaptersData] || {};
+    return chaptersData[subject as keyof typeof chaptersData] || {
+      seconde: [],
+      premiere: [],
+      terminale: []
+    };
   };
 
   const filteredChapters = React.useMemo(() => {
@@ -71,9 +91,9 @@ const SubjectView = () => {
               <ChevronRight className="h-4 w-4" />
               <span>Tous les articles</span>
               <ChevronRight className="h-4 w-4" />
-              <span className="text-gray-900">{subjectTitles[subject as keyof typeof subjectTitles]}</span>
+              <span className="text-gray-900">{subjectTitles[subject as SubjectTitle]}</span>
             </nav>
-            <h1 className="text-4xl font-bold">{subjectTitles[subject as keyof typeof subjectTitles]}</h1>
+            <h1 className="text-4xl font-bold">{subjectTitles[subject as SubjectTitle]}</h1>
           </div>
         </div>
       </header>
