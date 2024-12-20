@@ -31,30 +31,9 @@ const ChapterDetail = () => {
   }
 
   const handleTabChange = (value: string) => {
-    const currentLevel = chapterId?.split('-')[0]; // seconde, premiere, terminale
-    const currentChapterNumber = parseInt(chapterId?.split('ch')[1] || "1");
-    
-    // Déterminer le nouveau chapitre en fonction de la catégorie
-    let newChapterNumber;
-    switch (value) {
-      case "science-eco":
-        newChapterNumber = currentLevel === "seconde" ? 1 : 1;
-        break;
-      case "socio":
-        newChapterNumber = currentLevel === "seconde" ? 4 : 6;
-        break;
-      case "regards":
-        newChapterNumber = currentLevel === "seconde" ? 6 : 11;
-        break;
-      default:
-        newChapterNumber = 1;
-    }
-    
-    const newChapterId = `${currentLevel}-ch${newChapterNumber}`;
-    navigate(`/chapitre/${newChapterId}`);
+    navigate(`/matiere/${value}`);
   };
 
-  // Déterminer l'onglet actif en fonction du numéro de chapitre
   const getCurrentTab = () => {
     const chapterNumber = parseInt(chapterId?.split('ch')[1] || "1");
     if (chapterId?.startsWith('seconde')) {

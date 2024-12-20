@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ChapterDetail from "./pages/ChapterDetail";
+import SubjectView from "./pages/SubjectView";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
+          <Route path="/matiere/:subject" element={<SubjectView />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
