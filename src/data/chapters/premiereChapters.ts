@@ -87,7 +87,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir identifier les facteurs de déviance",
       "Analyser les conséquences de la déviance sur la société"
     ],
-    image: "https://images.unsplash.com/photo-1583526243717-ed85159989cd?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/148e9917-062b-42c9-b94f-36843bdcdfca.png"
   },
   "premiere-ch9": {
     title: "Comment se forme et s'exprime l'opinion publique ?",
