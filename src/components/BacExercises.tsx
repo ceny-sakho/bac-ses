@@ -7,18 +7,18 @@ export const BacExercises = () => {
   const navigate = useNavigate();
   
   const dissertationChapters = [
-    { id: '1', title: 'Croissance économique' },
-    { id: '2', title: 'Commerce international' },
-    { id: '3', title: 'Chômage' },
-    { id: '4', title: 'Crises financières' },
-    { id: '5', title: 'Politiques économiques européennes' },
-    { id: '6', title: 'Structure sociale' },
-    { id: '7', title: "L'École" },
-    { id: '8', title: 'Mobilité sociale' },
-    { id: '9', title: 'Mutations du travail' },
-    { id: '10', title: 'Engagement politique' },
-    { id: '11', title: 'Justice sociale' },
-    { id: '12', title: "L'Environnement" },
+    { id: '1', title: 'Dissertation 1 : Croissance économique' },
+    { id: '2', title: 'Dissertation 2 : Commerce international' },
+    { id: '3', title: 'Dissertation 3 : Chômage' },
+    { id: '4', title: 'Dissertation 4 : Crises financières' },
+    { id: '5', title: 'Dissertation 5 : Politiques économiques européennes' },
+    { id: '6', title: 'Dissertation 6 : Structure sociale' },
+    { id: '7', title: "Dissertation 7 : L'École" },
+    { id: '8', title: 'Dissertation 8 : Mobilité sociale' },
+    { id: '9', title: 'Dissertation 9 : Mutations du travail' },
+    { id: '10', title: 'Dissertation 10 : Engagement politique' },
+    { id: '11', title: 'Dissertation 11 : Justice sociale' },
+    { id: '12', title: "Dissertation 12 : L'Environnement" },
   ];
 
   return (
@@ -52,7 +52,7 @@ export const BacExercises = () => {
                     onClick={() => navigate(`/dissertation/${chapter.id}`)}
                   >
                     <CardContent className="p-4">
-                      <h4 className="font-medium">Chapitre {chapter.id}</h4>
+                      <h4 className="font-medium">Dissertation {chapter.id}</h4>
                       <p className="text-sm text-gray-600">{chapter.title}</p>
                     </CardContent>
                   </Card>
