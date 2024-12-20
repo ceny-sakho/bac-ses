@@ -29,13 +29,22 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 py-12">
-        <section className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 mb-12">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-semibold text-[#333333]">
-              Programme par niveau
-            </h2>
+        <section className="max-w-4xl mx-auto bg-white/95 rounded-lg shadow-xl p-8 mb-12 relative">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="/lovable-uploads/a8da72a8-7373-4b29-bd47-5847b018b406.png" 
+              alt="Frédéric Ozanam" 
+              className="w-full h-full object-cover rounded-lg opacity-10"
+            />
           </div>
-          <CourseNavigation />
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-semibold text-[#333333]">
+                Programme par niveau
+              </h2>
+            </div>
+            <CourseNavigation />
+          </div>
         </section>
 
         <section className="max-w-5xl mx-auto space-y-8">
