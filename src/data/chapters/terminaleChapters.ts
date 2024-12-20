@@ -110,7 +110,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Savoir identifier les différentes formes d'engagement",
       "Analyser les enjeux de l'engagement pour la démocratie"
     ],
-    image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/124e4bf1-3216-478f-a781-a9415a9ef5c3.png"
   },
   "terminale-ch11": {
     title: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
