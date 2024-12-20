@@ -12,7 +12,7 @@ const subjects = [
   },
   {
     title: "Sociologie / Science politique",
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80",
+    image: "/lovable-uploads/124e4bf1-3216-478f-a781-a9415a9ef5c3.png",
     description: "Explorer les dynamiques sociales et politiques"
   },
   {
