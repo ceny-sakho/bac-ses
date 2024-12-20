@@ -27,11 +27,11 @@ const chapterImages = {
   "premiere-ch3": "photo-1461749280684-dccba630e2f6",
   "premiere-ch4": "photo-1454165804606-c3d57bc86b40",
   "premiere-ch5": "photo-1486406146926-c627a92ad1ab",
-  "premiere-ch6": "photo-1521791136064-7986c2920216", // Sociologie image
-  "premiere-ch7": "photo-1517486808906-6ca8b3f04846", // Sociologie image
-  "premiere-ch8": "photo-1590650153855-d9e808231d41", // Sociologie image
-  "premiere-ch9": "photo-1494172892981-ce47ca32a82a", // Sociologie image
-  "premiere-ch10": "photo-1577563908411-5077b6dc7624", // Sociologie image
+  "premiere-ch6": "photo-1472396961693-142e6e269027",
+  "premiere-ch7": "/lovable-uploads/a5f1310e-ceff-42ea-a90a-c09524fbb165.png",
+  "premiere-ch8": "photo-1583526243717-ed85159989cd",
+  "premiere-ch9": "photo-1477281765962-ef34e8bb0967",
+  "premiere-ch10": "photo-1540910419892-4a36d2c3266c",
   "premiere-ch11": "photo-1454165804606-c3d57bc86b40", // Regards croisés image
   "premiere-ch12": "photo-1486406146926-c627a92ad1ab", // Regards croisés image
   "terminale-ch1": "photo-1526304640581-d334cdbbf45e",
@@ -39,7 +39,7 @@ const chapterImages = {
   "terminale-ch3": "photo-1611095973763-414019e72400",
   "terminale-ch4": "photo-1579532537598-459ecdaf39cc",
   "terminale-ch5": "photo-1551836022-deb4988cc6c0",
-  "terminale-ch6": "photo-1521791136064-7986c2920216", // Sociologie image
+  "terminale-ch6": "photo-1502602898657-3e91760cbb34",
   "terminale-ch7": "photo-1517486808906-6ca8b3f04846", // Sociologie image
   "terminale-ch8": "photo-1590650153855-d9e808231d41", // Sociologie image
   "terminale-ch9": "photo-1494172892981-ce47ca32a82a", // Sociologie image
@@ -69,7 +69,6 @@ const SubjectView = () => {
   const location = useLocation();
   const [searchTerm, setSearchTerm] = React.useState("");
   
-  // Déterminer le niveau initial en fonction de l'URL
   const getInitialLevel = () => {
     const pathParts = location.pathname.split('/');
     if (pathParts.includes('seconde')) return 'seconde';
@@ -230,7 +229,9 @@ const SubjectView = () => {
                 >
                   <div className="aspect-video relative">
                     <img
-                      src={`https://images.unsplash.com/${chapterImages[chapter.id as keyof typeof chapterImages]}`}
+                      src={chapterImages[chapter.id as keyof typeof chapterImages].startsWith('/') 
+                        ? chapterImages[chapter.id as keyof typeof chapterImages]
+                        : `https://images.unsplash.com/${chapterImages[chapter.id as keyof typeof chapterImages]}`}
                       alt={chapter.title}
                       className="w-full h-full object-cover"
                     />
