@@ -52,8 +52,8 @@ export const BacExercises = () => {
                     onClick={() => navigate(`/dissertation/${chapter.id}`)}
                   >
                     <CardContent className="p-4">
-                      <h4 className="font-medium">Chapitre {chapter.id}</h4>
-                      <p className="text-sm text-gray-600">{chapter.title}</p>
+                      <p className="text-sm text-gray-600">Chapitre {chapter.id}</p>
+                      <h4 className="font-medium">{chapter.title}</h4>
                     </CardContent>
                   </Card>
                 ))}
