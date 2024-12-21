@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft, Download, Upload } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,6 +15,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const [showPdf, setShowPdf] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -32,16 +33,15 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   ];
 
   const handleTopicClick = (topic: string, index: number) => {
-    if (index === 0) {
-      setShowPdf(true);
-    }
+    setSelectedTopicIndex(index);
+    setShowPdf(true);
   };
 
   const handleDownload = () => {
     if (selectedPdf) {
       const link = document.createElement('a');
       link.href = selectedPdf;
-      link.download = 'dissertation-croissance.pdf';
+      link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -49,7 +49,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       const pdfUrl = '/sample.pdf';
       const link = document.createElement('a');
       link.href = pdfUrl;
-      link.download = 'dissertation-croissance.pdf';
+      link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -77,6 +77,10 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
     }
   };
 
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
+
   if (showPdf) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -88,6 +92,23 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           <ArrowLeft className="h-4 w-4" />
           Retour
         </Button>
+
+        <div className="mb-6">
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={handleFileUpload}
+            className="hidden"
+            ref={fileInputRef}
+          />
+          <Button 
+            onClick={triggerFileInput}
+            className="bg-[#403E43] hover:bg-[#2A292D] text-white flex items-center gap-2"
+          >
+            <Upload className="h-4 w-4" />
+            Télécharger un nouveau PDF
+          </Button>
+        </div>
 
         <div 
           className="relative"
@@ -133,9 +154,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
         {topics.map((topic, index) => (
           <Card 
             key={index}
-            className={`cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white ${
-              index === 0 ? 'border-2 border-[#403E43]' : ''
-            }`}
+            className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white"
             onClick={() => handleTopicClick(topic, index)}
           >
             <CardContent className="p-6">
