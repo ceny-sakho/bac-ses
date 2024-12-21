@@ -19,7 +19,6 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
-  // Définition des sujets spécifiques à chaque chapitre
   const getTopicsByChapter = () => {
     switch (chapter) {
       case '1':
@@ -28,20 +27,15 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
           "Comment le progrès technique favorise-t-il la croissance économique ?",
           "L'accroissement de la productivité globale des facteurs suffit-il à expliquer la croissance économique ?",
+          "Comment l'innovation peut-elle contribuer à reculer les limites écologiques d'une croissance soutenable ?",
+          "Quel est le rôle de l'innovation sur la croissance économique ?",
+          "L'accumulation des facteurs de production est-elle la seule source de croissance économique ?",
+          "Les limites écologiques sont-elles le seul défi posé par la croissance économique ?",
+          "L'accumulation des facteurs de production permet-elle, à elle seule, d'expliquer la croissance économique ?",
+          "Quelles sont les sources de la croissance économique ?"
         ];
       case '2':
-        return [
-          "Le libre-échange est-il toujours bénéfique ?",
-          "La mondialisation remet-elle en cause la souveraineté des États ?",
-          "Le protectionnisme est-il une solution face aux déséquilibres du commerce international ?",
-        ];
-      case '3':
-        return [
-          "Le chômage est-il une fatalité ?",
-          "Les politiques de l'emploi sont-elles efficaces ?",
-          "Le plein emploi est-il un objectif atteignable ?",
-        ];
-      // Ajoutez d'autres cas pour les autres chapitres
+        return ["Aucun sujet disponible pour ce chapitre"];
       default:
         return ["Aucun sujet disponible pour ce chapitre"];
     }
@@ -100,7 +94,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
         <Button 
           variant="ghost" 
           onClick={() => setShowPdf(false)}
-          className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white mb-6"
+          className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
           Retour
@@ -116,7 +110,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           />
           <Button 
             onClick={triggerFileInput}
-            className="bg-[#403E43] hover:bg-[#2A292D] text-white flex items-center gap-2"
+            className="bg-gris-sideral hover:bg-[#2A292D] text-white flex items-center gap-2"
           >
             <Upload className="h-4 w-4" />
             Télécharger un nouveau PDF
@@ -138,7 +132,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
               <Button 
                 onClick={handleDownload}
-                className="bg-[#403E43] hover:bg-[#2A292D] text-white flex items-center gap-2"
+                className="bg-gris-sideral hover:bg-[#2A292D] text-white flex items-center gap-2"
               >
                 <Download className="h-4 w-4" />
                 Télécharger le PDF
@@ -155,7 +149,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       <Button 
         variant="ghost" 
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white mb-6"
+        className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
         Retour
@@ -167,7 +161,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
         {topics.map((topic, index) => (
           <Card 
             key={index}
-            className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white"
+            className="cursor-pointer transition-colors duration-200 bg-white hover:bg-gris-sideral hover:text-white"
             onClick={() => handleTopicClick(topic, index)}
           >
             <CardContent className="p-6">

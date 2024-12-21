@@ -52,6 +52,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        'gris-sideral': '#403E43',
       },
       borderRadius: {
         lg: "var(--radius)",
