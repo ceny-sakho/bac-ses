@@ -19,6 +19,14 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
           "Montrez le rôle des droits de propriété sur la croissance économique. (4 points)",
           "Montrez que l'accroissement de la productivité globale des facteurs est une source de croissance économique. (4 points)",
           "Montrez que l'innovation peut aider à repousser les limites écologiques de la croissance dans le secteur de l'énergie. (4 points)",
+          "Montrez que les contributions à la croissance ne se réduisent pas à la seule accumulation des facteurs de production. (4 points)",
+          "Montrez comment l'innovation peut rendre la croissance économique soutenable. (4 points)",
+          "Montrez le caractère endogène du progrès technique. (4 points)",
+          "Montrez que la Productivité Globale des Facteurs constitue une source essentielle de la croissance économique. (4 points)",
+          "Expliquez comment l'innovation peut aider à reculer les limites écologiques de la croissance économique. (4 points)",
+          "Montrez que l'innovation peut aider à reculer les limites écologiques de la croissance économique. (4 points)",
+          "Distinguez les sources de la croissance des pays observés. (4 points)",
+          "Montrez que les sources de la croissance sont multiples. (4 points)",
         ];
       case '2':
         return [
