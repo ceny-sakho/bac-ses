@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { ArrowLeft, Download, Upload, FileText } from 'lucide-react';
+import { ArrowLeft, FileText } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
-import { useToast } from "@/hooks/use-toast";
 
 interface DissertationTopicsProps {
   chapter: string;
@@ -12,17 +11,11 @@ interface DissertationTopicsProps {
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
-  const [showPdf, setShowPdf] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
-  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const { toast } = useToast();
 
   const topics = [
     {
       title: "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
-      driveLink: "https://drive.google.com/file/d/1Ek5Hs2Hs2Hs2Hs2Hs2Hs2Hs2Hs2Hs2/view?usp=sharing"
+      driveLink: "https://drive.google.com/file/d/1Ek5Hs2Hs2Hs2Hs2Hs2Hs2Hs2Hs2Hs2/view"
     },
     {
       title: "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
@@ -62,8 +55,9 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
     }
   ];
 
-  const handleTopicClick = (index: number) => {
-    window.open(topics[index].driveLink, '_blank');
+  const handleTopicClick = (driveLink: string) => {
+    const encodedUrl = encodeURIComponent(driveLink);
+    navigate(`/pdf-viewer/${encodedUrl}`);
   };
 
   return (
@@ -84,7 +78,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           <Card 
             key={index}
             className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white"
-            onClick={() => handleTopicClick(index)}
+            onClick={() => handleTopicClick(topic.driveLink)}
           >
             <CardContent className="p-6 flex items-center justify-between">
               <p className="text-lg">{topic.title}</p>
