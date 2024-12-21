@@ -82,7 +82,7 @@ const Index = () => {
                     ))}
                   </div>
                   <Button 
-                    className="bg-white text-[#333333] border border-[#333333] hover:bg-[#FEF7CD] transition-colors"
+                    className="bg-white text-[#333333] border border-[#333333] hover:bg-[#333333] hover:text-white transition-colors"
                     onClick={() => navigate(`/niveau/${item.level}`)}
                   >
                     Accéder aux ressources
