@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Upload } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
+import { useToast } from "@/hooks/use-toast";
 
 interface DissertationTopicsProps {
   chapter: string;
@@ -11,6 +12,7 @@ interface DissertationTopicsProps {
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const topics = [
     "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
@@ -24,6 +26,24 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
     "L'accumulation des facteurs de production permet-elle, à elle seule, d'expliquer la croissance économique ?",
     "Quelles sont les sources de la croissance économique ?"
   ];
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, topic: string) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        toast({
+          title: "Erreur",
+          description: "Veuillez sélectionner un fichier PDF",
+          variant: "destructive",
+        });
+        return;
+      }
+      toast({
+        title: "Succès",
+        description: `Le fichier ${file.name} a été téléchargé pour le sujet "${topic}"`,
+      });
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -44,8 +64,26 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
             key={index}
             className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white"
           >
-            <CardContent className="p-6">
+            <CardContent className="p-6 flex justify-between items-center">
               <p className="text-lg">{topic}</p>
+              {index === 0 && (
+                <div className="flex items-center">
+                  <input
+                    type="file"
+                    id={`file-upload-${index}`}
+                    accept=".pdf"
+                    onChange={(e) => handleFileUpload(e, topic)}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`file-upload-${index}`}
+                    className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-white hover:bg-primary/90 transition-colors"
+                  >
+                    <Upload className="h-4 w-4" />
+                    Ajouter un PDF
+                  </label>
+                </div>
+              )}
             </CardContent>
           </Card>
         ))}
