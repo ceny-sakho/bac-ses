@@ -16,6 +16,9 @@ export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
     switch (chapter) {
       case '1':
         return [
+          "Montrez comment les droits de propriété influent sur la croissance économique.",
+          "Expliquez en quoi l'innovation peut s'accompagner d'un processus de destruction créatrice.",
+          "À l'aide d'un exemple, vous montrerez que le progrès technique est endogène.",
           "À partir d'un exemple, vous montrerez que l'innovation peut aider à reculer les limites écologiques de la croissance.",
           "À partir d'un exemple, vous montrerez que l'innovation peut aider à reculer les limites écologiques de la croissance.",
           "Montrez que le progrès technique peut engendrer des inégalités de revenus.",
