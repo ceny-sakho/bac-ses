@@ -14,8 +14,8 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const navigate = useNavigate();
   const [showPdf, setShowPdf] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
+  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -38,27 +38,20 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   };
 
   const handleDownload = () => {
-    if (selectedPdf) {
-      const link = document.createElement('a');
-      link.href = selectedPdf;
-      link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      const pdfUrl = '/sample.pdf';
-      const link = document.createElement('a');
-      link.href = pdfUrl;
-      link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    if (selectedTopicIndex === null) return;
+
+    const pdfUrl = pdfFiles[selectedTopicIndex] || '/sample.pdf';
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
+    if (file && selectedTopicIndex !== null) {
       if (file.type !== 'application/pdf') {
         toast({
           variant: "destructive",
@@ -69,7 +62,10 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       }
 
       const url = URL.createObjectURL(file);
-      setSelectedPdf(url);
+      setPdfFiles(prev => ({
+        ...prev,
+        [selectedTopicIndex]: url
+      }));
       toast({
         title: "Succès",
         description: "Le fichier PDF a été téléchargé avec succès",
@@ -116,7 +112,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           onMouseLeave={() => setIsHovering(false)}
         >
           <iframe
-            src={selectedPdf || "/sample.pdf"}
+            src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || "/sample.pdf") : "/sample.pdf"}
             className="w-full h-[800px] border rounded-lg"
             title="PDF Viewer"
           />
