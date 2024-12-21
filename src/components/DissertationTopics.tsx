@@ -19,35 +19,18 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
-  // Définition des sujets spécifiques à chaque chapitre
-  const getTopicsByChapter = () => {
-    switch (chapter) {
-      case '1':
-        return [
-          "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
-          "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
-          "Comment le progrès technique favorise-t-il la croissance économique ?",
-          "L'accroissement de la productivité globale des facteurs suffit-il à expliquer la croissance économique ?",
-        ];
-      case '2':
-        return [
-          "Le libre-échange est-il toujours bénéfique ?",
-          "La mondialisation remet-elle en cause la souveraineté des États ?",
-          "Le protectionnisme est-il une solution face aux déséquilibres du commerce international ?",
-        ];
-      case '3':
-        return [
-          "Le chômage est-il une fatalité ?",
-          "Les politiques de l'emploi sont-elles efficaces ?",
-          "Le plein emploi est-il un objectif atteignable ?",
-        ];
-      // Ajoutez d'autres cas pour les autres chapitres
-      default:
-        return ["Aucun sujet disponible pour ce chapitre"];
-    }
-  };
-
-  const topics = getTopicsByChapter();
+  const topics = [
+    "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
+    "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
+    "Comment le progrès technique favorise-t-il la croissance économique ?",
+    "L'accroissement de la productivité globale des facteurs suffit-il à expliquer la croissance économique ?",
+    "Comment l'innovation peut-elle contribuer à reculer les limites écologiques d'une croissance soutenable ?",
+    "Quel est le rôle de l'innovation sur la croissance économique ?",
+    "L'accumulation des facteurs de production est-elle la seule source de croissance économique ?",
+    "Les limites écologiques sont-elles le seul défi posé par la croissance économique ?",
+    "L'accumulation des facteurs de production permet-elle, à elle seule, d'expliquer la croissance économique ?",
+    "Quelles sont les sources de la croissance économique ?"
+  ];
 
   const handleTopicClick = (topic: string, index: number) => {
     setSelectedTopicIndex(index);

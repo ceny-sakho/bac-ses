@@ -8,62 +8,18 @@ export const BacExercises = () => {
   
   const dissertationChapters = [
     { id: '1', title: 'Dissertation 1 : Croissance économique' },
-    { id: '2', title: 'Dissertation 2 : Commerce international' },
-    { id: '3', title: 'Dissertation 3 : Chômage' },
-    { id: '4', title: 'Dissertation 4 : Crises financières' },
-    { id: '5', title: 'Dissertation 5 : Politiques économiques européennes' },
-    { id: '6', title: 'Dissertation 6 : Structure sociale' },
-    { id: '7', title: "Dissertation 7 : L'École" },
-    { id: '8', title: 'Dissertation 8 : Mobilité sociale' },
-    { id: '9', title: 'Dissertation 9 : Mutations du travail' },
-    { id: '10', title: 'Dissertation 10 : Engagement politique' },
-    { id: '11', title: 'Dissertation 11 : Justice sociale' },
-    { id: '12', title: "Dissertation 12 : L'Environnement" },
   ];
 
   const ec1Chapters = [
     { id: '1', title: 'EC1 : Croissance économique' },
-    { id: '2', title: 'EC1 : Commerce international' },
-    { id: '3', title: 'EC1 : Chômage' },
-    { id: '4', title: 'EC1 : Crises financières' },
-    { id: '5', title: 'EC1 : Politiques économiques européennes' },
-    { id: '6', title: 'EC1 : Structure sociale' },
-    { id: '7', title: "EC1 : L'École" },
-    { id: '8', title: 'EC1 : Mobilité sociale' },
-    { id: '9', title: 'EC1 : Mutations du travail' },
-    { id: '10', title: 'EC1 : Engagement politique' },
-    { id: '11', title: 'EC1 : Justice sociale' },
-    { id: '12', title: "EC1 : L'Environnement" },
   ];
 
   const ec2Chapters = [
     { id: '1', title: 'EC2 : Croissance économique' },
-    { id: '2', title: 'EC2 : Commerce international' },
-    { id: '3', title: 'EC2 : Chômage' },
-    { id: '4', title: 'EC2 : Crises financières' },
-    { id: '5', title: 'EC2 : Politiques économiques européennes' },
-    { id: '6', title: 'EC2 : Structure sociale' },
-    { id: '7', title: "EC2 : L'École" },
-    { id: '8', title: 'EC2 : Mobilité sociale' },
-    { id: '9', title: 'EC2 : Mutations du travail' },
-    { id: '10', title: 'EC2 : Engagement politique' },
-    { id: '11', title: 'EC2 : Justice sociale' },
-    { id: '12', title: "EC2 : L'Environnement" },
   ];
 
   const ec3Chapters = [
     { id: '1', title: 'EC3 : Croissance économique' },
-    { id: '2', title: 'EC3 : Commerce international' },
-    { id: '3', title: 'EC3 : Chômage' },
-    { id: '4', title: 'EC3 : Crises financières' },
-    { id: '5', title: 'EC3 : Politiques économiques européennes' },
-    { id: '6', title: 'EC3 : Structure sociale' },
-    { id: '7', title: "EC3 : L'École" },
-    { id: '8', title: 'EC3 : Mobilité sociale' },
-    { id: '9', title: 'EC3 : Mutations du travail' },
-    { id: '10', title: 'EC3 : Engagement politique' },
-    { id: '11', title: 'EC3 : Justice sociale' },
-    { id: '12', title: "EC3 : L'Environnement" },
   ];
 
   return (
