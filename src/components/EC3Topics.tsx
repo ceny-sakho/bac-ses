@@ -12,33 +12,17 @@ interface EC3TopicsProps {
 export const EC3Topics: React.FC<EC3TopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
 
-  const getTopicsByChapter = () => {
-    switch (chapter) {
-      case '1':
-        return [
-          "Vous montrerez comment l'innovation peut être une solution aux limites écologiques de la croissance économique.",
-          "Vous montrerez que le progrès technique peut engendrer des inégalités de revenus.",
-          "Vous montrerez que le progrès technique est endogène.",
-        ];
-      case '2':
-        return [
-          "Vous montrerez que le libre-échange est source de gains mutuels.",
-          "Vous montrerez que le protectionnisme peut avoir des effets positifs.",
-          "Vous montrerez que la mondialisation peut remettre en cause la souveraineté des États.",
-        ];
-      case '3':
-        return [
-          "Vous montrerez que le chômage a des causes multiples.",
-          "Vous montrerez que les politiques de l'emploi peuvent réduire le chômage.",
-          "Vous montrerez que la flexibilité du marché du travail peut réduire le chômage.",
-        ];
-      // Ajoutez d'autres cas pour les autres chapitres
-      default:
-        return ["Aucun sujet disponible pour ce chapitre"];
-    }
-  };
-
-  const topics = getTopicsByChapter();
+  const topics = [
+    "Vous montrerez comment l'innovation peut être une solution aux limites écologiques de la croissance économique.",
+    "Vous montrerez que le progrès technique peut engendrer des inégalités de revenus.",
+    "Vous montrerez que le progrès technique est endogène.",
+    "Vous montrerez que les institutions jouent un rôle dans la croissance économique.",
+    "Vous montrerez que le progrès technique est endogène.",
+    "Vous montrerez qu'il existe des limites écologiques à la croissance économique soutenable.",
+    "Vous montrerez comment les institutions influent sur la croissance économique.",
+    "Vous montrerez que la croissance économique soutenable se heurte à des limites écologiques.",
+    "Vous montrerez que le progrès technique est endogène."
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
