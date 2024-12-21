@@ -9,7 +9,6 @@ import { DissertationTopics } from "./components/DissertationTopics";
 import { EC1Topics } from "./components/EC1Topics";
 import { EC2Topics } from "./components/EC2Topics";
 import { EC3Topics } from "./components/EC3Topics";
-import PdfViewer from "./components/PdfViewer";
 
 function App() {
   const dissertationChapters = [
@@ -80,7 +79,6 @@ function App() {
         <Route path="/niveau/:level" element={<LevelView />} />
         <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
         <Route path="/sujets-bac" element={<BacSubjects />} />
-        <Route path="/pdf-viewer/:chapter/:topicId" element={<PdfViewer />} />
         {dissertationChapters.map((chapter) => (
           <Route
             key={chapter.id}
