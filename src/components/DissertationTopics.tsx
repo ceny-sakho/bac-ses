@@ -12,10 +12,8 @@ interface DissertationTopicsProps {
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
-  const [showPdf, setShowPdf] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
-  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: { url: string, name: string } }>({});
+  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -33,23 +31,13 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   ];
 
   const handleTopicClick = (topic: string, index: number) => {
-    setSelectedTopicIndex(index);
-    setShowPdf(true);
-  };
-
-  const handleDownload = () => {
-    if (selectedTopicIndex === null) return;
-
-    const pdfData = pdfFiles[selectedTopicIndex];
-    const pdfUrl = pdfData?.url || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
-    const fileName = pdfData?.name || `dissertation-${selectedTopicIndex + 1}.pdf`;
-    
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    navigate(`/pdf-viewer/${chapter}/${index}`, { 
+      state: { 
+        pdfUrl: pdfFiles[index] || '/sample.pdf',
+        title: topic,
+        returnPath: `/dissertation/${chapter}`
+      } 
+    });
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,80 +55,14 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       const url = URL.createObjectURL(file);
       setPdfFiles(prev => ({
         ...prev,
-        [selectedTopicIndex]: { url, name: file.name }
+        [selectedTopicIndex]: url
       }));
-      
       toast({
         title: "Succès",
         description: "Le fichier PDF a été téléchargé avec succès",
       });
     }
   };
-
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
-
-  const getCurrentPdfUrl = () => {
-    if (selectedTopicIndex === null) return 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
-    return pdfFiles[selectedTopicIndex]?.url || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
-  };
-
-  if (showPdf) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <Button 
-          variant="ghost" 
-          onClick={() => setShowPdf(false)}
-          className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white mb-6"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Retour
-        </Button>
-
-        <div className="mb-6">
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={handleFileUpload}
-            className="hidden"
-            ref={fileInputRef}
-          />
-          <Button 
-            onClick={triggerFileInput}
-            className="bg-[#403E43] hover:bg-[#2A292D] text-white flex items-center gap-2"
-          >
-            <Upload className="h-4 w-4" />
-            Télécharger un nouveau PDF
-          </Button>
-        </div>
-
-        <div 
-          className="relative bg-white rounded-lg shadow-lg p-4"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <embed
-            src={getCurrentPdfUrl()}
-            type="application/pdf"
-            className="w-full h-[800px] border rounded-lg"
-          />
-          
-          {isHovering && (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-              <Button 
-                onClick={handleDownload}
-                className="bg-[#403E43] hover:bg-[#2A292D] text-white flex items-center gap-2"
-              >
-                <Download className="h-4 w-4" />
-                Télécharger le PDF
-              </Button>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -168,6 +90,14 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           </Card>
         ))}
       </div>
+
+      <input
+        type="file"
+        accept=".pdf"
+        onChange={handleFileUpload}
+        className="hidden"
+        ref={fileInputRef}
+      />
     </div>
   );
 };
