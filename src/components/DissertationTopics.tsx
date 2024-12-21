@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft, Download, Upload } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
+import { useToast } from "@/hooks/use-toast";
 
 interface DissertationTopicsProps {
   chapter: string;
@@ -13,6 +14,9 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const navigate = useNavigate();
   const [showPdf, setShowPdf] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
 
   const topics = [
     "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
@@ -28,19 +32,53 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   ];
 
   const handleTopicClick = (topic: string, index: number) => {
-    if (index === 0) { // Only for the first topic
+    if (index === 0) {
       setShowPdf(true);
     }
   };
 
   const handleDownload = () => {
-    const pdfUrl = '/sample.pdf'; // Replace with your actual PDF URL
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = 'dissertation-croissance.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (selectedPdf) {
+      const link = document.createElement('a');
+      link.href = selectedPdf;
+      link.download = 'dissertation-croissance.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      const pdfUrl = '/sample.pdf';
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = 'dissertation-croissance.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description: "Veuillez sélectionner un fichier PDF",
+        });
+        return;
+      }
+
+      const url = URL.createObjectURL(file);
+      setSelectedPdf(url);
+      toast({
+        title: "Succès",
+        description: "Le fichier PDF a été téléchargé avec succès",
+      });
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
   };
 
   if (showPdf) {
@@ -55,13 +93,30 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           Retour
         </Button>
 
+        <div className="mb-6">
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={handleFileUpload}
+            className="hidden"
+            ref={fileInputRef}
+          />
+          <Button 
+            onClick={triggerFileInput}
+            className="bg-[#403E43] hover:bg-[#2A292D] text-white flex items-center gap-2"
+          >
+            <Upload className="h-4 w-4" />
+            Télécharger un nouveau PDF
+          </Button>
+        </div>
+
         <div 
           className="relative"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
           <iframe
-            src="/sample.pdf"
+            src={selectedPdf || "/sample.pdf"}
             className="w-full h-[800px] border rounded-lg"
             title="PDF Viewer"
           />
