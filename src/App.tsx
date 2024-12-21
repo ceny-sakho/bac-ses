@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import SubjectView from "./pages/SubjectView";
 import LevelView from "./pages/LevelView";
@@ -127,6 +127,8 @@ function App() {
             }
           />
         ))}
+        {/* Add a catch-all route that redirects to the home page */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );
