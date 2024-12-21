@@ -29,18 +29,13 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
           "Montrez que les sources de la croissance sont multiples. (4 points)",
         ];
       case '2':
-        return [
-          "Montrez que le libre-échange est source de gains pour les pays participants. (4 points)",
-          "Montrez que le protectionnisme peut avoir des effets positifs. (4 points)",
-          "Montrez que la spécialisation internationale est source de gains à l'échange. (4 points)",
-        ];
+        return [];
       case '3':
         return [
           "Montrez que le chômage structurel a des causes multiples. (4 points)",
           "Montrez que les politiques de l'emploi peuvent réduire le chômage structurel. (4 points)",
           "Montrez que la flexibilité du marché du travail peut réduire le chômage. (4 points)",
         ];
-      // Ajoutez d'autres cas pour les autres chapitres
       default:
         return ["Aucun sujet disponible pour ce chapitre"];
     }
