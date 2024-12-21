@@ -40,7 +40,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const handleDownload = () => {
     if (selectedTopicIndex === null) return;
 
-    const pdfUrl = pdfFiles[selectedTopicIndex] || '/sample.pdf';
+    const pdfUrl = pdfFiles[selectedTopicIndex] || '/dissertation-chapitre1.pdf';
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
@@ -107,12 +107,12 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
         </div>
 
         <div 
-          className="relative"
+          className="relative bg-white rounded-lg shadow-lg p-4"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
           <iframe
-            src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || "/sample.pdf") : "/sample.pdf"}
+            src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || "/dissertation-chapitre1.pdf") : "/dissertation-chapitre1.pdf"}
             className="w-full h-[800px] border rounded-lg"
             title="PDF Viewer"
           />
