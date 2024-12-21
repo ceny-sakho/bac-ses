@@ -15,7 +15,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const [showPdf, setShowPdf] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
-  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
+  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: { url: string, name: string } }>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -40,10 +40,13 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const handleDownload = () => {
     if (selectedTopicIndex === null) return;
 
-    const pdfUrl = pdfFiles[selectedTopicIndex] || '/dissertation-chapitre1.pdf';
+    const pdfData = pdfFiles[selectedTopicIndex];
+    const pdfUrl = pdfData?.url || '/assets/default-dissertation.pdf';
+    const fileName = pdfData?.name || `dissertation-${selectedTopicIndex + 1}.pdf`;
+    
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -64,8 +67,9 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       const url = URL.createObjectURL(file);
       setPdfFiles(prev => ({
         ...prev,
-        [selectedTopicIndex]: url
+        [selectedTopicIndex]: { url, name: file.name }
       }));
+      
       toast({
         title: "Succès",
         description: "Le fichier PDF a été téléchargé avec succès",
@@ -75,6 +79,11 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();
+  };
+
+  const getCurrentPdfUrl = () => {
+    if (selectedTopicIndex === null) return '/assets/default-dissertation.pdf';
+    return pdfFiles[selectedTopicIndex]?.url || '/assets/default-dissertation.pdf';
   };
 
   if (showPdf) {
@@ -111,11 +120,13 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <iframe
-            src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || "/dissertation-chapitre1.pdf") : "/dissertation-chapitre1.pdf"}
+          <object
+            data={getCurrentPdfUrl()}
+            type="application/pdf"
             className="w-full h-[800px] border rounded-lg"
-            title="PDF Viewer"
-          />
+          >
+            <p>Impossible d'afficher le PDF. <a href={getCurrentPdfUrl()} target="_blank" rel="noopener noreferrer">Cliquez ici pour le télécharger</a>.</p>
+          </object>
           
           {isHovering && (
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
