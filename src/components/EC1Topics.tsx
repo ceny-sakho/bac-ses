@@ -16,23 +16,23 @@ export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
     switch (chapter) {
       case '1':
         return [
-          "Montrez comment les droits de propriété influent sur la croissance économique.",
-          "Expliquez en quoi l'innovation peut s'accompagner d'un processus de destruction créatrice.",
-          "À l'aide d'un exemple, vous montrerez que le progrès technique est endogène.",
+          "À partir d'un exemple, vous montrerez que l'innovation peut aider à reculer les limites écologiques de la croissance.",
+          "À partir d'un exemple, vous montrerez que l'innovation peut aider à reculer les limites écologiques de la croissance.",
+          "Montrez que le progrès technique peut engendrer des inégalités de revenus.",
+          "Montrez que le progrès technique peut engendrer des inégalités de revenus.",
+          "Comment les droits de propriété influent-ils sur la croissance économique ?",
+          "Montrez que le progrès technique peut engendrer des inégalités de revenus.",
+          "Montrez que l'innovation peut aider à reculer les limites écologiques auxquelles se heurte la croissance économique.",
+          "Montrez que l'innovation peut aider à reculer les limites écologiques auxquelles se heurte la croissance économique.",
+          "À partir d'un exemple, vous montrerez que l'innovation peut aider à reculer les limites écologiques de la croissance.",
+          "À l'aide d'un exemple, vous montrerez que l'innovation s'accompagne d'un processus de destruction créatrice.",
+          "Montrez que le progrès technique peut engendrer des inégalités de revenus.",
+          "À l'aide d'un exemple, vous montrerez que la croissance économique se heurte à des limites écologiques.",
+          "Présentez un mécanisme par lequel le progrès technique peut engendrer des inégalités de revenus.",
+          "Vous montrerez comment les droits de propriété peuvent favoriser la croissance économique.",
+          "À partir de l'exemple des droits de propriété, montrez comment les institutions influent sur la croissance économique.",
+          "Comment les droits de propriété favorisent-ils la croissance économique ?"
         ];
-      case '2':
-        return [
-          "Montrez que le commerce international est source de gains mutuels.",
-          "À l'aide d'un exemple, montrez que le commerce international favorise la croissance.",
-          "Montrez que la spécialisation internationale est source de gains à l'échange.",
-        ];
-      case '3':
-        return [
-          "Montrez que le chômage a des causes multiples.",
-          "À l'aide d'un exemple, montrez que le chômage structurel a des origines diverses.",
-          "Montrez que les causes du chômage sont diverses.",
-        ];
-      // Ajoutez d'autres cas pour les autres chapitres
       default:
         return ["Aucun sujet disponible pour ce chapitre"];
     }
@@ -45,7 +45,7 @@ export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
       <Button 
         variant="ghost" 
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white mb-6"
+        className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
         Retour
@@ -57,7 +57,7 @@ export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
         {topics.map((topic, index) => (
           <Card 
             key={index}
-            className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white"
+            className="cursor-pointer transition-colors duration-200 bg-white hover:bg-gris-sideral hover:text-white"
           >
             <CardContent className="p-6">
               <p className="text-lg">{topic}</p>
