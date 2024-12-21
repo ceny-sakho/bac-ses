@@ -36,6 +36,21 @@ export const BacExercises = () => {
     { id: '12', title: "EC1 : L'Environnement" },
   ];
 
+  const ec2Chapters = [
+    { id: '1', title: 'EC2 : Croissance économique' },
+    { id: '2', title: 'EC2 : Commerce international' },
+    { id: '3', title: 'EC2 : Chômage' },
+    { id: '4', title: 'EC2 : Crises financières' },
+    { id: '5', title: 'EC2 : Politiques économiques européennes' },
+    { id: '6', title: 'EC2 : Structure sociale' },
+    { id: '7', title: "EC2 : L'École" },
+    { id: '8', title: 'EC2 : Mobilité sociale' },
+    { id: '9', title: 'EC2 : Mutations du travail' },
+    { id: '10', title: 'EC2 : Engagement politique' },
+    { id: '11', title: 'EC2 : Justice sociale' },
+    { id: '12', title: "EC2 : L'Environnement" },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Tabs defaultValue="dissertation" className="w-full">
@@ -104,9 +119,25 @@ export const BacExercises = () => {
         <TabsContent value="ec2">
           <Card>
             <CardContent className="p-6 space-y-4">
-              <h3 className="text-xl font-semibold mb-4">Épreuve composée - Partie 2</h3>
-              <h4 className="text-lg font-medium">Objectifs de l'épreuve : compétences et connaissances évaluées</h4>
-              <p className="text-gray-700"><span className="font-medium">Partie 2 - Étude d'un document :</span> il est demandé aux candidats de répondre aux questions en mobilisant ses connaissances acquises dans le cadre du programme et en adoptant une démarche méthodologique rigoureuse, de collecte et de traitement de l'information.</p>
+              <div className="mb-6 bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">Objectifs de l'épreuve : compétences et connaissances évaluées</h3>
+                <p className="text-gray-700"><span className="font-medium">Partie 2 - Étude d'un document :</span> il est demandé aux candidats de répondre aux questions en mobilisant ses connaissances acquises dans le cadre du programme et en adoptant une démarche méthodologique rigoureuse, de collecte et de traitement de l'information.</p>
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Chapitres EC2</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {ec2Chapters.map((chapter) => (
+                  <Card 
+                    key={chapter.id}
+                    className="cursor-pointer hover:shadow-lg transition-shadow"
+                    onClick={() => navigate(`/ec2/${chapter.id}`)}
+                  >
+                    <CardContent className="p-4">
+                      <h4 className="font-medium">Chapitre {chapter.id}</h4>
+                      <p className="text-sm text-gray-600">{chapter.title}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
