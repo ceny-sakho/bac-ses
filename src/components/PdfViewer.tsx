@@ -12,6 +12,17 @@ const PdfViewer = () => {
   }
 
   const decodedUrl = decodeURIComponent(pdfUrl);
+  
+  // Transformer l'URL Google Drive en URL de prévisualisation
+  const getPreviewUrl = (url: string) => {
+    const fileId = url.match(/\/d\/(.+?)\/view/)?.[1];
+    if (fileId) {
+      return `https://drive.google.com/file/d/${fileId}/preview`;
+    }
+    return url;
+  };
+
+  const previewUrl = getPreviewUrl(decodedUrl);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -26,9 +37,10 @@ const PdfViewer = () => {
         </Button>
         <div className="w-full h-[calc(100vh-120px)]">
           <iframe
-            src={`${decodedUrl}?embedded=true`}
+            src={previewUrl}
             className="w-full h-full border-0 rounded-lg shadow-lg"
             title="PDF Viewer"
+            allow="autoplay"
           />
         </div>
       </div>
