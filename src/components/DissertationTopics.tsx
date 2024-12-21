@@ -40,10 +40,10 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const handleDownload = () => {
     if (selectedTopicIndex === null) return;
 
-    const pdfUrl = pdfFiles[selectedTopicIndex] || `/dissertation-${selectedTopicIndex + 1}.pdf`;
+    const pdfUrl = pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet${selectedTopicIndex + 1}.pdf`;
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = `dissertation-${selectedTopicIndex + 1}.pdf`;
+    link.download = `dissertation-chapitre${chapter}-sujet${selectedTopicIndex + 1}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -112,7 +112,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           onMouseLeave={() => setIsHovering(false)}
         >
           <embed
-            src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || `/dissertation-${selectedTopicIndex + 1}.pdf`) : "/dissertation-1.pdf"}
+            src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet${selectedTopicIndex + 1}.pdf`) : `/dissertation/chapitre${chapter}/sujet1.pdf`}
             className="w-full h-[800px] rounded-lg"
             type="application/pdf"
           />
