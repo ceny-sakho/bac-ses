@@ -22,18 +22,18 @@ export const BacExercises = () => {
   ];
 
   const ec1Chapters = [
-    { id: '1', title: 'EC1 1 : Croissance économique' },
-    { id: '2', title: 'EC1 2 : Commerce international' },
-    { id: '3', title: 'EC1 3 : Chômage' },
-    { id: '4', title: 'EC1 4 : Crises financières' },
-    { id: '5', title: 'EC1 5 : Politiques économiques européennes' },
-    { id: '6', title: 'EC1 6 : Structure sociale' },
-    { id: '7', title: "EC1 7 : L'École" },
-    { id: '8', title: 'EC1 8 : Mobilité sociale' },
-    { id: '9', title: 'EC1 9 : Mutations du travail' },
-    { id: '10', title: 'EC1 10 : Engagement politique' },
-    { id: '11', title: 'EC1 11 : Justice sociale' },
-    { id: '12', title: "EC1 12 : L'Environnement" },
+    { id: '1', title: 'EC1 : Croissance économique' },
+    { id: '2', title: 'EC1 : Commerce international' },
+    { id: '3', title: 'EC1 : Chômage' },
+    { id: '4', title: 'EC1 : Crises financières' },
+    { id: '5', title: 'EC1 : Politiques économiques européennes' },
+    { id: '6', title: 'EC1 : Structure sociale' },
+    { id: '7', title: "EC1 : L'École" },
+    { id: '8', title: 'EC1 : Mobilité sociale' },
+    { id: '9', title: 'EC1 : Mutations du travail' },
+    { id: '10', title: 'EC1 : Engagement politique' },
+    { id: '11', title: 'EC1 : Justice sociale' },
+    { id: '12', title: "EC1 : L'Environnement" },
   ];
 
   return (
