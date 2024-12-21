@@ -27,7 +27,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
     "Quelles sont les sources de la croissance économique ?"
   ];
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, topic: string) => {
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, topic: string) => {
     const file = event.target.files?.[0];
     if (file) {
       if (file.type !== 'application/pdf') {
@@ -38,10 +38,36 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
         });
         return;
       }
-      toast({
-        title: "Succès",
-        description: `Le fichier ${file.name} a été téléchargé pour le sujet "${topic}"`,
-      });
+
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('topic', topic);
+        formData.append('chapter', chapter);
+
+        const response = await fetch('/api/upload-pdf', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error('Erreur lors du téléchargement');
+        }
+
+        const data = await response.json();
+        
+        toast({
+          title: "Succès",
+          description: `Le fichier ${file.name} a été téléchargé pour le sujet "${topic}"`,
+        });
+      } catch (error) {
+        console.error('Erreur de téléchargement:', error);
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue lors du téléchargement du fichier",
+          variant: "destructive",
+        });
+      }
     }
   };
 
