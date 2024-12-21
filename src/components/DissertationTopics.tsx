@@ -41,7 +41,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
     if (selectedTopicIndex === null) return;
 
     const pdfData = pdfFiles[selectedTopicIndex];
-    const pdfUrl = pdfData?.url || '/assets/default-dissertation.pdf';
+    const pdfUrl = pdfData?.url || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
     const fileName = pdfData?.name || `dissertation-${selectedTopicIndex + 1}.pdf`;
     
     const link = document.createElement('a');
@@ -82,8 +82,8 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   };
 
   const getCurrentPdfUrl = () => {
-    if (selectedTopicIndex === null) return '/assets/default-dissertation.pdf';
-    return pdfFiles[selectedTopicIndex]?.url || '/assets/default-dissertation.pdf';
+    if (selectedTopicIndex === null) return 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    return pdfFiles[selectedTopicIndex]?.url || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
   };
 
   if (showPdf) {
@@ -120,13 +120,11 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <object
-            data={getCurrentPdfUrl()}
+          <embed
+            src={getCurrentPdfUrl()}
             type="application/pdf"
             className="w-full h-[800px] border rounded-lg"
-          >
-            <p>Impossible d'afficher le PDF. <a href={getCurrentPdfUrl()} target="_blank" rel="noopener noreferrer">Cliquez ici pour le télécharger</a>.</p>
-          </object>
+          />
           
           {isHovering && (
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
@@ -172,4 +170,3 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       </div>
     </div>
   );
-};
