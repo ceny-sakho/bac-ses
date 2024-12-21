@@ -170,3 +170,4 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       </div>
     </div>
   );
+};
