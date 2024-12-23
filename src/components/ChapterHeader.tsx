@@ -24,11 +24,16 @@ export const ChapterHeader: React.FC<ChapterHeaderProps> = ({
   const location = useLocation();
 
   const handleBack = () => {
-    if (location.pathname.includes('dissertation')) {
-      navigate('/sujets-bac');
-    } else if (location.pathname.includes('ec1') || location.pathname.includes('ec2') || location.pathname.includes('ec3')) {
+    const path = location.pathname;
+    
+    // Si nous sommes sur une page de dissertation ou d'EC
+    if (path.includes('/dissertation/') || 
+        path.includes('/ec1/') || 
+        path.includes('/ec2/') || 
+        path.includes('/ec3/')) {
       navigate('/sujets-bac');
     } else {
+      // Pour tous les autres cas, retour à l'accueil
       navigate('/');
     }
   };
