@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronLeft } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ChapterHeaderProps {
   category: string;
@@ -21,17 +21,6 @@ export const ChapterHeader: React.FC<ChapterHeaderProps> = ({
   handleTabChange
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleBack = () => {
-    if (location.pathname.includes('dissertation')) {
-      navigate('/sujets-bac');
-    } else if (location.pathname.includes('ec1') || location.pathname.includes('ec2') || location.pathname.includes('ec3')) {
-      navigate('/sujets-bac');
-    } else {
-      navigate('/');
-    }
-  };
 
   return (
     <header className="bg-white border-b sticky top-0 z-10">
@@ -39,7 +28,7 @@ export const ChapterHeader: React.FC<ChapterHeaderProps> = ({
         <Button 
           variant="ghost" 
           className="mb-4 hover:bg-[#403E43] hover:text-white transition-colors"
-          onClick={handleBack}
+          onClick={() => navigate(-1)}
         >
           <ChevronLeft className="mr-2 h-4 w-4" />
           Retour
