@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { chaptersData } from "@/data/chaptersData";
 import { ChapterData } from "@/data/types";
-import { ChapterHeader } from "@/components/ChapterHeader";
+import ChapterHeader from "@/components/ChapterHeader";
 import { ChapterContent } from "@/components/ChapterContent";
 
 const normalizeString = (str: string): string => {
@@ -49,11 +49,7 @@ const ChapterDetail = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <ChapterHeader
-        category={chapterData.category}
-        level={chapterData.level}
         title={chapterData.title}
-        getCurrentTab={getCurrentTab}
-        handleTabChange={handleTabChange}
       />
       <ChapterContent
         objectives={chapterData.objectives}
