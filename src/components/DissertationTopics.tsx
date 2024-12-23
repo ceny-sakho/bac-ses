@@ -5,6 +5,12 @@ import { ArrowLeft, Download, Upload } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { useToast } from "@/hooks/use-toast";
 
+interface DissertationTopic {
+  question: string;
+  year: string;
+  location: string;
+}
+
 interface DissertationTopicsProps {
   chapter: string;
   title: string;
@@ -19,31 +25,71 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
-  const getTopicsByChapter = () => {
+  const getTopicsByChapter = (): DissertationTopic[] => {
     switch (chapter) {
       case '1':
         return [
-          "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
-          "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
-          "Comment le progrès technique favorise-t-il la croissance économique ?",
-          "L'accroissement de la productivité globale des facteurs suffit-il à expliquer la croissance économique ?",
-          "Comment l'innovation peut-elle contribuer à reculer les limites écologiques d'une croissance soutenable ?",
-          "Quel est le rôle de l'innovation sur la croissance économique ?",
-          "L'accumulation des facteurs de production est-elle la seule source de croissance économique ?",
-          "Les limites écologiques sont-elles le seul défi posé par la croissance économique ?",
-          "L'accumulation des facteurs de production permet-elle, à elle seule, d'expliquer la croissance économique ?",
-          "Quelles sont les sources de la croissance économique ?"
+          {
+            question: "L'accumulation des facteurs de production est-elle la seule source de croissance économique ?",
+            year: "2022",
+            location: "France métropolitaine"
+          },
+          {
+            question: "L'accumulation des facteurs de production permet-elle, à elle seule, d'expliquer la croissance économique ?",
+            year: "2023",
+            location: "Asie"
+          },
+          {
+            question: "Les limites écologiques sont-elles le seul défi posé par la croissance économique ?",
+            year: "2023",
+            location: "Polynésie"
+          },
+          {
+            question: "Quel est le rôle de l'innovation sur la croissance économique ?",
+            year: "2022",
+            location: "Nouvelle-Calédonie"
+          },
+          {
+            question: "Comment l'innovation peut-elle contribuer à reculer les limites écologiques d'une croissance soutenable ?",
+            year: "2022",
+            location: "Asie"
+          },
+          {
+            question: "L'accroissement de la productivité globale des facteurs suffit-il à expliquer la croissance économique ?",
+            year: "2022",
+            location: "La Réunion"
+          },
+          {
+            question: "Comment le progrès technique favorise-t-il la croissance économique ?",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Quel est le rôle du progrès technique dans le processus de croissance économique ?",
+            year: "2021",
+            location: "Autres centres étrangers"
+          },
+          {
+            question: "Les facteurs travail et capital sont-ils suffisants pour expliquer la croissance ?",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Quelles sont les sources de la croissance économique ?",
+            year: "2024",
+            location: "Autres centres étrangers"
+          }
         ];
       case '2':
-        return ["Aucun sujet disponible pour ce chapitre"];
+        return [];
       default:
-        return ["Aucun sujet disponible pour ce chapitre"];
+        return [];
     }
   };
 
   const topics = getTopicsByChapter();
 
-  const handleTopicClick = (topic: string, index: number) => {
+  const handleTopicClick = (topic: DissertationTopic, index: number) => {
     setSelectedTopicIndex(index);
     setShowPdf(true);
   };
@@ -156,19 +202,30 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       </Button>
 
       <h2 className="text-2xl font-bold mb-6">{title}</h2>
-      
-      <div className="grid grid-cols-1 gap-4">
-        {topics.map((topic, index) => (
-          <Card 
-            key={index}
-            className="cursor-pointer transition-colors duration-200 bg-white hover:bg-gris-sideral hover:text-white"
-            onClick={() => handleTopicClick(topic, index)}
-          >
-            <CardContent className="p-6">
-              <p className="text-lg">{topic}</p>
-            </CardContent>
-          </Card>
-        ))}
+
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+        <table className="min-w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question de dissertation</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {topics.map((topic, index) => (
+              <tr 
+                key={index}
+                onClick={() => handleTopicClick(topic, index)}
+                className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
+              >
+                <td className="px-6 py-4">{topic.question}</td>
+                <td className="px-6 py-4">{topic.year}</td>
+                <td className="px-6 py-4">{topic.location}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
