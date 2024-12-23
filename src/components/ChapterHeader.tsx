@@ -1,94 +1,53 @@
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft } from "lucide-react";
+import React from "react";
+import { ArrowLeft } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "./ui/button";
 
 interface ChapterHeaderProps {
-  category: string;
-  level: string;
   title: string;
-  getCurrentTab: () => string;
-  handleTabChange: (value: string) => void;
+  subtitle?: string;
 }
 
-export const ChapterHeader: React.FC<ChapterHeaderProps> = ({
-  category,
-  level,
-  title,
-  getCurrentTab,
-  handleTabChange
-}) => {
+const ChapterHeader = ({ title, subtitle }: ChapterHeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleBack = () => {
     const path = location.pathname;
     
-    // Si nous sommes sur une page de dissertation ou d'EC
+    // Navigation vers la page des sujets du bac pour les exercices spécifiques
     if (path.includes('/dissertation/') || 
         path.includes('/ec1/') || 
         path.includes('/ec2/') || 
         path.includes('/ec3/')) {
       navigate('/sujets-bac');
-    } else {
-      // Pour tous les autres cas, retour à l'accueil
+    } 
+    // Navigation vers la page d'accueil pour les autres cas
+    else if (path === '/sujets-bac') {
       navigate('/');
+    }
+    // Fallback vers la page précédente
+    else {
+      navigate(-1);
     }
   };
 
   return (
-    <header className="bg-white border-b sticky top-0 z-10">
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <Button 
-          variant="ghost" 
-          className="mb-4 hover:bg-[#403E43] hover:text-white transition-colors"
-          onClick={handleBack}
-        >
-          <ChevronLeft className="mr-2 h-4 w-4" />
-          Retour
-        </Button>
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-orange-500 font-medium">{category}</span>
-              <Badge 
-                variant="secondary" 
-                className="bg-gray-100 text-gray-600 cursor-pointer hover:bg-gray-200" 
-                onClick={() => navigate('/')}
-              >
-                {level}
-              </Badge>
-            </div>
-          </div>
-          <Tabs defaultValue={getCurrentTab()} className="w-full" onValueChange={handleTabChange}>
-            <TabsList className="w-full justify-start bg-[#333333] text-white">
-              <TabsTrigger 
-                value="science-eco" 
-                className="flex-1 text-white data-[state=active]:bg-[#444444] data-[state=active]:text-white"
-              >
-                Science économique
-              </TabsTrigger>
-              <TabsTrigger 
-                value="socio" 
-                className="flex-1 text-white data-[state=active]:bg-[#444444] data-[state=active]:text-white"
-              >
-                Sociologie / Science politique
-              </TabsTrigger>
-              <TabsTrigger 
-                value="regards" 
-                className="flex-1 text-white data-[state=active]:bg-[#444444] data-[state=active]:text-white"
-              >
-                Regards croisés
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-          <h1 className="text-4xl font-bold text-gray-900">
-            Chapitre - {title}
-          </h1>
-        </div>
-      </div>
-    </header>
+    <div className="border-b pb-4 mb-8">
+      <Button
+        variant="ghost"
+        className="mb-4 hover:bg-gray-100"
+        onClick={handleBack}
+      >
+        <ArrowLeft className="mr-2 h-4 w-4" />
+        Retour
+      </Button>
+      <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+      {subtitle && (
+        <p className="text-lg text-muted-foreground mt-2">{subtitle}</p>
+      )}
+    </div>
   );
 };
+
+export default ChapterHeader;
