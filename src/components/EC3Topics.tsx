@@ -4,6 +4,12 @@ import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
+interface EC3Topic {
+  question: string;
+  year: string;
+  location: string;
+}
+
 interface EC3TopicsProps {
   chapter: string;
   title: string;
@@ -16,30 +22,90 @@ export const EC3Topics: React.FC<EC3TopicsProps> = ({ chapter, title }) => {
     switch (chapter) {
       case '1':
         return [
-          "Vous montrerez comment l'innovation peut être une solution aux limites écologiques de la croissance économique.",
-          "Vous montrerez que le progrès technique peut engendrer des inégalités de revenus.",
-          "Vous montrerez que le progrès technique est endogène.",
-          "Vous montrerez que les institutions jouent un rôle dans la croissance économique.",
-          "Vous montrerez que le progrès technique est endogène.",
-          "Vous montrerez qu'il existe des limites écologiques à la croissance économique soutenable.",
-          "Vous montrerez comment les institutions influent sur la croissance économique.",
-          "Vous montrerez que la croissance économique soutenable se heurte à des limites écologiques.",
-          "Vous montrerez que le progrès technique est endogène.",
+          {
+            question: "Vous montrerez comment l'innovation peut être une solution aux limites écologiques de la croissance économique.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que le progrès technique peut engendrer des inégalités de revenus.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que le progrès technique est endogène.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que les institutions jouent un rôle dans la croissance économique.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez qu'il existe des limites écologiques à la croissance économique soutenable.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez comment les institutions influent sur la croissance économique.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que la croissance économique soutenable se heurte à des limites écologiques.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que le progrès technique est endogène.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que le progrès technique est endogène.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
         ];
       case '2':
         return [
-          "Vous montrerez que le libre-échange est source de gains mutuels.",
-          "Vous montrerez que le protectionnisme peut avoir des effets positifs.",
-          "Vous montrerez que la mondialisation peut remettre en cause la souveraineté des États.",
+          {
+            question: "Vous montrerez que le libre-échange est source de gains mutuels.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que le protectionnisme peut avoir des effets positifs.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que la mondialisation peut remettre en cause la souveraineté des États.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
         ];
       case '3':
         return [
-          "Vous montrerez que le chômage a des causes multiples.",
-          "Vous montrerez que les politiques de l'emploi peuvent réduire le chômage.",
-          "Vous montrerez que la flexibilité du marché du travail peut réduire le chômage.",
+          {
+            question: "Vous montrerez que le chômage a des causes multiples.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que les politiques de l'emploi peuvent réduire le chômage.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que la flexibilité du marché du travail peut réduire le chômage.",
+            year: "2021",
+            location: "France métropolitaine"
+          },
         ];
       default:
-        return ["Aucun sujet disponible pour ce chapitre"];
+        return [];
     }
   };
 
@@ -50,7 +116,7 @@ export const EC3Topics: React.FC<EC3TopicsProps> = ({ chapter, title }) => {
       <Button 
         variant="ghost" 
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white mb-6"
+        className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
         Retour
@@ -58,17 +124,28 @@ export const EC3Topics: React.FC<EC3TopicsProps> = ({ chapter, title }) => {
 
       <h2 className="text-2xl font-bold mb-6">{title}</h2>
       
-      <div className="grid grid-cols-1 gap-4">
-        {topics.map((topic, index) => (
-          <Card 
-            key={index}
-            className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white bg-white"
-          >
-            <CardContent className="p-6">
-              <p className="text-lg">{topic}</p>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <table className="min-w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question EC3</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {topics.map((topic, index) => (
+              <tr 
+                key={index}
+                className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
+              >
+                <td className="px-6 py-4">{topic.question}</td>
+                <td className="px-6 py-4">{topic.year}</td>
+                <td className="px-6 py-4">{topic.location}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

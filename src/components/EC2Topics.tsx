@@ -2,7 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
+
+interface EC2Topic {
+  question: string;
+  year: string;
+  location: string;
+}
 
 interface EC2TopicsProps {
   chapter: string;
@@ -16,28 +21,90 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
     switch (chapter) {
       case '1':
         return [
-          "Montrez le rôle des droits de propriété sur la croissance économique. (4 points)",
-          "Montrez que l'accroissement de la productivité globale des facteurs est une source de croissance économique. (4 points)",
-          "Montrez que l'innovation peut aider à repousser les limites écologiques de la croissance dans le secteur de l'énergie. (4 points)",
-          "Montrez que les contributions à la croissance ne se réduisent pas à la seule accumulation des facteurs de production. (4 points)",
-          "Montrez comment l'innovation peut rendre la croissance économique soutenable. (4 points)",
-          "Montrez le caractère endogène du progrès technique. (4 points)",
-          "Montrez que la Productivité Globale des Facteurs constitue une source essentielle de la croissance économique. (4 points)",
-          "Expliquez comment l'innovation peut aider à reculer les limites écologiques de la croissance économique. (4 points)",
-          "Montrez que l'innovation peut aider à reculer les limites écologiques de la croissance économique. (4 points)",
-          "Distinguez les sources de la croissance des pays observés. (4 points)",
-          "Montrez que les sources de la croissance sont multiples. (4 points)",
+          {
+            question: "Montrez le rôle des droits de propriété sur la croissance économique.",
+            year: "2023",
+            location: "France Métropolitaine"
+          },
+          {
+            question: "Montrez que l'accroissement de la productivité globale des facteurs est une source de croissance économique.",
+            year: "2022",
+            location: "France Métropolitaine"
+          },
+          {
+            question: "Montrez que l'innovation peut aider à repousser les limites écologiques de la croissance dans le secteur de l'énergie.",
+            year: "2022",
+            location: "Amérique du Nord"
+          },
+          {
+            question: "Montrez que les contributions à la croissance ne se réduisent pas à la seule accumulation des facteurs de production.",
+            year: "2022",
+            location: "Asie"
+          },
+          {
+            question: "Montrez comment l'innovation peut rendre la croissance économique soutenable.",
+            year: "2021",
+            location: "France Métropolitaine"
+          },
+          {
+            question: "Montrez le caractère endogène du progrès technique.",
+            year: "2021",
+            location: "Autres centres étrangers"
+          },
+          {
+            question: "Montrez que la Productivité Globale des Facteurs constitue une source essentielle de la croissance économique.",
+            year: "2021",
+            location: "Amérique du Nord"
+          },
+          {
+            question: "Expliquez comment l'innovation peut aider à reculer les limites écologiques de la croissance économique.",
+            year: "2021",
+            location: "La Réunion"
+          }
         ];
       case '2':
-        return [];
+        return [
+          {
+            question: "Vous expliquerez les échanges de véhicules entre pays comparables.",
+            year: "2023",
+            location: "La Réunion"
+          },
+          {
+            question: "Vous expliquerez le commerce entre pays comparables.",
+            year: "2023",
+            location: "Autres centres étrangers"
+          },
+          {
+            question: "Montrez que le commerce international ne s'explique pas uniquement par les différences de dotations factorielles.",
+            year: "2022",
+            location: "France Métropolitaine"
+          },
+          {
+            question: "Montrez que le commerce international ne s'explique pas uniquement par les différences de dotations factorielles entre pays.",
+            year: "2022",
+            location: "Amérique du Nord"
+          }
+        ];
       case '3':
         return [
-          "Montrez que le chômage structurel a des causes multiples. (4 points)",
-          "Montrez que les politiques de l'emploi peuvent réduire le chômage structurel. (4 points)",
-          "Montrez que la flexibilité du marché du travail peut réduire le chômage. (4 points)",
+          {
+            question: "Montrez que le chômage structurel a des causes multiples.",
+            year: "2023",
+            location: "France Métropolitaine"
+          },
+          {
+            question: "Montrez que les politiques de l'emploi peuvent réduire le chômage structurel.",
+            year: "2022",
+            location: "France Métropolitaine"
+          },
+          {
+            question: "Montrez que la flexibilité du marché du travail peut réduire le chômage.",
+            year: "2021",
+            location: "France Métropolitaine"
+          }
         ];
       default:
-        return ["Aucun sujet disponible pour ce chapitre"];
+        return [];
     }
   };
 
@@ -48,7 +115,7 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
       <Button 
         variant="ghost" 
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white mb-6"
+        className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
         Retour
@@ -56,17 +123,28 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
 
       <h2 className="text-2xl font-bold mb-6">{title}</h2>
       
-      <div className="grid grid-cols-1 gap-4">
-        {topics.map((topic, index) => (
-          <Card 
-            key={index}
-            className="cursor-pointer transition-colors duration-200 hover:bg-[#403E43] hover:text-white"
-          >
-            <CardContent className="p-6">
-              <p className="text-lg">{topic}</p>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <table className="min-w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question EC2</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {topics.map((topic, index) => (
+              <tr 
+                key={index}
+                className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
+              >
+                <td className="px-6 py-4">{topic.question}</td>
+                <td className="px-6 py-4">{topic.year}</td>
+                <td className="px-6 py-4">{topic.location}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
