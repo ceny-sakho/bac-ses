@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast";
-import { DissertationTable } from './dissertation/DissertationTable';
-import { PdfViewer } from './dissertation/PdfViewer';
-import { dissertationTopics } from '@/data/dissertationTopics';
-import { DissertationTopic } from '@/types/dissertation';
+import { examData } from '@/data/examQuestions';
 
 interface DissertationTopicsProps {
   chapter: string;
@@ -15,53 +11,13 @@ interface DissertationTopicsProps {
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
-  const [showPdf, setShowPdf] = useState(false);
-  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
-  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
-  const { toast } = useToast();
 
-  const topics = dissertationTopics[chapter] || [];
-
-  const handleTopicClick = (topic: DissertationTopic, index: number) => {
-    setSelectedTopicIndex(index);
-    setShowPdf(true);
+  const getTopicsByChapter = () => {
+    const chapterKey = `chapter${chapter}` as keyof typeof examData;
+    return examData[chapterKey]?.dissertation || [];
   };
 
-  const handleFileUpload = (file: File) => {
-    if (selectedTopicIndex !== null) {
-      const url = URL.createObjectURL(file);
-      setPdfFiles(prev => ({
-        ...prev,
-        [selectedTopicIndex]: url
-      }));
-      toast({
-        title: "Succès",
-        description: "Le fichier PDF a été téléchargé avec succès",
-      });
-    }
-  };
-
-  if (showPdf) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <Button 
-          variant="ghost" 
-          onClick={() => setShowPdf(false)}
-          className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Retour
-        </Button>
-
-        <PdfViewer
-          chapter={chapter}
-          selectedTopicIndex={selectedTopicIndex}
-          pdfFiles={pdfFiles}
-          onFileUpload={handleFileUpload}
-        />
-      </div>
-    );
-  }
+  const topics = getTopicsByChapter();
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -75,11 +31,30 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       </Button>
 
       <h2 className="text-2xl font-bold mb-6">{title}</h2>
-
-      <DissertationTable
-        topics={topics}
-        onTopicClick={handleTopicClick}
-      />
+      
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <table className="min-w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question de dissertation</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {topics.map((topic, index) => (
+              <tr 
+                key={index}
+                className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
+              >
+                <td className="px-6 py-4">{topic.question}</td>
+                <td className="px-6 py-4">{topic.year}</td>
+                <td className="px-6 py-4">{topic.location}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
