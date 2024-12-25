@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { ec2Topics } from '../data/ec2Topics';
+import { ec2Topics } from '@/data/ec2Topics';
 
 interface EC2TopicsProps {
   chapter: string;
@@ -11,13 +11,19 @@ interface EC2TopicsProps {
 
 export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBack = () => {
+    navigate('/sujets-bac', { state: { activeTab: 'ec2' } });
+  };
+
   const topics = ec2Topics[chapter] || [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Button 
         variant="ghost" 
-        onClick={() => navigate(-1)}
+        onClick={handleBack}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
