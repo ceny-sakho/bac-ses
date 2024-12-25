@@ -15,38 +15,21 @@ const ChapterHeader = ({ title, subtitle }: ChapterHeaderProps) => {
   const handleBack = () => {
     const path = location.pathname;
     
-    // Navigation pour les exercices EC1
-    if (path.includes('/ec1/')) {
-      navigate('/sujets-bac', { state: { activeTab: 'ec1' } });
-      return;
-    }
-    
-    // Navigation pour les exercices EC2
-    if (path.includes('/ec2/')) {
-      navigate('/sujets-bac', { state: { activeTab: 'ec2' } });
-      return;
-    }
-    
-    // Navigation pour les exercices EC3
-    if (path.includes('/ec3/')) {
-      navigate('/sujets-bac', { state: { activeTab: 'ec3' } });
-      return;
-    }
-    
-    // Navigation pour les dissertations
-    if (path.includes('/dissertation/')) {
-      navigate('/sujets-bac', { state: { activeTab: 'dissertation' } });
-      return;
-    }
-    
+    // Navigation vers la page des sujets du bac pour les exercices spécifiques
+    if (path.includes('/dissertation/') || 
+        path.includes('/ec1/') || 
+        path.includes('/ec2/') || 
+        path.includes('/ec3/')) {
+      navigate('/sujets-bac');
+    } 
     // Navigation vers la page d'accueil pour les autres cas
-    if (path === '/sujets-bac') {
+    else if (path === '/sujets-bac') {
       navigate('/');
-      return;
     }
-    
     // Fallback vers la page précédente
-    navigate(-1);
+    else {
+      navigate(-1);
+    }
   };
 
   return (
