@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { ec1Topics } from '@/data/ec1Topics';
+import { ec1Topics } from '@/data/ec1';
 import { EC1TopicsProps } from '@/types/ec1';
+import { TopicsTable } from './ec3/TopicsTable';
 
 export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
@@ -22,29 +23,7 @@ export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
 
       <h2 className="text-2xl font-bold mb-6">{title}</h2>
       
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-        <table className="min-w-full">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question EC1</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {topics.map((topic, index) => (
-              <tr 
-                key={index}
-                className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
-              >
-                <td className="px-6 py-4">{topic.question}</td>
-                <td className="px-6 py-4">{topic.year}</td>
-                <td className="px-6 py-4">{topic.location}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <TopicsTable topics={topics} />
     </div>
   );
 };
