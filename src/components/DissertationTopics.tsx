@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
@@ -21,6 +21,14 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const { toast } = useToast();
 
   const topics = dissertationTopics[chapter] || [];
+
+  // Réinitialiser l'état du PDF quand showPdf passe à false
+  useEffect(() => {
+    if (!showPdf) {
+      setSelectedTopicIndex(null);
+      setPdfFiles({});
+    }
+  }, [showPdf]);
 
   const handleTopicClick = (topic: DissertationTopic, index: number) => {
     setSelectedTopicIndex(index);
