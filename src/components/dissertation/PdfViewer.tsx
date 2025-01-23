@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -16,12 +16,19 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
   pdfFiles,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState<string>('');
   const { toast } = useToast();
 
-  const handleDownload = () => {
-    if (selectedTopicIndex === null) return;
+  useEffect(() => {
+    if (selectedTopicIndex !== null) {
+      const url = pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet-${selectedTopicIndex + 1}.pdf`;
+      setPdfUrl(url);
+    }
+  }, [selectedTopicIndex, pdfFiles, chapter]);
 
-    const pdfUrl = pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet-${selectedTopicIndex + 1}.pdf`;
+  const handleDownload = () => {
+    if (selectedTopicIndex === null || !pdfUrl) return;
+
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.download = `dissertation-chapitre${chapter}-sujet${selectedTopicIndex + 1}.pdf`;
@@ -29,6 +36,8 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
     link.click();
     document.body.removeChild(link);
   };
+
+  if (!pdfUrl) return null;
 
   return (
     <div>
@@ -38,7 +47,7 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
         onMouseLeave={() => setIsHovering(false)}
       >
         <embed
-          src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet-${selectedTopicIndex + 1}.pdf`) : `/dissertation/chapitre${chapter}/sujet-1.pdf`}
+          src={pdfUrl}
           className="w-full h-[800px] rounded-lg"
           type="application/pdf"
         />

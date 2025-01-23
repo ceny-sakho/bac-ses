@@ -22,11 +22,9 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
 
   const topics = dissertationTopics[chapter] || [];
 
-  // Réinitialiser l'état du PDF quand showPdf passe à false
   useEffect(() => {
     if (!showPdf) {
       setSelectedTopicIndex(null);
-      setPdfFiles({});
     }
   }, [showPdf]);
 
