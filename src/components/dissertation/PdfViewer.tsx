@@ -72,7 +72,7 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
         onMouseLeave={() => setIsHovering(false)}
       >
         <embed
-          src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet${selectedTopicIndex + 1}.pdf`) : `/dissertation/chapitre${chapter}/sujet1.pdf`}
+          src={selectedTopicIndex !== null ? (pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet-${selectedTopicIndex + 1}.pdf`) : `/dissertation/chapitre${chapter}/sujet-1.pdf`}
           className="w-full h-[800px] rounded-lg"
           type="application/pdf"
         />
