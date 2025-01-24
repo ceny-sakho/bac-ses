@@ -34,7 +34,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     };
 
     // Construire le chemin complet du PDF
-    const pdfPath = `/public/${level}/${getSubjectFolder()}/chapitre${chapterId}/synthèse`;
+    const pdfPath = `/public/${level}/${getSubjectFolder()}/chapitre${chapterId}/`;
     setUrl("");
     setTimeout(() => setUrl(pdfPath), 50);
   }, [level, subject, chapterId]);
