@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, BookOpenText } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { SynthesisViewer } from './synthesis/SynthesisViewer';
 
 interface ChapterContentProps {
   objectives: string[];
@@ -13,6 +14,48 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   image
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showSynthesis, setShowSynthesis] = useState(false);
+
+  // Extraire le niveau et la matière de l'URL
+  const getChapterInfo = () => {
+    const pathParts = location.pathname.split('/');
+    const chapterId = pathParts[pathParts.length - 1].split('-')[1];
+    const level = pathParts[pathParts.length - 1].split('-')[0];
+    
+    let subject = '';
+    if (location.pathname.includes('science-eco')) {
+      subject = 'science-eco';
+    } else if (location.pathname.includes('socio')) {
+      subject = 'socio';
+    } else if (location.pathname.includes('regards')) {
+      subject = 'regards';
+    }
+
+    return { chapterId, level, subject };
+  };
+
+  const { chapterId, level, subject } = getChapterInfo();
+
+  if (showSynthesis) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Button 
+          variant="ghost" 
+          onClick={() => setShowSynthesis(false)}
+          className="mb-6 hover:bg-[#403E43] hover:text-white"
+        >
+          <BookOpenText className="mr-2 h-4 w-4" />
+          Retour au chapitre
+        </Button>
+        <SynthesisViewer 
+          chapterId={chapterId}
+          level={level}
+          subject={subject}
+        />
+      </div>
+    );
+  }
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
@@ -53,6 +96,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           size="lg" 
           variant="outline" 
           className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
+          onClick={() => setShowSynthesis(true)}
         >
           <BookOpenText className="w-5 h-5" />
           SYNTHÈSE
