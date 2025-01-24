@@ -33,7 +33,8 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
       }
     };
 
-    const pdfPath = `/${level}/${getSubjectFolder()}/chapitre${chapterId}/synthese.pdf`;
+    // Construire le chemin complet du PDF
+    const pdfPath = `/public/${level}/${getSubjectFolder()}/chapitre${chapterId}/synthèse`;
     setUrl("");
     setTimeout(() => setUrl(pdfPath), 50);
   }, [level, subject, chapterId]);
@@ -43,7 +44,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
 
     const link = document.createElement('a');
     link.href = url;
-    link.download = `synthese-${level}-${subject}-chapitre${chapterId}.pdf`;
+    link.download = `synthèse-${level}-${getSubjectFolder()}-chapitre${chapterId}`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -52,6 +53,19 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
       title: "Téléchargement démarré",
       description: "La synthèse est en cours de téléchargement",
     });
+  };
+
+  const getSubjectFolder = () => {
+    switch (subject) {
+      case "science-eco":
+        return "économie";
+      case "socio":
+        return "sociologie-politique";
+      case "regards":
+        return "regards";
+      default:
+        return "";
+    }
   };
 
   if (!url) {
