@@ -16,28 +16,32 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
   pdfFiles,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState<string>('');
+  const [url, setUrl] = useState<string>("");
   const { toast } = useToast();
 
   useEffect(() => {
     if (selectedTopicIndex !== null) {
-      const url = pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet-${selectedTopicIndex + 1}.pdf`;
-      setPdfUrl(url);
+      // Réinitialiser l'URL pour forcer le rechargement du PDF
+      const newUrl = pdfFiles[selectedTopicIndex] || `/dissertation/chapitre${chapter}/sujet-${selectedTopicIndex + 1}.pdf`;
+      setUrl("");
+      setTimeout(() => setUrl(newUrl), 50);
     }
   }, [selectedTopicIndex, pdfFiles, chapter]);
 
   const handleDownload = () => {
-    if (selectedTopicIndex === null || !pdfUrl) return;
+    if (selectedTopicIndex === null || !url) return;
 
     const link = document.createElement('a');
-    link.href = pdfUrl;
+    link.href = url;
     link.download = `dissertation-chapitre${chapter}-sujet${selectedTopicIndex + 1}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  if (!pdfUrl) return null;
+  if (!url) {
+    return <div className="flex justify-center items-center h-[800px]">Chargement du fichier PDF...</div>;
+  }
 
   return (
     <div>
@@ -47,7 +51,7 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
         onMouseLeave={() => setIsHovering(false)}
       >
         <embed
-          src={pdfUrl}
+          src={url}
           className="w-full h-[800px] rounded-lg"
           type="application/pdf"
         />

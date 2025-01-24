@@ -29,8 +29,11 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   }, [showPdf]);
 
   const handleTopicClick = (topic: DissertationTopic, index: number) => {
-    setSelectedTopicIndex(index);
-    setShowPdf(true);
+    setSelectedTopicIndex(null);
+    setTimeout(() => {
+      setSelectedTopicIndex(index);
+      setShowPdf(true);
+    }, 50);
   };
 
   const handleFileUpload = (file: File) => {
