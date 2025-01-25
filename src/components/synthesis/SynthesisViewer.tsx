@@ -46,9 +46,15 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     }
   };
 
+  // Fonction pour extraire le numéro du chapitre
+  const getChapterNumber = () => {
+    // Le format attendu est "seconde-ch1", "premiere-ch1", etc.
+    const match = chapterId.match(/ch(\d+)/);
+    return match ? match[1] : "1";
+  };
+
   useEffect(() => {
-    // Construire le chemin complet du PDF
-    const chapterNumber = chapterId.split('-')[1];
+    const chapterNumber = getChapterNumber();
     const pdfPath = `/${getLevelFolder()}/${getSubjectFolder()}/chapitre${chapterNumber}/synthèse/synthèse${chapterNumber}.pdf`;
 
     console.log("PDF Path:", pdfPath); // Pour déboguer le chemin
@@ -61,7 +67,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
 
     const link = document.createElement("a");
     link.href = url;
-    const chapterNumber = chapterId.split('-')[1];
+    const chapterNumber = getChapterNumber();
     link.download = `synthèse-${getLevelFolder()}-${getSubjectFolder()}-chapitre${chapterNumber}.pdf`;
     document.body.appendChild(link);
     link.click();
