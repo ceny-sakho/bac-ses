@@ -18,7 +18,6 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
   const [url, setUrl] = useState<string>("");
   const { toast } = useToast();
 
-  // Fonction pour mapper le sujet aux noms de dossiers correspondants
   const getSubjectFolder = () => {
     switch (subject) {
       case "science-eco":
@@ -32,7 +31,6 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     }
   };
 
-  // Fonction pour mapper le niveau aux noms de dossiers correspondants
   const getLevelFolder = () => {
     switch (level) {
       case "seconde":
@@ -46,18 +44,27 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     }
   };
 
-  // Fonction pour extraire le numéro du chapitre
   const getChapterNumber = () => {
-    // Le format attendu est "seconde-ch1", "premiere-ch1", etc.
-    const match = chapterId.match(/ch(\d+)/);
-    return match ? match[1] : "1";
+    if (chapterId.includes('ch')) {
+      const match = chapterId.match(/ch(\d+)/);
+      return match ? match[1] : "1";
+    }
+    return chapterId;
   };
 
   useEffect(() => {
     const chapterNumber = getChapterNumber();
-    const pdfPath = `/${getLevelFolder()}/${getSubjectFolder()}/chapitre${chapterNumber}/synthèse/synthèse${chapterNumber}.pdf`;
-
-    console.log("PDF Path:", pdfPath); // Pour déboguer le chemin
+    const levelFolder = getLevelFolder();
+    const subjectFolder = getSubjectFolder();
+    
+    // Construction du chemin en suivant exactement l'organisation demandée
+    const pdfPath = `/${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthèse/synthèse${chapterNumber}.pdf`;
+    
+    console.log("Level:", levelFolder);
+    console.log("Subject:", subjectFolder);
+    console.log("Chapter:", chapterNumber);
+    console.log("Final PDF Path:", pdfPath);
+    
     setUrl("");
     setTimeout(() => setUrl(pdfPath), 50);
   }, [level, subject, chapterId]);
