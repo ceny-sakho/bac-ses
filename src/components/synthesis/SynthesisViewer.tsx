@@ -32,9 +32,24 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     }
   };
 
+  // Fonction pour mapper le niveau aux noms de dossiers correspondants
+  const getLevelFolder = () => {
+    switch (level) {
+      case "seconde":
+        return "seconde";
+      case "premiere":
+        return "première";
+      case "terminale":
+        return "terminale";
+      default:
+        return "";
+    }
+  };
+
   useEffect(() => {
     // Construire le chemin complet du PDF
-    const pdfPath = `/${level}/${getSubjectFolder()}/chapitre${chapterId.split('-')[1]}/synthèse/synthèse${chapterId.split('-')[1]}.pdf`;
+    const chapterNumber = chapterId.split('-')[1];
+    const pdfPath = `/${getLevelFolder()}/${getSubjectFolder()}/chapitre${chapterNumber}/synthèse/synthèse${chapterNumber}.pdf`;
 
     console.log("PDF Path:", pdfPath); // Pour déboguer le chemin
     setUrl("");
@@ -46,7 +61,8 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `synthèse-${level}-${getSubjectFolder()}-chapitre${chapterId.split('-')[1]}.pdf`;
+    const chapterNumber = chapterId.split('-')[1];
+    link.download = `synthèse-${getLevelFolder()}-${getSubjectFolder()}-chapitre${chapterNumber}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
