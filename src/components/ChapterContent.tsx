@@ -90,7 +90,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Button size="lg" className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2">
           <BookOpen className="w-5 h-5" />
-          DÉCOUVRIR LE COURS
+          NOTIONS
         </Button>
         <Button 
           size="lg" 
