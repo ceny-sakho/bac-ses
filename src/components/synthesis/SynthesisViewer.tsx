@@ -21,7 +21,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
   const getSubjectFolder = () => {
     switch (subject) {
       case "science-eco":
-        return "économie";
+        return "economie";
       case "socio":
         return "sociologie-politique";
       case "regards":
@@ -36,7 +36,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
       case "seconde":
         return "seconde";
       case "premiere":
-        return "première";
+        return "premiere";
       case "terminale":
         return "terminale";
       default:
@@ -57,8 +57,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     const levelFolder = getLevelFolder();
     const subjectFolder = getSubjectFolder();
     
-    // Construction du chemin en suivant exactement l'organisation demandée
-    const pdfPath = `/${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthèse/synthèse${chapterNumber}.pdf`;
+    const pdfPath = `${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/synthese${chapterNumber}.pdf`;
     
     console.log("Level:", levelFolder);
     console.log("Subject:", subjectFolder);
@@ -75,7 +74,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     const link = document.createElement("a");
     link.href = url;
     const chapterNumber = getChapterNumber();
-    link.download = `synthèse-${getLevelFolder()}-${getSubjectFolder()}-chapitre${chapterNumber}.pdf`;
+    link.download = `synthese-${getLevelFolder()}-${getSubjectFolder()}-chapitre${chapterNumber}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
