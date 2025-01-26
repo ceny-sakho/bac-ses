@@ -27,7 +27,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
       case "regards":
         return "regards";
       default:
-        return "";
+        return "economie"; // Par défaut, on utilise "economie"
     }
   };
 
@@ -40,7 +40,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
       case "terminale":
         return "terminale";
       default:
-        return "";
+        return "premiere"; // Par défaut, on utilise "premiere"
     }
   };
 
@@ -57,12 +57,14 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     const levelFolder = getLevelFolder();
     const subjectFolder = getSubjectFolder();
     
-    const pdfPath = `${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/synthese${chapterNumber}.pdf`;
+    // Ajout de console.log pour déboguer
+    console.log("Building PDF path with:");
+    console.log("Level folder:", levelFolder);
+    console.log("Subject folder:", subjectFolder);
+    console.log("Chapter number:", chapterNumber);
     
-    console.log("Level:", levelFolder);
-    console.log("Subject:", subjectFolder);
-    console.log("Chapter:", chapterNumber);
-    console.log("Final PDF Path:", pdfPath);
+    const pdfPath = `/${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/synthese${chapterNumber}.pdf`;
+    console.log("Final PDF path:", pdfPath);
     
     setUrl("");
     setTimeout(() => setUrl(pdfPath), 50);
