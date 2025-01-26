@@ -57,7 +57,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     const levelFolder = getLevelFolder();
     const subjectFolder = getSubjectFolder();
     
-    const pdfPath = `${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/synthe${chapterNumber}.pdf`;
+    const pdfPath = `${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/synthese${chapterNumber}.pdf`;
     
     console.log("Level:", levelFolder);
     console.log("Subject:", subjectFolder);
@@ -74,7 +74,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     const link = document.createElement("a");
     link.href = url;
     const chapterNumber = getChapterNumber();
-    link.download = `synthe-${getLevelFolder()}-${getSubjectFolder()}-chapitre${chapterNumber}.pdf`;
+    link.download = `synthese-${getLevelFolder()}-${getSubjectFolder()}-chapitre${chapterNumber}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
