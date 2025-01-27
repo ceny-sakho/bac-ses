@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, BookOpenText } from "lucide-react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SynthesisViewer } from './synthesis/SynthesisViewer';
+import { NotionsViewer } from './notions/NotionsViewer';
 
 interface ChapterContentProps {
   objectives: string[];
@@ -16,6 +17,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [showSynthesis, setShowSynthesis] = useState(false);
+  const [showNotions, setShowNotions] = useState(false);
 
   // Extraire le niveau et la matière de l'URL
   const getChapterInfo = () => {
@@ -36,6 +38,26 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   };
 
   const { chapterId, level, subject } = getChapterInfo();
+
+  if (showNotions) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Button 
+          variant="ghost" 
+          onClick={() => setShowNotions(false)}
+          className="mb-6 hover:bg-[#403E43] hover:text-white"
+        >
+          <BookOpen className="mr-2 h-4 w-4" />
+          Retour au chapitre
+        </Button>
+        <NotionsViewer 
+          chapterId={chapterId}
+          level={level}
+          subject={subject}
+        />
+      </div>
+    );
+  }
 
   if (showSynthesis) {
     return (
@@ -88,7 +110,11 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
       </div>
 
       <div className="mt-8 flex flex-wrap justify-center gap-4">
-        <Button size="lg" className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2">
+        <Button 
+          size="lg" 
+          className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2"
+          onClick={() => setShowNotions(true)}
+        >
           <BookOpen className="w-5 h-5" />
           NOTIONS
         </Button>
