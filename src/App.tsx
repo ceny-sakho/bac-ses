@@ -9,6 +9,7 @@ import { DissertationTopics } from "./components/DissertationTopics";
 import { EC1Topics } from "./components/EC1Topics";
 import { EC2Topics } from "./components/EC2Topics";
 import { EC3Topics } from "./components/EC3Topics";
+import DissertationSubject from "./pages/DissertationSubject";
 
 function App() {
   const dissertationChapters = [
@@ -128,6 +129,11 @@ function App() {
               }
             />
           ))}
+
+          <Route
+            path="/dissertation/:chapterId/sujet/:sujetId"
+            element={<DissertationSubject />}
+          />
         </Routes>
       </div>
     </Router>
