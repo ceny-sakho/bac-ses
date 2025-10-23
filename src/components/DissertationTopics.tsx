@@ -20,6 +20,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   const topics = dissertationTopics[chapter] || [];
 
   const handleTopicClick = (topic: DissertationTopic, index: number) => {
+    console.log("Topic clicked:", topic, "Index:", index);
     setSelectedTopic({ topic, index });
     setShowPdf(true);
   };
@@ -27,6 +28,10 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   if (showPdf && selectedTopic) {
     const pdfUrl = `/dissertation/chapitre${chapter}/sujet-${selectedTopic.index + 1}.pdf`;
     const downloadFileName = `dissertation-chapitre${chapter}-sujet${selectedTopic.index + 1}.pdf`;
+    
+    console.log("Displaying PDF:", pdfUrl);
+    console.log("Show PDF state:", showPdf);
+    console.log("Selected topic:", selectedTopic);
 
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
