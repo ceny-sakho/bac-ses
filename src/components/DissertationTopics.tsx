@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast";
 import { DissertationTable } from './dissertation/DissertationTable';
-import { PdfViewer } from './dissertation/PdfViewer';
+import { PdfViewer } from './shared/PdfViewer';
 import { dissertationTopics } from '@/data/dissertationTopics';
 import { DissertationTopic } from '@/types/dissertation';
 
@@ -16,41 +15,19 @@ interface DissertationTopicsProps {
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
   const [showPdf, setShowPdf] = useState(false);
-  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
-  const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
-  const { toast } = useToast();
+  const [selectedTopic, setSelectedTopic] = useState<{ topic: DissertationTopic; index: number } | null>(null);
 
   const topics = dissertationTopics[chapter] || [];
 
-  useEffect(() => {
-    if (!showPdf) {
-      setSelectedTopicIndex(null);
-    }
-  }, [showPdf]);
-
   const handleTopicClick = (topic: DissertationTopic, index: number) => {
-    setSelectedTopicIndex(null);
-    setTimeout(() => {
-      setSelectedTopicIndex(index);
-      setShowPdf(true);
-    }, 50);
+    setSelectedTopic({ topic, index });
+    setShowPdf(true);
   };
 
-  const handleFileUpload = (file: File) => {
-    if (selectedTopicIndex !== null) {
-      const url = URL.createObjectURL(file);
-      setPdfFiles(prev => ({
-        ...prev,
-        [selectedTopicIndex]: url
-      }));
-      toast({
-        title: "Succès",
-        description: "Le fichier PDF a été téléchargé avec succès",
-      });
-    }
-  };
+  if (showPdf && selectedTopic) {
+    const pdfUrl = `/dissertation/chapitre${chapter}/sujet-${selectedTopic.index + 1}.pdf`;
+    const downloadFileName = `dissertation-chapitre${chapter}-sujet${selectedTopic.index + 1}.pdf`;
 
-  if (showPdf) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Button 
@@ -62,11 +39,16 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
           Retour
         </Button>
 
+        <h2 className="text-xl font-semibold mb-4">{selectedTopic.topic.question}</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          {selectedTopic.topic.year} - {selectedTopic.topic.location}
+        </p>
+
         <PdfViewer
-          chapter={chapter}
-          selectedTopicIndex={selectedTopicIndex}
-          pdfFiles={pdfFiles}
-          onFileUpload={handleFileUpload}
+          url={pdfUrl}
+          downloadFileName={downloadFileName}
+          loadingMessage="Chargement du sujet..."
+          downloadButtonText="Télécharger le sujet"
         />
       </div>
     );
