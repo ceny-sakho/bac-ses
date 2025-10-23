@@ -50,11 +50,24 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <embed
-          src={url}
-          className="w-full h-[800px] rounded-lg"
-          type="application/pdf"
+        {/* Toolbar */}
+        <div className="flex justify-end p-3">
+          <Button
+            onClick={handleDownload}
+            className="bg-gris-sideral hover:bg-[#2A292D] text-white flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            {downloadButtonText}
+          </Button>
+        </div>
+
+        <iframe
+          src={encodeURI(url)}
+          title={downloadFileName}
+          className="w-full h-[800px] rounded-b-lg"
+          onLoad={() => console.log("PDF iframe loaded:", url)}
         />
+
         {isHovering && (
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
             <Button
