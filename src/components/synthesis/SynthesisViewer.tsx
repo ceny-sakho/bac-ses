@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, Volume2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface SynthesisViewerProps {
@@ -16,6 +16,7 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [url, setUrl] = useState<string>("");
+  const [audioUrl, setAudioUrl] = useState<string>("");
   const { toast } = useToast();
 
   const getSubjectFolder = () => {
@@ -64,10 +65,16 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
     console.log("Chapter number:", chapterNumber);
     
     const pdfPath = `/${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/synthese${chapterNumber}.pdf`;
+    const audioPath = `/${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/synthese/audio${chapterNumber}.mp3`;
     console.log("Final PDF path:", pdfPath);
+    console.log("Final Audio path:", audioPath);
     
     setUrl("");
-    setTimeout(() => setUrl(pdfPath), 50);
+    setAudioUrl("");
+    setTimeout(() => {
+      setUrl(pdfPath);
+      setAudioUrl(audioPath);
+    }, 50);
   }, [level, subject, chapterId]);
 
   const handleDownload = () => {
@@ -96,7 +103,23 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
   }
 
   return (
-    <div>
+    <div className="space-y-6">
+      {/* Lecteur Audio */}
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="flex items-center gap-3 mb-4">
+          <Volume2 className="h-5 w-5 text-gris-sideral" />
+          <h3 className="text-lg font-semibold text-gris-sideral">Audio de la synthèse</h3>
+        </div>
+        <audio 
+          controls 
+          className="w-full"
+          src={audioUrl}
+        >
+          Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+      </div>
+
+      {/* PDF Viewer */}
       <div
         className="relative bg-white shadow-lg rounded-lg"
         onMouseEnter={() => setIsHovering(true)}
