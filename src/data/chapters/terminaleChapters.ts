@@ -12,7 +12,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre comment le progrès technique peut engendrer des inégalités de revenus",
       "Comprendre qu'une croissance économique soutenable se heurte à des limites écologiques (notamment l'épuisement des ressources, la pollution et le réchauffement climatique) et que l'innovation peut aider à reculer ces limites"
     ],
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch2": {
     title: "Quels sont les fondements du commerce international et de l'internationalisation de la production ?",
@@ -25,7 +25,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre l'internationalisation de la chaîne de valeur et savoir l'illustrer",
       "Comprendre les effets induits par le commerce internationl : gains moyens en termes de baise de prix, réduction des inégalités entre pays, accroissement des inégalités de revenus au sein de chaque pays ; comprendre les termes du débat entre libre-échange et protectionnisme"
     ],
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch3": {
     title: "Comment lutter contre le chômage ?",
@@ -38,7 +38,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre les effets des fluctuations de l'activité économique sur le chômage conjoncturel",
       "Connaître les principales politiques mises en œuvre pour lutter contre le chômage : politiques macroéconomiques de soutien de la demande globale, politiques d'allégement du coût du travail, politiques de formation et politiques de flexibilisation pour lutter contre les rigidités du marché du travail"
     ],
-    image: "https://images.unsplash.com/photo-1611095973763-414019e72400?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch4": {
     title: "Comment expliquer les crises financières et réguler le système financier ?",
@@ -51,7 +51,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Connaître les principaux canaux de transmission d'une crise financière à l'économie réelle : effets de richesse négatif, baisse de prix du collatéral et ventes forcées, contraction du crédit",
       "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l'aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité"
     ],
-    image: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch5": {
     title: "Quelles politiques économiques dans le cadre européen ?",
@@ -74,7 +74,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre les principales évolutions de la structure socioprofessionnelle en France depuis la seconde moitié du XX° siècle (salarisation, tertiarisation, élévation du niveau de qualification, féminisation des emplois)",
       "Connaître les théories des classes et de la stratification sociale dans la tradition sociologique (Marx, Weber) ; comprendre que la pertinence d'une approche en termes de classes sociales pour rendre compte de la société française fait l'objet de débats théoriques et statistiques : évolution des distances inter-et intra-classes, articulation avec les rapports sociaux de genre, identifications subjectives à un groupe social, multiplication des facteurs d'individualisation"
     ],
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch7": {
     title: "Quelle est l'action de l'École sur les destins individuels et sur l'évolution de la société ?",
@@ -84,7 +84,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre que, dans les sociétés démocratiques, l'École transmet des savoirs et vise à favoriser l'égalité des chances ; comprendre l'évolution, depuis les années 1950, des principaux indicateurs mesurant l'accès à l'école et à l'enseignement supérieur (taux de scolarisation, taux d'accès à un diplôme ou à un type de formation) en distinguant les processus de massification et de démocratisation",
       "Comprendre la multiplicité des facteurs d'inégalités de réussite scolaire (notamment, rôle de l'Ecole, rôle du capital culturel et des investissements familiaux, socialisation selon le genre, effets des stratégies des ménages) dans la construction des trajectoires individuelles de formation"
     ],
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch8": {
     title: "Quels sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
@@ -97,7 +97,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "A partir de la lecture des tables de mobilité, être capable de mettre en évidence des situations de mobilité ascendante, de reproduction sociale et de déclassement, et de retrouver les spécificités de la mobilité sociale des hommes et de celles des femmes",
       "Comprendre comment l'évolution de la structure socioprofessionnelle, les niveaux de formation et les ressources et configurations familiales contribuent à expliquer la mobilité sociale"
     ],
-    image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch9": {
     title: "Quelles mutations du travail et de l'emploi ?",
@@ -110,7 +110,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre comment le numérique brouille les frontières du travail (télétravail, travail / hors travail), transforme les relations d'emploi et accroît les risques de polarisation des emplois",
       "Comprendre que le travail est source d'intégration sociale et que certaines évolutions de l'emploi (précarisation, taux persistant de chômage élevé́, polarisation de la qualité́ des emplois) peuvent affaiblir ce pouvoir intégrateur"
     ],
-    image: "https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch10": {
     title: "Comment expliquer l'engagement politique dans les sociétés démocratiques ?",
@@ -134,7 +134,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre que les différentes formes d'égalité (égalité des droits, des chances ou des situations) permettent de définir ce qui est considéré comme juste selon différentes conceptions de la justice sociale (notamment l'utilitarisme, le libertarisme libéral, l'égalitarisme strict)",
       "Comprendre que l'action des pouvoirs publics en matière de justice sociale (fiscalité, protection sociale, services collectifs, mesures de lutte contre les discriminations) s'exerce sous contrainte de financement et fait l'objet de débats en termes d'efficacité (réduction des inégalités), de légitimité (notamment consentement à l'impôt) et de risque d'effets pervers (désincitations)"
     ],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "terminale-ch12": {
     title: "Quelle action publique pour l'environnement ?",
@@ -146,6 +146,6 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "En prenant l'exemple du changement climatique : Connaître les principaux instruments dont disposent les pouvoirs publics pour faire face aux externalités négatives sur l'environnement : réglementation, marchés de quotas d'émission, taxation, subvention à l'innovation verte ; comprendre que ces différents instruments présentent des avantages et des limites, et que leur mise en œuvre peut se heurter à des dysfonctionnements de l'action publique",
       "En prenant l'exemple du changement climatique : Comprendre qu'en présence de bien commun les négociations et accords internationaux liés à la préservation de l'environnement sont contraints par des stratégies de passager clandestin et les inégalités de développement entre pays"
     ],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   }
 };

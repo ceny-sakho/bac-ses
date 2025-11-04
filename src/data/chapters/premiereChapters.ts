@@ -13,7 +13,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre les notions de surplus du producteur et du consommateur",
       "Comprendre la notion de gains à l'échange et savoir que la somme des surplus est maximisée à l'équilibre"
     ],
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch2": {
     title: "Comment les marchés imparfaitement concurrentiels fonctionnent-ils ?",
@@ -26,7 +26,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre ce qu'est un oligopole et, à l'aide du dilemme du prisonnier, pourquoi les firmes en oligopole ont intérêt à former des ententes",
       "Comprendre que la politique de la concurrence, en régulant les fusions-acquisitions et en luttant contre les ententes illicites et les abus de position dominante, augmente le surplus du consommateur"
     ],
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch3": {
     title: "Quelles sont les principales défaillances de marché ?",
@@ -39,7 +39,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre que la sélection adverse peut mener à l'absence d'équilibre",
       "Être capable d'illustrer l'intervention des pouvoirs publics face à ces différentes défaillances"
     ],
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch4": {
     title: "Comment les agents économiques se financent-ils ?",
@@ -52,7 +52,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Savoir ce qu'est l'excédent brut d'exploitation et comprendre que les entreprises se financent par autofinancement et financement externe (emprunts bancaires et recours au marché financier, en particulier actions et obligations)",
       "Savoir que le solde budgétaire résulte de la différence entre les recettes (fiscales et non fiscales) et les dépenses de l'État ; comprendre que le déficit budgétaire est financé par l'emprunt et savoir qu'une politique de dépenses publiques peut avoir des effets contradictoires sur l'activité (relance de la demande / effet d'éviction)"
     ],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch5": {
     title: "Qu'est-ce que la monnaie et comment est-elle créée ?",
@@ -63,7 +63,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre comment le crédit bancaire contribue à la création monétaire, à partir du bilan simplifié d'une entreprise et de celui d'une banque",
       "Comprendre le rôle de la banque centrale dans le processus de création monétaire, en particulier à travers le pilotage du taux d'intérêt à court terme sur le marché monétaire, et comprendre les effets que ces interventions peuvent produire sur le niveau des prix et sur l'activité économique"
     ],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch6": {
     title: "Comment la socialisation contribue-t-elle à expliquer les différences de comportement des individus ?",
@@ -75,7 +75,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre qu'il existe des socialisations secondaires (professionnelle, conjugale, politique) à la suite de la socialisation primaire",
       "Comprendre que la pluralité des influences socialisatrices peut être à l'origine de trajectoires individuelles improbables"
     ],
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch7": {
     title: "Comment se construisent et évoluent les liens sociaux ?",
@@ -101,7 +101,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre et illustrer la distinction entre déviance et délinquance",
       "Comprendre et illustrer les difficultés de mesure de la délinquance"
     ],
-    image: "https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch9": {
     title: "Comment se forme et s'exprime l'opinion publique ?",
@@ -112,7 +112,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre les principes et les techniques des sondages, et les débats relatifs à leur interprétation de l'opinion publique",
       "Comprendre comment le recours fréquent aux sondages d'opinion contribue à forger l'opinion publique et modifie l'exercice de la démocratie (démocratie d'opinion) et de la vie politique (contrôle des gouvernants, participation électorale, communication politique)"
     ],
-    image: "https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch10": {
     title: "Voter : une affaire individuelle ou collective ?",
@@ -124,7 +124,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre que le vote est à la fois un acte individuel (expression de préférences en fonction d'un contexte et d'une offre électorale) et un acte collectif (expression d'appartenances sociales)",
       "Comprendre que la volatilité électorale revêt des formes variées (intermittence du vote, changement des préférences électorales) et qu'elle peut refléter un affaiblissement ou une recomposition du poids de certaines variables sociales, un déclin de l'identification politique (clivage gauche/droite notamment) et un renforcement du poids des variables contextuelles"
     ],
-    image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch11": {
     title: "Comment l'assurance et la protection sociale contribuent-elles à la gestion des risques dans les sociétés développées ?",
@@ -138,7 +138,7 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Connaître le rôle des principales institutions qui contribuent à la gestion des risques (famille, sociétés et mutuelles d'assurance, pouvoirs publics)",
       "Comprendre que la protection sociale, par ses logiques d'assurance et d'assistance, contribue à une couverture des risques fondée sur le principe de solidarité collective"
     ],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "premiere-ch12": {
     title: "Comment les entreprises sont-elles organisées et gouvernées ?",
@@ -150,6 +150,6 @@ export const premiereChapters: Record<string, ChapterData> = {
       "Comprendre les notions de gouvernance, d'autorité et de décentralisation/centralisation des décisions au sein d'une entreprise",
       "Comprendre qu'une entreprise est un lieu de relations sociales (coopération, hiérarchie, conflit) entre différentes parties prenantes (salariés, managers, propriétaires/actionnaires, partenaires d'une coopérative)"
     ],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   }
 };

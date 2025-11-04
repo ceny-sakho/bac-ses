@@ -12,7 +12,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Comprendre que ces disciplines réalisent des enquêtes et utilisent des données et des modèles (représentations simplifiées de la réalité)",
       "À partir d'exemples, comprendre la distinction entre la causalité et corrélation et savoir mettre en évidence un lien de causalité"
     ],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "seconde-ch2": {
     title: "Comment crée-t-on des richesses et comment les mesure-t-on ?",
@@ -27,7 +27,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Savoir que le PIB est un indicateur global qui ne rend pas compte des inégalités de revenus",
       "Connaître les principales limites écologiques de la croissance"
     ],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "seconde-ch3": {
     title: "Comment se forment les prix sur un marché ?",
@@ -39,7 +39,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Comprendre comment se fixe et s'ajuste le prix dans un modèle simple de marché et être capable de représenter un graphique avec des courbes de demande et d'offre qui permette d'identifier le prix d'équilibre et la quantité d'équilibre",
       "À l'aide d'un exemple, comprendre les effets sur l'équilibre de la mise en place d'une taxe ou d'une subvention"
     ],
-    image: "https://images.unsplash.com/photo-1611095973763-414019e72400?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "seconde-ch4": {
     title: "Comment devenons-nous des acteurs sociaux ?",
@@ -51,7 +51,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Connaître le rôle spécifique de la famille, de l'école, des médias et du groupe des pairs dans le processus de socialisation des enfants et des jeunes",
       "Savoir illustrer le caractère différencié des processus de socialisation en fonction du milieu social, du genre"
     ],
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "seconde-ch5": {
     title: "Comment s'organise la vie politique ?",
@@ -63,7 +63,7 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Comprendre comment les modes de scrutin (proportionnel, majoritaire) déterminent la représentation politique et structurent la vie politique",
       "Comprendre que la vie politique repose sur la contribution de différents acteurs (partis politiques, société civile organisée, médias)"
     ],
-    image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   },
   "seconde-ch6": {
     title: "Quelles relations entre diplôme, emploi et salaire ?",
@@ -76,6 +76,6 @@ export const secondeChapters: Record<string, ChapterData> = {
       "Savoir qu'à niveau de diplôme égal, le salaire peut varier selon différents facteurs notamment l'expérience acquise, le type d'entreprise, le genre",
       "Comprendre que les chances d'accès aux formations diplômantes sont socialement différenciées"
     ],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+    image: "/lovable-uploads/economics-study.png"
   }
 };
