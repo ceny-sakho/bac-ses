@@ -25,7 +25,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre l'internationalisation de la chaîne de valeur et savoir l'illustrer",
       "Comprendre les effets induits par le commerce internationl : gains moyens en termes de baise de prix, réduction des inégalités entre pays, accroissement des inégalités de revenus au sein de chaque pays ; comprendre les termes du débat entre libre-échange et protectionnisme"
     ],
-    image: "/lovable-uploads/economics-study.png"
+    image: "/lovable-uploads/terminale-ch2.png"
   },
   "terminale-ch3": {
     title: "Comment lutter contre le chômage ?",
