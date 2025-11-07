@@ -19,7 +19,7 @@ export const ChapterCard: React.FC<ChapterCardProps> = ({ id, title, level, imag
         <img
           src={image.startsWith('/') ? image : `https://images.unsplash.com/${image}`}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
       </div>
       <CardContent className="p-4">
