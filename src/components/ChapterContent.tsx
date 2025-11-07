@@ -77,11 +77,11 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
         </div>
 
         <div className="order-1 md:order-2">
-          <div className="rounded-lg overflow-hidden">
+          <div className="aspect-video rounded-lg overflow-hidden">
             <img
               src={image}
               alt="Illustration du chapitre"
-              className="w-full h-auto object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
