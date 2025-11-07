@@ -12,7 +12,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre comment le progrès technique peut engendrer des inégalités de revenus",
       "Comprendre qu'une croissance économique soutenable se heurte à des limites écologiques (notamment l'épuisement des ressources, la pollution et le réchauffement climatique) et que l'innovation peut aider à reculer ces limites"
     ],
-    image: "/lovable-uploads/economics-study.png"
+    image: "/lovable-uploads/terminale-ch1.png"
   },
   "terminale-ch2": {
     title: "Quels sont les fondements du commerce international et de l'internationalisation de la production ?",
