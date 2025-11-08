@@ -45,7 +45,7 @@ const Index = () => {
             {
               level: "premiere",
               title: "Première",
-              image: "/lovable-uploads/fbecfe6a-7020-4ea6-8f5d-d888a3c53444.png",
+              image: "/lovable-uploads/premiere-economics.png",
               description: "Approfondissement des notions économiques et sociales",
               resources: ["30 cours", "15 exercices", "8 évaluations"]
             },
