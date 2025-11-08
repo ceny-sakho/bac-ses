@@ -63,7 +63,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre comment la politique monétaire et la politique budgétaire agissent sur la conjoncture",
       "Savoir que la politique monétaire dans la zone euro, conduite de façon indépendante par la Banque centrale européenne, est unique alors que la politique budgétaire est du ressort de chaque pays membre mais contrainte par les traités européens ; comprendre les difficultés soulevées par cette situation (défaut de coordination, chocs asymétriques)"
     ],
-    image: "/lovable-uploads/7fcbd633-220d-4420-9241-3270be14e270.png"
+    image: "/lovable-uploads/terminale-ch5.png"
   },
   "terminale-ch6": {
     title: "Comment est structurée la société française actuelle ?",
