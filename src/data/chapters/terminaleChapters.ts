@@ -38,7 +38,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Comprendre les effets des fluctuations de l'activité économique sur le chômage conjoncturel",
       "Connaître les principales politiques mises en œuvre pour lutter contre le chômage : politiques macroéconomiques de soutien de la demande globale, politiques d'allégement du coût du travail, politiques de formation et politiques de flexibilisation pour lutter contre les rigidités du marché du travail"
     ],
-    image: "/lovable-uploads/economics-study.png"
+    image: "/lovable-uploads/terminale-ch3.png"
   },
   "terminale-ch4": {
     title: "Comment expliquer les crises financières et réguler le système financier ?",
