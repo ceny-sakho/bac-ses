@@ -51,7 +51,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "Connaître les principaux canaux de transmission d'une crise financière à l'économie réelle : effets de richesse négatif, baisse de prix du collatéral et ventes forcées, contraction du crédit",
       "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l'aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité"
     ],
-    image: "/lovable-uploads/economics-study.png"
+    image: "/lovable-uploads/terminale-ch4.png"
   },
   "terminale-ch5": {
     title: "Quelles politiques économiques dans le cadre européen ?",
