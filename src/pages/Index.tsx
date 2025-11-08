@@ -38,7 +38,7 @@ const Index = () => {
             {
               level: "seconde",
               title: "Seconde",
-              image: "/lovable-uploads/seconde-economics.png",
+              image: "/lovable-uploads/89254e68-90c5-4556-971b-28dec56ab9d6.png",
               description: "Introduction aux concepts fondamentaux des SES",
               resources: ["24 cours", "12 exercices", "6 évaluations"]
             },
