@@ -27,7 +27,7 @@ const chapterImages = {
   "premiere-ch4": "/lovable-uploads/premiere-ch4.jpg",
   "premiere-ch5": "/lovable-uploads/premiere-ch5.jpg",
   "premiere-ch6": "/lovable-uploads/premiere-ch6.jpg",
-  "premiere-ch7": "/lovable-uploads/a5f1310e-ceff-42ea-a90a-c09524fbb165.png",
+  "premiere-ch7": "/lovable-uploads/premiere-ch7.jpg",
   "premiere-ch8": "/lovable-uploads/148e9917-062b-42c9-b94f-36843bdcdfca.png",
   "premiere-ch9": "/lovable-uploads/premiere-ch9.jpg",
   "premiere-ch10": "/lovable-uploads/5e4af865-3a94-46b5-913f-de018a7959bc.png",
