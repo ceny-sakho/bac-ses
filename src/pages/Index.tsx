@@ -11,7 +11,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#F6F6F7] to-[#8E9196]">
       <header className="bg-[#333333] text-white py-12 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80')",
+          backgroundImage: "url('/lovable-uploads/seconde-ch1.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }} />

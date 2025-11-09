@@ -17,7 +17,7 @@ export const ChapterCard: React.FC<ChapterCardProps> = ({ id, title, level, imag
     >
       <div className="aspect-video relative">
         <img
-          src={image.startsWith('/') ? image : `https://images.unsplash.com/${image}`}
+          src={image}
           alt={title}
           className="w-full h-full object-cover"
         />

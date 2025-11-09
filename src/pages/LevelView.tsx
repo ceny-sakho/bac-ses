@@ -7,7 +7,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 const subjects = [
   {
     title: "Science économique",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
+    image: "/lovable-uploads/science-economique.jpg",
     description: "Comprendre les mécanismes économiques fondamentaux"
   },
   {
@@ -17,7 +17,7 @@ const subjects = [
   },
   {
     title: "Regards croisés",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80",
+    image: "/lovable-uploads/regards-croises.jpg",
     description: "Analyser les interactions entre économie et société"
   }
 ];
