@@ -39,7 +39,7 @@ const chapterImages = {
   "terminale-ch4": "/lovable-uploads/terminale-ch4.jpg",
   "terminale-ch5": "/lovable-uploads/terminale-ch5.jpg",
   "terminale-ch6": "/lovable-uploads/terminale-ch6.jpg",
-  "terminale-ch7": "/lovable-uploads/terminale-ch8.jpg",
+  "terminale-ch7": "/lovable-uploads/terminale-ch7.jpg",
   "terminale-ch8": "/lovable-uploads/terminale-ch8.jpg",
   "terminale-ch9": "/lovable-uploads/terminale-ch9.jpg",
   "terminale-ch10": "/lovable-uploads/5e4af865-3a94-46b5-913f-de018a7959bc.png",
