@@ -31,7 +31,7 @@ const chapterImages = {
   "premiere-ch8": "/lovable-uploads/premiere-ch8.jpg",
   "premiere-ch9": "/lovable-uploads/premiere-ch9.jpg",
   "premiere-ch10": "/lovable-uploads/5e4af865-3a94-46b5-913f-de018a7959bc.png",
-  "premiere-ch11": "/lovable-uploads/terminale-ch11.jpg",
+  "premiere-ch11": "/lovable-uploads/premiere-ch11.jpg",
   "premiere-ch12": "/lovable-uploads/premiere-ch12.jpg",
   "terminale-ch1": "/lovable-uploads/terminale-ch1.jpg",
   "terminale-ch2": "/lovable-uploads/terminale-ch2.jpg",
