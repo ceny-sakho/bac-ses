@@ -30,7 +30,7 @@ const chapterImages = {
   "premiere-ch7": "/lovable-uploads/premiere-ch7.jpg",
   "premiere-ch8": "/lovable-uploads/premiere-ch8.jpg",
   "premiere-ch9": "/lovable-uploads/premiere-ch9.jpg",
-  "premiere-ch10": "/lovable-uploads/premiere-ch10.jpg",
+  "premiere-ch10": "/lovable-uploads/5e4af865-3a94-46b5-913f-de018a7959bc.png",
   "premiere-ch11": "/lovable-uploads/premiere-ch11.jpg",
   "premiere-ch12": "/lovable-uploads/premiere-ch12.jpg",
   "terminale-ch1": "/lovable-uploads/terminale-ch1.jpg",
@@ -42,7 +42,7 @@ const chapterImages = {
   "terminale-ch7": "/lovable-uploads/terminale-ch7.jpg",
   "terminale-ch8": "/lovable-uploads/terminale-ch8.jpg",
   "terminale-ch9": "/lovable-uploads/terminale-ch9.jpg",
-  "terminale-ch10": "/lovable-uploads/5e4af865-3a94-46b5-913f-de018a7959bc.png",
+  "terminale-ch10": "/lovable-uploads/terminale-ch10.jpg",
   "terminale-ch11": "/lovable-uploads/terminale-ch11.jpg",
   "terminale-ch12": "/lovable-uploads/terminale-ch12.jpg"
 } as const;
