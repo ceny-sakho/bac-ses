@@ -7,7 +7,7 @@ export const devoirsData: DevoirsData = {
       title: 'EC3 - Corrigé',
       description: 'Épreuve composée partie 3',
       date: 'Chapitre 1',
-      pdfUrl: '/terminale/economie/chapitre1/devoirs-corrigés/liste-devoirs.json/EC3-Corrigé.pdf'
+      pdfUrl: '/terminale/economie/chapitre1/devoirs-corriges/liste-devoirs.json/devoir1.pdf'
     }
   ],
   'terminale-economie-2': [
@@ -15,8 +15,8 @@ export const devoirsData: DevoirsData = {
       id: '1',
       title: 'Devoir n°1 - Commerce international',
       description: 'Avantages comparatifs et échanges',
-      date: 'Janvier 2025',
-      pdfUrl: '/terminale/economie/chapitre2/devoirs-corriges/devoir1.pdf'
+      date: 'Chapitre 2',
+      pdfUrl: '/terminale/economie/chapitre2/devoirs-corriges/liste-devoirs.json/devoir1.pdf'
     }
   ]
 };
