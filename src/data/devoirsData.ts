@@ -4,17 +4,10 @@ export const devoirsData: DevoirsData = {
   'terminale-economie-1': [
     {
       id: '1',
-      title: 'Devoir n°1 - Croissance économique',
-      description: 'Sources et limites de la croissance',
-      date: 'Novembre 2024',
-      pdfUrl: '/terminale/economie/chapitre1/devoirs-corriges/devoir1.pdf'
-    },
-    {
-      id: '2',
-      title: 'Devoir n°2 - PIB et développement',
-      description: 'Analyse des indicateurs économiques',
-      date: 'Décembre 2024',
-      pdfUrl: '/terminale/economie/chapitre1/devoirs-corriges/devoir2.pdf'
+      title: 'EC3 - Corrigé',
+      description: 'Épreuve composée partie 3',
+      date: 'Chapitre 1',
+      pdfUrl: '/terminale/economie/chapitre1/devoirs-corrigés/liste-devoirs.json/EC3-Corrigé.pdf'
     }
   ],
   'terminale-economie-2': [
