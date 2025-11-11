@@ -38,7 +38,7 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h2 className="text-2xl font-semibold mb-6 text-center">
-          Devoirs surveillés
+          Devoirs corrigés
         </h2>
         <p className="text-gray-700 text-center mb-4">
           Sélectionnez un devoir pour consulter ou télécharger le corrigé.
