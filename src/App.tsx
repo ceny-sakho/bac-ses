@@ -10,6 +10,7 @@ import { EC1Topics } from "./components/EC1Topics";
 import { EC2Topics } from "./components/EC2Topics";
 import { EC3Topics } from "./components/EC3Topics";
 import DissertationSubject from "./pages/DissertationSubject";
+import DevoirPdfViewer from "./pages/DevoirPdfViewer";
 
 function App() {
   const dissertationChapters = [
@@ -133,6 +134,11 @@ function App() {
           <Route
             path="/dissertation/:chapterId/sujet/:sujetId"
             element={<DissertationSubject />}
+          />
+          
+          <Route
+            path="/chapitre/:chapterId/devoir/:devoirId"
+            element={<DevoirPdfViewer />}
           />
         </Routes>
       </div>

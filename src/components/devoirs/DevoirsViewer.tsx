@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Download } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from 'react';
+import { FileText } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { getDevoirsForChapter } from '@/data/devoirsData';
 
 interface DevoirsViewerProps {
   chapterId: string;
@@ -13,9 +15,9 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
   subject, 
   level 
 }) => {
-  const [isHovering, setIsHovering] = useState(false);
-  const [url, setUrl] = useState<string>('');
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const getSubjectFolder = (subject: string) => {
     if (subject === 'science-eco') return 'economie';
     if (subject === 'socio') return 'sociologie-politique';
@@ -23,73 +25,55 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
     return 'economie';
   };
 
-  const getLevelFolder = (level: string) => {
-    if (level === 'seconde') return 'seconde';
-    if (level === 'premiere') return 'premiere';
-    if (level === 'terminale') return 'terminale';
-    return 'terminale';
+  const subjectFolder = getSubjectFolder(subject);
+  const devoirs = getDevoirsForChapter(level, subjectFolder, chapterId);
+
+  const handleDevoirClick = (devoirId: string) => {
+    // Extract the chapter path from current location
+    const chapterPath = location.pathname.split('/chapitre/')[1];
+    navigate(`/chapitre/${chapterPath}/devoir/${devoirId}`);
   };
-
-  const getChapterNumber = (chapterId: string) => {
-    return chapterId;
-  };
-
-  useEffect(() => {
-    const levelFolder = getLevelFolder(level);
-    const subjectFolder = getSubjectFolder(subject);
-    const chapterNumber = getChapterNumber(chapterId);
-    
-    const devoirsPath = `/${levelFolder}/${subjectFolder}/chapitre${chapterNumber}/devoirs-corriges/devoirs.pdf`;
-    setUrl(devoirsPath);
-  }, [level, subject, chapterId]);
-
-  const handleDownload = () => {
-    if (!url) return;
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `devoirs-corriges-chapitre${chapterId}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  if (!url) {
-    return <div className="text-center py-8">Chargement...</div>;
-  }
 
   return (
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-semibold mb-6 text-center">
+          Devoirs surveillés
+        </h2>
         <p className="text-gray-700 text-center mb-4">
-          Téléchargez ou consultez ici les devoirs corrigés du chapitre.
+          Sélectionnez un devoir pour consulter ou télécharger le corrigé.
         </p>
       </div>
 
-      <div 
-        className="relative w-full bg-white rounded-lg shadow-sm overflow-hidden"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-      >
-        {isHovering && (
-          <div className="absolute top-4 right-4 z-10">
-            <Button
-              onClick={handleDownload}
-              variant="secondary"
-              size="sm"
-              className="shadow-lg"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Télécharger
-            </Button>
+      <div className="grid md:grid-cols-2 gap-6">
+        {devoirs.length === 0 ? (
+          <div className="col-span-2 text-center py-8 text-gray-500">
+            Aucun devoir disponible pour ce chapitre.
           </div>
+        ) : (
+          devoirs.map((devoir) => (
+            <Card 
+              key={devoir.id}
+              className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+              onClick={() => handleDevoirClick(devoir.id)}
+            >
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[#B69B7D]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-6 h-6 text-[#B69B7D]" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg mb-2">{devoir.title}</h3>
+                    <p className="text-gray-600 text-sm mb-2">{devoir.description}</p>
+                    {devoir.date && (
+                      <p className="text-gray-500 text-xs">{devoir.date}</p>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))
         )}
-        
-        <embed
-          src={url}
-          type="application/pdf"
-          className="w-full h-[800px]"
-          title="Devoirs corrigés"
-        />
       </div>
     </div>
   );
