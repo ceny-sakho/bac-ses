@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap, BookOpenText } from "lucide-react";
+import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck } from "lucide-react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SynthesisViewer } from './synthesis/SynthesisViewer';
+import { DevoirsViewer } from './devoirs/DevoirsViewer';
 
 interface ChapterContentProps {
   objectives: string[];
@@ -16,6 +17,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [showSynthesis, setShowSynthesis] = useState(false);
+  const [showDevoirs, setShowDevoirs] = useState(false);
 
   // Extraire le niveau et la matière de l'URL
   const getChapterInfo = () => {
@@ -49,6 +51,26 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           Retour au chapitre
         </Button>
         <SynthesisViewer 
+          chapterId={chapterId}
+          level={level}
+          subject={subject}
+        />
+      </div>
+    );
+  }
+
+  if (showDevoirs) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Button 
+          variant="ghost" 
+          onClick={() => setShowDevoirs(false)}
+          className="mb-6 hover:bg-[#403E43] hover:text-white"
+        >
+          <BookOpenText className="mr-2 h-4 w-4" />
+          Retour au chapitre
+        </Button>
+        <DevoirsViewer 
           chapterId={chapterId}
           level={level}
           subject={subject}
@@ -100,6 +122,15 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
         >
           <BookOpenText className="w-5 h-5" />
           SYNTHÈSE
+        </Button>
+        <Button 
+          size="lg" 
+          variant="outline" 
+          className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
+          onClick={() => setShowDevoirs(true)}
+        >
+          <ClipboardCheck className="w-5 h-5" />
+          DEVOIRS CORRIGÉS
         </Button>
         <Button 
           size="lg" 
