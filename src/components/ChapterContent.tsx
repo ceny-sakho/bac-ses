@@ -61,11 +61,11 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
 
   if (showDevoirs) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div>
         <Button 
           variant="ghost" 
           onClick={() => setShowDevoirs(false)}
-          className="mb-6 hover:bg-[#403E43] hover:text-white"
+          className="ml-4 mt-4 hover:bg-[#403E43] hover:text-white"
         >
           <BookOpenText className="mr-2 h-4 w-4" />
           Retour au chapitre
@@ -74,6 +74,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           chapterId={chapterId}
           level={level}
           subject={subject}
+          image={image}
         />
       </div>
     );
