@@ -54,6 +54,12 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           chapterId={chapterId}
           level={level}
           subject={subject}
+          image={image}
+          onBackToChapter={() => setShowSynthesis(false)}
+          onShowDevoirs={() => {
+            setShowSynthesis(false);
+            setShowDevoirs(true);
+          }}
         />
       </div>
     );
@@ -75,6 +81,11 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           level={level}
           subject={subject}
           image={image}
+          onBackToChapter={() => setShowDevoirs(false)}
+          onShowSynthesis={() => {
+            setShowDevoirs(false);
+            setShowSynthesis(true);
+          }}
         />
       </div>
     );

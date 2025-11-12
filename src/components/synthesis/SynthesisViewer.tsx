@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Download, Volume2 } from "lucide-react";
+import { Download, Volume2, BookOpen, GraduationCap, BookOpenText, ClipboardCheck } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 
 interface SynthesisViewerProps {
   chapterId: string;
   subject: string;
   level: string;
+  image?: string;
+  onBackToChapter?: () => void;
+  onShowDevoirs?: () => void;
 }
 
 export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
   chapterId,
   subject,
   level,
+  image,
+  onBackToChapter,
+  onShowDevoirs,
 }) => {
+  const navigate = useNavigate();
   const [isHovering, setIsHovering] = useState(false);
   const [url, setUrl] = useState<string>("");
   const [audioUrl, setAudioUrl] = useState<string>("");
@@ -142,6 +150,46 @@ export const SynthesisViewer: React.FC<SynthesisViewerProps> = ({
           </div>
         )}
       </div>
+
+      {/* Navigation Buttons */}
+      {onBackToChapter && onShowDevoirs && (
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <Button 
+            size="lg" 
+            className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2"
+            onClick={onBackToChapter}
+          >
+            <BookOpen className="w-5 h-5" />
+            DÉCOUVRIR LE COURS
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="flex items-center gap-2 bg-[#403E43] text-white cursor-default"
+          >
+            <BookOpenText className="w-5 h-5" />
+            SYNTHÈSE
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
+            onClick={onShowDevoirs}
+          >
+            <ClipboardCheck className="w-5 h-5" />
+            DEVOIRS CORRIGÉS
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
+            onClick={() => navigate('/sujets-bac')}
+          >
+            <GraduationCap className="w-5 h-5" />
+            SUJETS BAC
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
