@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { devoirsData } from '@/data/devoirsData';
@@ -23,24 +24,9 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
   onShowSynthesis
 }) => {
   const navigate = useNavigate();
-  const [selectedDevoir, setSelectedDevoir] = useState<string | null>(null);
 
   const devoirKey = `${level}-${chapterId}`;
   const devoirs = devoirsData[devoirKey] || [];
-
-  if (selectedDevoir) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <Card className="bg-white shadow-sm">
-          <iframe
-            src={selectedDevoir}
-            className="w-full h-[800px] rounded-lg"
-            title="Devoir corrigé"
-          />
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
@@ -50,21 +36,61 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
             <h2 className="text-2xl font-semibold mb-6">
               Devoirs corrigés
             </h2>
-            <div className="space-y-4">
-              {devoirs.length === 0 ? (
-                <p className="text-gray-500">Aucun devoir disponible pour ce chapitre</p>
-              ) : (
-                devoirs.map((devoir) => (
-                  <Card
-                    key={devoir.id}
-                    className="bg-[#B69B7D] hover:bg-[#9F876C] transition-colors cursor-pointer p-6 text-center"
-                    onClick={() => setSelectedDevoir(devoir.pdfPath)}
-                  >
-                    <h3 className="text-white text-lg font-medium">{devoir.title}</h3>
-                  </Card>
-                ))
-              )}
-            </div>
+            
+            <Tabs defaultValue="devoir1" className="w-full">
+              <TabsList className="w-full mb-6">
+                <TabsTrigger value="devoir1" className="flex-1">Devoir 1</TabsTrigger>
+                <TabsTrigger value="devoir2" className="flex-1">Devoir 2</TabsTrigger>
+                <TabsTrigger value="devoir3" className="flex-1">Devoir 3</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="devoir1" className="mt-0">
+                {devoirs[0] ? (
+                  <div className="w-full">
+                    <iframe
+                      src={devoirs[0].pdfPath}
+                      className="w-full h-[600px] rounded-lg border"
+                      title={devoirs[0].title}
+                    />
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center py-8">
+                    Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
+                  </p>
+                )}
+              </TabsContent>
+
+              <TabsContent value="devoir2" className="mt-0">
+                {devoirs[1] ? (
+                  <div className="w-full">
+                    <iframe
+                      src={devoirs[1].pdfPath}
+                      className="w-full h-[600px] rounded-lg border"
+                      title={devoirs[1].title}
+                    />
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center py-8">
+                    Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
+                  </p>
+                )}
+              </TabsContent>
+
+              <TabsContent value="devoir3" className="mt-0">
+                {devoirs[2] ? (
+                  <div className="w-full">
+                    <iframe
+                      src={devoirs[2].pdfPath}
+                      className="w-full h-[600px] rounded-lg border"
+                    />
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center py-8">
+                    Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
+                  </p>
+                )}
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
 
