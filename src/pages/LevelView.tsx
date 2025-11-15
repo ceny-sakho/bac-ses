@@ -93,73 +93,7 @@ const LevelView = () => {
           ))}
         </div>
 
-                {/* Section Devoirs corrigés */}
-        {level === "terminale" && (
-          <div className="mt-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Devoirs corrigés</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Devoir 1 */}
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                onClick={() => navigate('/devoir1')}>
-                <div className="aspect-video relative">
-                  <img
-                    src="/lovable-uploads/devoirs-icon.jpg"
-                    alt="Devoir 1"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">Devoir 1</h3>
-                  <p className="text-gray-600 mb-4">DS Terminale 1 - EC1</p>
-                  <Button className="w-full bg-[#333333] hover:bg-[#444444] text-white">
-                    Voir le corrigé
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-              
-              {/* Devoir 2 */}
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                onClick={() => navigate('/devoir2')}>
-                <div className="aspect-video relative">
-                  <img
-                    src="/lovable-uploads/devoirs-icon.jpg"
-                    alt="Devoir 2"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">Devoir 2</h3>
-                  <p className="text-gray-600 mb-4">DS Terminale 2 - EC1</p>
-                  <Button className="w-full bg-[#333333] hover:bg-[#444444] text-white">
-                    Voir le corrigé
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-              
-              {/* Devoir 3 */}
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                onClick={() => navigate('/devoir3')}>
-                <div className="aspect-video relative">
-                  <img
-                    src="/lovable-uploads/devoirs-icon.jpg"
-                    alt="Devoir 3"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">Devoir 3</h3>
-                  <p className="text-gray-600 mb-4">DS Terminale 3 - EC1</p>
-                  <Button className="w-full bg-[#333333] hover:bg-[#444444] text-white">
-                    Voir le corrigé
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        )}
+                
       </main>
     </div>
   );
