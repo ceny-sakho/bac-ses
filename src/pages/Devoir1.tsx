@@ -4,9 +4,8 @@ const Devoir1 = () => {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Devoir 1 - Terminale</h1>
         <div className="bg-white rounded-lg shadow-lg p-4">
-          <object
-            data="https://raw.githubusercontent.com/ceny-sakho/bac-ses/main/public/devoirs/terminale/chapitre1/devoir1.pdf"
-            type="application/pdf"
+          <iframe
+            src="https://raw.githubusercontent.com/ceny-sakho/bac-ses/main/public/devoirs/terminale/chapitre1/devoir1.pdf"
             width="100%"
             height="800px"
             className="rounded-lg"
@@ -21,7 +20,7 @@ const Devoir1 = () => {
                 Télécharger le PDF
               </a>
             </p>
-          </object>
+          </iframe>
         </div>
       </div>
     </div>
