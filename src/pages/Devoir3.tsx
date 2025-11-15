@@ -5,7 +5,7 @@ const Devoir3 = () => {
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Devoir 3 - Terminale</h1>
         <div className="bg-white rounded-lg shadow-lg p-4">
           <iframe
-            src="https://ceny-sakho.github.io/bac-ses/devoirs/terminale/chapitre1/devoir3.pdf"
+            src="https://cdn.jsdelivr.net/gh/ceny-sakho/bac-ses@main/public/devoirs/terminale/chapitre1/devoir3.pdf"
             width="100%"
             height="800px"
             className="rounded-lg"
@@ -13,7 +13,7 @@ const Devoir3 = () => {
             <p className="text-center py-8">
               Votre navigateur ne supporte pas l'affichage des PDF.{' '}
               <a
-                href="https://ceny-sakho.github.io/bac-ses/devoirs/terminale/chapitre1/devoir3.pdf"
+                href="https://cdn.jsdelivr.net/gh/ceny-sakho/bac-ses@main/public/devoirs/terminale/chapitre1/devoir3.pdf"
                 className="text-blue-600 hover:underline"
                 download
               >
