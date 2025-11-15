@@ -5,7 +5,7 @@ const Devoir2 = () => {
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Devoir 2 - Terminale</h1>
         <div className="bg-white rounded-lg shadow-lg p-4">
           <object
-            data="/devoirs/terminale/chapitre1/devoir2.pdf"
+            data="https://raw.githubusercontent.com/ceny-sakho/bac-ses/main/public/devoirs/terminale/chapitre1/devoir2.pdf"
             type="application/pdf"
             width="100%"
             height="800px"
@@ -14,7 +14,7 @@ const Devoir2 = () => {
             <p className="text-center py-8">
               Votre navigateur ne supporte pas l'affichage des PDF.{' '}
               <a
-                href="/devoirs/terminale/chapitre1/devoir2.pdf"
+                href="https://raw.githubusercontent.com/ceny-sakho/bac-ses/main/public/devoirs/terminale/chapitre1/devoir2.pdf"
                 className="text-blue-600 hover:underline"
                 download
               >
