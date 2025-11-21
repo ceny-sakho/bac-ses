@@ -39,10 +39,9 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
             
             <Tabs defaultValue="devoir1" className="w-full">
               <TabsList className="w-full mb-6">
-                <TabsTrigger value="devoir1" className="flex-1">Devoir 1</TabsTrigger>
-                <TabsTrigger value="devoir2" className="flex-1">Devoir 2</TabsTrigger>
-                <TabsTrigger value="devoir3" className="flex-1">Devoir 3</TabsTrigger>
-              </TabsList>
+                <TabsTrigger value="devoir1" className="flex-1" onClick={() => navigate('/devoir1')}>Devoir 1</TabsTrigger>                <TabsTrigger value="devoir2" className="flex-1">Devoir 2</TabsTrigger>
+                <TabsTrigger value="devoir2" className="flex-1" onClick={() => navigate('/devoir2')}>Devoir 2</TabsTrigger>
+                              <TabsTrigger value="devoir3" className="flex-1" onClick={() => navigate('/devoir3')}>Devoir 3</TabsTrigger></TabsList>
 
               <TabsContent value="devoir1" className="mt-0">
                 {devoirs[0] ? (
