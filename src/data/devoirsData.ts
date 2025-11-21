@@ -10,7 +10,23 @@ export interface DevoirsChapter {
 
 export const devoirsData: DevoirsChapter = {
   // Terminale - Chapitre 1
-  'terminale-1': [],
+  'terminale-1': [
+    {
+      id: 'devoir1',
+      title: 'Devoir 1',
+      pdfPath: 'https://cdn.jsdelivr.net/gh/ceny-sakho/bac-ses@main/public/terminale/economie/chapitre1/devoir1.pdf'
+    },
+    {
+      id: 'devoir2',
+      title: 'Devoir 2',
+      pdfPath: 'https://cdn.jsdelivr.net/gh/ceny-sakho/bac-ses@main/public/terminale/economie/chapitre1/devoir2.pdf'
+    },
+    {
+      id: 'devoir3',
+      title: 'Devoir 3',
+      pdfPath: 'https://cdn.jsdelivr.net/gh/ceny-sakho/bac-ses@main/public/terminale/economie/chapitre1/devoir3.pdf'
+    }
+  ],,
   
   // Terminale - Chapitre 2
   'terminale-2': [],
