@@ -26,7 +26,7 @@ export const devoirsData: DevoirsChapter = {
       title: 'Devoir 3',
       pdfPath: 'https://cdn.jsdelivr.net/gh/ceny-sakho/bac-ses@main/public/terminale/economie/chapitre1/devoir3.pdf'
     }
-  ],,
+  ],
   
   // Terminale - Chapitre 2
   'terminale-2': [],
