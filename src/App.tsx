@@ -10,9 +10,7 @@ import { EC1Topics } from "./components/EC1Topics";
 import { EC2Topics } from "./components/EC2Topics";
 import { EC3Topics } from "./components/EC3Topics";
 import DissertationSubject from "./pages/DissertationSubject";
-import Devoir1 from "./pages/Devoir1";
-import Devoir2 from "./pages/Devoir2";
-import Devoir3 from "./pages/Devoir3";
+import DevoirPage from "./pages/DevoirPage";
 
 function App() {
   const dissertationChapters = [
@@ -84,9 +82,7 @@ function App() {
           <Route path="/niveau/:level" element={<LevelView />} />
           <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
           <Route path="/sujets-bac" element={<BacSubjects />} />
-                      <Route path="/devoir1" element={<Devoir1 />} />
-            <Route path="/devoir2" element={<Devoir2 />} />
-            <Route path="/devoir3" element={<Devoir3 />} />
+          <Route path="/devoir/:level/:chapterId/:devoirId" element={<DevoirPage />} />
           {dissertationChapters.map((chapter) => (
             <Route
               key={chapter.id}
