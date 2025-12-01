@@ -13,8 +13,8 @@ const DevoirPage = () => {
   const devoirIndex = parseInt(devoirId || '1') - 1;
   const devoir = devoirs[devoirIndex];
 
-  const handleBackToChapter = () => {
-    navigate(`/chapitre/${level}-ch${chapterId}`);
+  const handleBack = () => {
+    window.history.back();
   };
 
   const handleDownload = () => {
@@ -34,11 +34,11 @@ const DevoirPage = () => {
         <div className="mb-6">
           <Button 
             variant="ghost" 
-            onClick={handleBackToChapter}
+            onClick={handleBack}
             className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
           >
             <BookOpen className="h-4 w-4" />
-            Retour au chapitre
+            Retour
           </Button>
         </div>
 
