@@ -8,7 +8,9 @@ const DevoirPage = () => {
   const { level, chapterId, devoirId } = useParams();
   const navigate = useNavigate();
 
-  const devoirKey = `${level}-${chapterId}`;
+  // Extract chapter number from chapterId (e.g., "ch1" -> "1")
+  const chapterNumber = chapterId?.replace('ch', '') || '';
+  const devoirKey = `${level}-${chapterNumber}`;
   const devoirs = devoirsData[devoirKey] || [];
   const devoirIndex = parseInt(devoirId || '1') - 1;
   const devoir = devoirs[devoirIndex];
