@@ -22,16 +22,32 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   // Extraire le niveau et la matière de l'URL
   const getChapterInfo = () => {
     const pathParts = location.pathname.split('/');
-    const chapterId = pathParts[pathParts.length - 1].split('-')[1];
-    const level = pathParts[pathParts.length - 1].split('-')[0];
+    const fullChapterId = pathParts[pathParts.length - 1];
+    const chapterId = fullChapterId.split('-')[1]; // ex: "ch6"
+    const level = fullChapterId.split('-')[0]; // ex: "terminale"
     
+    // Extraire le numéro du chapitre
+    const chapterNumber = parseInt(chapterId?.replace('ch', '') || '1');
+    
+    // Déterminer la matière en fonction du numéro de chapitre et du niveau
     let subject = '';
-    if (location.pathname.includes('science-eco')) {
-      subject = 'science-eco';
-    } else if (location.pathname.includes('socio')) {
-      subject = 'socio';
-    } else if (location.pathname.includes('regards')) {
-      subject = 'regards';
+    if (level === 'seconde') {
+      if (chapterNumber >= 1 && chapterNumber <= 3) {
+        subject = 'science-eco';
+      } else if (chapterNumber >= 4 && chapterNumber <= 5) {
+        subject = 'socio';
+      } else {
+        subject = 'regards';
+      }
+    } else {
+      // Première et Terminale
+      if (chapterNumber >= 1 && chapterNumber <= 5) {
+        subject = 'science-eco';
+      } else if (chapterNumber >= 6 && chapterNumber <= 10) {
+        subject = 'socio';
+      } else {
+        subject = 'regards';
+      }
     }
 
     return { chapterId, level, subject };
