@@ -66,14 +66,17 @@ const courseStructure = {
   },
 };
 
-const ChapterCard = ({ chapter, index, level, subject }: { 
+const ChapterCard = ({ chapter, level, subject }: { 
   chapter: string; 
-  index: number;
   level: string;
   subject: string;
 }) => {
   const navigate = useNavigate();
-  const chapterId = `${level.toLowerCase()}-ch${index + 1}`;
+  
+  // Extraire le numéro du chapitre depuis le titre (ex: "Chapitre 6 : ..." -> 6)
+  const chapterNumberMatch = chapter.match(/Chapitre\s+(\d+)/);
+  const chapterNumber = chapterNumberMatch ? chapterNumberMatch[1] : '1';
+  const chapterId = `${level.toLowerCase()}-ch${chapterNumber}`;
 
   return (
     <Card 
@@ -119,11 +122,10 @@ export const CourseNavigation = () => {
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
-                        {chapters.map((chapter, index) => (
+                        {chapters.map((chapter) => (
                           <ChapterCard 
                             key={chapter} 
                             chapter={chapter} 
-                            index={index}
                             level={level}
                             subject={subject}
                           />
