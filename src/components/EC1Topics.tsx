@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { ec1Topics } from '@/data/ec1';
 import { EC1TopicsProps } from '@/types/ec1';
-import { TopicsTable } from './ec3/TopicsTable';
+import { TopicsTable } from './shared/TopicsTable';
 
 export const EC1Topics: React.FC<EC1TopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();

@@ -27,7 +27,7 @@ export const EC3Topics: React.FC<EC3TopicsProps> = ({ chapter, title }) => {
 
       <h2 className="text-2xl font-bold mb-6">{title}</h2>
       
-      <TopicsTable topics={topics} />
+      <TopicsTable topics={topics} chapter={chapter} />
     </div>
   );
 };
