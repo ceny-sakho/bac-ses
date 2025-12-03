@@ -13,6 +13,8 @@ import DissertationSubject from "./pages/DissertationSubject";
 import EC3Subject from "./pages/EC3Subject";
 import EC2Subject from "./pages/EC2Subject";
 import DevoirPage from "./pages/DevoirPage";
+import Methodologie from "./pages/Methodologie";
+import MethodologiePdf from "./pages/MethodologiePdf";
 
 function App() {
   const dissertationChapters = [
@@ -146,6 +148,8 @@ function App() {
             path="/ec2/:chapterId/sujet/:sujetId"
             element={<EC2Subject />}
           />
+          <Route path="/methodologie" element={<Methodologie />} />
+          <Route path="/methodologie/:type" element={<MethodologiePdf />} />
         </Routes>
       </div>
     </Router>
