@@ -45,6 +45,7 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
             {topics.map((topic, index) => (
               <tr 
                 key={index}
+                onClick={() => navigate(`/ec2/${chapter}/sujet/${index + 1}`)}
                 className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
               >
                 <td className="px-6 py-4">{topic.question}</td>
