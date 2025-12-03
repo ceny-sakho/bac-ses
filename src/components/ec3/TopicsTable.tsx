@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Topic {
   question: string;
@@ -8,9 +9,16 @@ interface Topic {
 
 interface TopicsTableProps {
   topics: Topic[];
+  chapter: string;
 }
 
-export const TopicsTable: React.FC<TopicsTableProps> = ({ topics }) => {
+export const TopicsTable: React.FC<TopicsTableProps> = ({ topics, chapter }) => {
+  const navigate = useNavigate();
+
+  const handleTopicClick = (index: number) => {
+    navigate(`/ec3/${chapter}/sujet/${index + 1}`);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <table className="min-w-full">
@@ -25,6 +33,7 @@ export const TopicsTable: React.FC<TopicsTableProps> = ({ topics }) => {
           {topics.map((topic, index) => (
             <tr 
               key={index}
+              onClick={() => handleTopicClick(index)}
               className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
             >
               <td className="px-6 py-4">{topic.question}</td>
