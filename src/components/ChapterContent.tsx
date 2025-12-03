@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck } from "lucide-react";
+import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck, Settings } from "lucide-react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SynthesisViewer } from './synthesis/SynthesisViewer';
 import { DevoirsViewer } from './devoirs/DevoirsViewer';
@@ -168,6 +168,15 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
         >
           <GraduationCap className="w-5 h-5" />
           SUJETS BAC
+        </Button>
+        <Button 
+          size="lg" 
+          variant="outline" 
+          className="flex items-center gap-2 bg-gris-sideral text-white hover:bg-gris-sideral/90"
+          onClick={() => navigate('/methodologie', { state: { image } })}
+        >
+          <Settings className="w-5 h-5" />
+          MÉTHODOLOGIE
         </Button>
       </div>
     </main>
