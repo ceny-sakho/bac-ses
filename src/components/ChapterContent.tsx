@@ -4,6 +4,7 @@ import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck, Settings } from 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SynthesisViewer } from './synthesis/SynthesisViewer';
 import { DevoirsViewer } from './devoirs/DevoirsViewer';
+import { CoursViewer } from './cours/CoursViewer';
 
 interface ChapterContentProps {
   objectives: string[];
@@ -18,6 +19,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   const location = useLocation();
   const [showSynthesis, setShowSynthesis] = useState(false);
   const [showDevoirs, setShowDevoirs] = useState(false);
+  const [showCours, setShowCours] = useState(false);
 
   // Extraire le niveau et la matière de l'URL
   const getChapterInfo = () => {
@@ -54,6 +56,16 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   };
 
   const { chapterId, level, subject } = getChapterInfo();
+
+  if (showCours) {
+    return (
+      <CoursViewer 
+        chapterId={chapterId}
+        level={level}
+        subject={subject}
+      />
+    );
+  }
 
   if (showSynthesis) {
     return (
@@ -138,7 +150,11 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
       </div>
 
       <div className="mt-8 flex flex-wrap justify-center gap-4">
-        <Button size="lg" className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2">
+        <Button 
+          size="lg" 
+          className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2"
+          onClick={() => setShowCours(true)}
+        >
           <BookOpen className="w-5 h-5" />
           DÉCOUVRIR LE COURS
         </Button>
