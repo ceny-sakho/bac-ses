@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ArrowLeft, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -12,8 +12,8 @@ const methodologyTitles: Record<string, string> = {
 };
 
 const MethodologiePdf: React.FC = () => {
-  const navigate = useNavigate();
   const { type } = useParams();
+  const [pdfExists, setPdfExists] = useState<boolean | null>(null);
 
   const methodType = type || "methodologie";
   const title = methodologyTitles[methodType] || "Méthodologie";
@@ -21,7 +21,16 @@ const MethodologiePdf: React.FC = () => {
 
   useEffect(() => {
     document.title = `${title} | PDF`;
-  }, [title]);
+    
+    // Check if PDF exists
+    fetch(pdfUrl, { method: 'HEAD' })
+      .then(response => {
+        setPdfExists(response.ok && response.headers.get('content-type')?.includes('pdf'));
+      })
+      .catch(() => {
+        setPdfExists(false);
+      });
+  }, [title, pdfUrl]);
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -47,22 +56,36 @@ const MethodologiePdf: React.FC = () => {
       <h1 className="text-2xl font-bold mb-6">{title}</h1>
 
       <section aria-label="Visionneuse PDF de méthodologie" className="relative group">
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <embed
-            src={pdfUrl}
-            type="application/pdf"
-            className="w-full h-[70vh]"
-          />
-        </div>
-        <div className="flex justify-center mt-4">
-          <Button
-            onClick={handleDownload}
-            className="flex items-center gap-2 bg-gris-sideral hover:bg-gris-sideral/90 text-white"
-          >
-            <Download className="h-4 w-4" />
-            Télécharger le PDF
-          </Button>
-        </div>
+        {pdfExists === null ? (
+          <div className="flex justify-center items-center h-[70vh] bg-white rounded-lg shadow-lg">
+            <p className="text-gray-500">Chargement...</p>
+          </div>
+        ) : pdfExists ? (
+          <>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <embed
+                src={pdfUrl}
+                type="application/pdf"
+                className="w-full h-[70vh]"
+              />
+            </div>
+            <div className="flex justify-center mt-4">
+              <Button
+                onClick={handleDownload}
+                className="flex items-center gap-2 bg-gris-sideral hover:bg-gris-sideral/90 text-white"
+              >
+                <Download className="h-4 w-4" />
+                Télécharger le PDF
+              </Button>
+            </div>
+          </>
+        ) : (
+          <div className="flex justify-center items-center h-[70vh] bg-white rounded-lg shadow-lg">
+            <p className="text-gray-500 text-center px-4">
+              Aucun fichier PDF disponible pour cette méthodologie. Ajoutez-le via GitHub.
+            </p>
+          </div>
+        )}
       </section>
     </main>
   );
