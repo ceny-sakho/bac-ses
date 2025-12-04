@@ -17,7 +17,7 @@ const MethodologiePdf: React.FC = () => {
 
   const methodType = type || "methodologie";
   const title = methodologyTitles[methodType] || "Méthodologie";
-  const pdfUrl = `/methodologie/${methodType}.pdf`;
+  const pdfUrl = `/methodologie/${methodType}/${methodType}.pdf`;
 
   useEffect(() => {
     document.title = `${title} | PDF`;
