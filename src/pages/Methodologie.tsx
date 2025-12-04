@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const methodologyItems = [
-  { id: "methodologie", label: "MÉTHODOLOGIE" },
+  { id: "methodologie", label: "GRAND ORAL" },
   { id: "dissertation", label: "DISSERTATION" },
   { id: "ec1", label: "EC1" },
   { id: "ec2", label: "EC2" },
@@ -36,6 +36,7 @@ const Methodologie: React.FC = () => {
 
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-[#C4B5A0] rounded-lg p-8 flex flex-col items-center justify-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-8">Méthodologie</h1>
           <div className="w-full max-w-md space-y-4">
             {methodologyItems.map((item) => (
               <Button
