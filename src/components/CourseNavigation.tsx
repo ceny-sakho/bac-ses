@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -78,10 +78,13 @@ const ChapterCard = ({ chapter, level, subject }: {
   const chapterNumber = chapterNumberMatch ? chapterNumberMatch[1] : '1';
   const chapterId = `${level.toLowerCase()}-ch${chapterNumber}`;
 
+  // Encode full accordion value for URL (level-subject format)
+  const expandedSubject = `${level}-${subject}`;
+
   return (
     <Card 
       className="hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-      onClick={() => navigate(`/chapitre/${chapterId}`)}
+      onClick={() => navigate(`/chapitre/${chapterId}?from=programme&expandedLevel=${encodeURIComponent(level)}&expandedSubject=${encodeURIComponent(expandedSubject)}`)}
     >
       <CardContent className="p-4">
         <h3 className="text-sm font-medium text-gray-900 mb-2">{chapter}</h3>
@@ -105,16 +108,55 @@ const ChapterCard = ({ chapter, level, subject }: {
 };
 
 export const CourseNavigation = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Get initial expanded states from URL
+  const getInitialLevel = () => searchParams.get('expandedLevel') || '';
+  const getInitialSubject = () => searchParams.get('expandedSubject') || '';
+
+  const handleLevelChange = (value: string) => {
+    if (value) {
+      searchParams.set('expandedLevel', value);
+      // Clear subject when level changes
+      searchParams.delete('expandedSubject');
+    } else {
+      searchParams.delete('expandedLevel');
+      searchParams.delete('expandedSubject');
+    }
+    setSearchParams(searchParams, { replace: true });
+  };
+
+  const handleSubjectChange = (value: string) => {
+    if (value) {
+      searchParams.set('expandedSubject', value);
+    } else {
+      searchParams.delete('expandedSubject');
+    }
+    setSearchParams(searchParams, { replace: true });
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto p-4">
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion 
+        type="single" 
+        collapsible 
+        className="w-full"
+        value={getInitialLevel()}
+        onValueChange={handleLevelChange}
+      >
         {Object.entries(courseStructure).map(([level, subjects]) => (
           <AccordionItem value={level} key={level}>
             <AccordionTrigger className="text-lg font-semibold hover:text-primary">
               {level}
             </AccordionTrigger>
             <AccordionContent>
-              <Accordion type="single" collapsible className="pl-4">
+              <Accordion 
+                type="single" 
+                collapsible 
+                className="pl-4"
+                value={getInitialSubject()}
+                onValueChange={handleSubjectChange}
+              >
                 {Object.entries(subjects).map(([subject, chapters]) => (
                   <AccordionItem value={`${level}-${subject}`} key={subject}>
                     <AccordionTrigger className="text-md hover:text-primary">
