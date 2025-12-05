@@ -8,6 +8,7 @@ interface CoursViewerProps {
   subject: string;
   level: string;
   chapterTitle?: string;
+  onBackToChapter?: () => void;
 }
 
 export const CoursViewer: React.FC<CoursViewerProps> = ({
@@ -15,6 +16,7 @@ export const CoursViewer: React.FC<CoursViewerProps> = ({
   subject,
   level,
   chapterTitle,
+  onBackToChapter,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [url, setUrl] = useState<string>("");
@@ -93,7 +95,9 @@ export const CoursViewer: React.FC<CoursViewerProps> = ({
   };
 
   const handleBack = () => {
-    window.history.back();
+    if (onBackToChapter) {
+      onBackToChapter();
+    }
   };
 
   const chapterNumber = getChapterNumber();

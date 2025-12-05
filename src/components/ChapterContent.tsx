@@ -59,11 +59,14 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
 
   if (showCours) {
     return (
-      <CoursViewer 
-        chapterId={chapterId}
-        level={level}
-        subject={subject}
-      />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <CoursViewer 
+          chapterId={chapterId}
+          level={level}
+          subject={subject}
+          onBackToChapter={() => setShowCours(false)}
+        />
+      </div>
     );
   }
 
