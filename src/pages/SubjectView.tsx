@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { SearchFilter } from "@/components/subject/SearchFilter";
@@ -66,17 +66,28 @@ const SubjectView = () => {
   const { subject } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = React.useState("");
   
   const getInitialLevel = () => {
-    const pathParts = location.pathname.split('/');
-    if (pathParts.includes('seconde')) return 'seconde';
-    if (pathParts.includes('premiere')) return 'premiere';
-    if (pathParts.includes('terminale')) return 'terminale';
+    const levelFromUrl = searchParams.get('level');
+    if (levelFromUrl && ['all', 'seconde', 'premiere', 'terminale'].includes(levelFromUrl)) {
+      return levelFromUrl;
+    }
     return 'all';
   };
 
   const [selectedLevel, setSelectedLevel] = React.useState(getInitialLevel());
+
+  const handleLevelChange = (level: string) => {
+    setSelectedLevel(level);
+    if (level === 'all') {
+      searchParams.delete('level');
+    } else {
+      searchParams.set('level', level);
+    }
+    setSearchParams(searchParams, { replace: true });
+  };
 
   const getChaptersForSubject = (): ChaptersData => {
     const chaptersData: ChaptersPerSubject = {
@@ -184,7 +195,7 @@ const SubjectView = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-8">
             <SearchFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <LevelFilter selectedLevel={selectedLevel} setSelectedLevel={setSelectedLevel} />
+            <LevelFilter selectedLevel={selectedLevel} setSelectedLevel={handleLevelChange} />
           </div>
 
           <div className="md:col-span-3">
