@@ -1,10 +1,28 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const BacExercises = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const getInitialTab = () => {
+    const tabFromUrl = searchParams.get('tab');
+    if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3'].includes(tabFromUrl)) {
+      return tabFromUrl;
+    }
+    return 'dissertation';
+  };
+
+  const handleTabChange = (value: string) => {
+    if (value === 'dissertation') {
+      searchParams.delete('tab');
+    } else {
+      searchParams.set('tab', value);
+    }
+    setSearchParams(searchParams, { replace: true });
+  };
   
   const dissertationChapters = [
     { id: '1', title: 'Dissertation 1 : Croissance économique' },
@@ -68,7 +86,7 @@ export const BacExercises = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <Tabs defaultValue="dissertation" className="w-full">
+      <Tabs value={getInitialTab()} onValueChange={handleTabChange} className="w-full">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="dissertation">Dissertation</TabsTrigger>
           <TabsTrigger value="ec1">EC1</TabsTrigger>
