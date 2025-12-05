@@ -16,7 +16,8 @@ const DevoirPage = () => {
   const devoir = devoirs[devoirIndex];
 
   const handleBack = () => {
-    window.history.back();
+    // Naviguer explicitement vers la page du chapitre
+    navigate(`/chapitre/${level}-ch${chapterNumber}`);
   };
 
   const handleDownload = () => {
