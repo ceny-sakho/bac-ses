@@ -124,13 +124,13 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="order-2 md:order-1">
-          <div className="bg-white rounded-lg shadow-sm p-6">
+      <div className="grid md:grid-cols-2 gap-8 md:items-stretch">
+        <div className="order-2 md:order-1 flex">
+          <div className="bg-white rounded-lg shadow-sm p-6 flex flex-col w-full">
             <h2 className="text-2xl font-semibold mb-6">
               Objectifs d'apprentissage
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-4 flex-1">
               {objectives.map((objective, index) => (
                 <li key={index} className="flex gap-3 text-gray-700">
                   <span className="text-gray-400">•</span>
@@ -141,12 +141,12 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           </div>
         </div>
 
-        <div className="order-1 md:order-2">
-          <div className="rounded-lg overflow-hidden">
+        <div className="order-1 md:order-2 flex">
+          <div className="rounded-lg overflow-hidden w-full">
             <img
               src={image}
               alt="Illustration du chapitre"
-              className="w-full h-auto object-contain"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
         </div>
