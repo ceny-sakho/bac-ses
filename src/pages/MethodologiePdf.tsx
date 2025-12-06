@@ -79,13 +79,7 @@ const MethodologiePdf: React.FC = () => {
               </Button>
             </div>
           </>
-        ) : (
-          <div className="flex justify-center items-center h-[70vh] bg-white rounded-lg shadow-lg">
-            <p className="text-gray-500 text-center px-4">
-              Aucun fichier PDF disponible pour cette méthodologie. Ajoutez-le via GitHub.
-            </p>
-          </div>
-        )}
+        ) : null}
       </section>
     </main>
   );

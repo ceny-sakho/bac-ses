@@ -83,13 +83,7 @@ const DevoirPage = () => {
               </iframe>
             </div>
           </>
-        ) : (
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <p className="text-gray-500 text-center text-lg">
-              Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
-            </p>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

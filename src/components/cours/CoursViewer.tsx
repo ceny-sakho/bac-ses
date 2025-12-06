@@ -130,13 +130,7 @@ export const CoursViewer: React.FC<CoursViewerProps> = ({
         Cours — {displayTitle}
       </h1>
 
-      {pdfExists === false ? (
-        <div className="flex justify-center items-center h-[600px] bg-white rounded-lg shadow-lg">
-          <p className="text-gray-600 text-center px-4">
-            Aucun fichier PDF disponible pour ce cours. Ajoutez-le via GitHub.
-          </p>
-        </div>
-      ) : (
+      {pdfExists === false ? null : (
         <>
           {/* PDF Viewer */}
           <div
