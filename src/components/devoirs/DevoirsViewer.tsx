@@ -63,7 +63,7 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
               </TabsList>
 
               <TabsContent value="devoir1" className="mt-0">
-                {devoirs[0] ? (
+              {devoirs[0] && (
                   <div className="w-full">
                     <iframe
                       src={devoirs[0].pdfPath}
@@ -71,15 +71,11 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
                       title={devoirs[0].title}
                     />
                   </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">
-                    Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
-                  </p>
                 )}
               </TabsContent>
 
               <TabsContent value="devoir2" className="mt-0">
-                {devoirs[1] ? (
+              {devoirs[1] && (
                   <div className="w-full">
                     <iframe
                       src={devoirs[1].pdfPath}
@@ -87,25 +83,17 @@ export const DevoirsViewer: React.FC<DevoirsViewerProps> = ({
                       title={devoirs[1].title}
                     />
                   </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">
-                    Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
-                  </p>
                 )}
               </TabsContent>
 
               <TabsContent value="devoir3" className="mt-0">
-                {devoirs[2] ? (
+              {devoirs[2] && (
                   <div className="w-full">
                     <iframe
                       src={devoirs[2].pdfPath}
                       className="w-full h-[600px] rounded-lg border"
                     />
                   </div>
-                ) : (
-                  <p className="text-gray-500 text-center py-8">
-                    Aucun PDF disponible pour ce devoir. Ajoutez-le via GitHub.
-                  </p>
                 )}
               </TabsContent>
             </Tabs>
