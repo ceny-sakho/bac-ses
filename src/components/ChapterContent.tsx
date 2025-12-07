@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck, Settings } from "lucide-react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { SynthesisViewer } from './synthesis/SynthesisViewer';
 import { DevoirsViewer } from './devoirs/DevoirsViewer';
 import { CoursViewer } from './cours/CoursViewer';
@@ -17,9 +17,23 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [showSynthesis, setShowSynthesis] = useState(false);
   const [showDevoirs, setShowDevoirs] = useState(false);
   const [showCours, setShowCours] = useState(false);
+
+  // Gérer l'ouverture automatique de l'onglet devoirs via query param
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab === 'devoirs') {
+      setShowDevoirs(true);
+      setShowSynthesis(false);
+      setShowCours(false);
+      // Nettoyer le paramètre après l'avoir utilisé
+      searchParams.delete('tab');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   // Extraire le niveau et la matière de l'URL
   const getChapterInfo = () => {
