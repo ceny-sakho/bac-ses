@@ -16,8 +16,8 @@ const DevoirPage = () => {
   const devoir = devoirs[devoirIndex];
 
   const handleBack = () => {
-    // Naviguer explicitement vers la page du chapitre avec replace pour éviter les boucles
-    navigate(`/chapitre/${level}-ch${chapterNumber}`, { replace: true });
+    // Naviguer vers la page du chapitre avec le paramètre pour afficher l'onglet devoirs
+    navigate(`/chapitre/${level}-ch${chapterNumber}?tab=devoirs`, { replace: true });
   };
 
   const handleDownload = () => {
