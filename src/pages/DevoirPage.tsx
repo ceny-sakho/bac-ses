@@ -16,8 +16,8 @@ const DevoirPage = () => {
   const devoir = devoirs[devoirIndex];
 
   const handleBack = () => {
-    // Naviguer explicitement vers la page du chapitre
-    navigate(`/chapitre/${level}-ch${chapterNumber}`);
+    // Naviguer explicitement vers la page du chapitre avec replace pour éviter les boucles
+    navigate(`/chapitre/${level}-ch${chapterNumber}`, { replace: true });
   };
 
   const handleDownload = () => {
