@@ -97,7 +97,7 @@ export const terminaleChapters: Record<string, ChapterData> = {
       "A partir de la lecture des tables de mobilité, être capable de mettre en évidence des situations de mobilité ascendante, de reproduction sociale et de déclassement, et de retrouver les spécificités de la mobilité sociale des hommes et de celles des femmes",
       "Comprendre comment l'évolution de la structure socioprofessionnelle, les niveaux de formation et les ressources et configurations familiales contribuent à expliquer la mobilité sociale"
     ],
-    image: "/lovable-uploads/economics-study.png"
+    image: "/lovable-uploads/terminale-ch8.png"
   },
   "terminale-ch9": {
     title: "Quelles mutations du travail et de l'emploi ?",
