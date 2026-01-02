@@ -40,21 +40,21 @@ const Index = () => {
               title: "Seconde",
               image: "/lovable-uploads/89254e68-90c5-4556-971b-28dec56ab9d6.png",
               description: "Introduction aux concepts fondamentaux des SES",
-              resources: ["24 cours", "12 exercices", "6 évaluations"]
+              resources: ["6 cours", "6 exercices", "6 évaluations"]
             },
             {
               level: "premiere",
               title: "Première",
               image: "/lovable-uploads/premiere-economics.png",
               description: "Approfondissement des notions économiques et sociales",
-              resources: ["30 cours", "15 exercices", "8 évaluations"]
+              resources: ["12 cours", "12 exercices", "24 évaluations"]
             },
             {
               level: "terminale",
               title: "Terminale",
               image: "/lovable-uploads/0f742317-47f2-4e9e-95fb-9d47abe06d84.png",
               description: "Préparation au baccalauréat et concepts avancés",
-              resources: ["36 cours", "18 exercices", "10 évaluations"]
+              resources: ["12 cours", "12 exercices", "24 évaluations"]
             }
           ].map((item) => (
             <Card key={item.level} className="overflow-hidden hover:shadow-2xl transition-shadow duration-300">
