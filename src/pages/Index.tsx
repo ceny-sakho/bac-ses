@@ -92,7 +92,7 @@ const Index = () => {
 
       <footer className="bg-[#333333] text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">
-          <p>© 2024 Sciences Économiques et Sociales. Tous droits réservés.</p>
+          <p>© 2026 Sciences Économiques et Sociales. Tous droits réservés.</p>
         </div>
       </footer>
     </div>
