@@ -146,9 +146,9 @@ export const ec2Topics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "Pourquoi un choc asymétrique peut induire des difficultés de mise en œuvre des politiques économiques dans la zone euro.",
-      year: "2023",
-      location: "Amérique du Nord"
+      question: "vous présenterez le marché unique et ses effets sur la croissance économique.",
+      year: "2025",
+      location: "France métropolitaine"
     }
   ],
   '6': [
