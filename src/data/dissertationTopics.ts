@@ -136,9 +136,14 @@ export const dissertationTopics: TopicsByChapter = {
   ],
   '5': [
     {
-      question: "Comment la BCE peut-elle lutter contre l'inflation ?",
-      year: "2023",
-      location: "France métropolitaine"
+      question: "À quelles difficultés se heurtent les États membres de la zone euro pour conduire leurs politiques économiques conjoncturelles ?",
+      year: "2022",
+      location: "Amérique du Nord"
+    },
+    {
+      question: "Comment les politiques économiques agissent-elles dans le cadre européen?",
+      year: "2024",
+      location: "Autres centres étrangers"
     },
     {
       question: "Comment expliquer les difficultés des politiques économiques qui agissent sur la conjoncture en zone euro ?",
@@ -146,14 +151,9 @@ export const dissertationTopics: TopicsByChapter = {
       location: "Asie"
     },
     {
-      question: "À quelles difficultés se heurtent les États membres de la zone euro pour conduire leurs politiques économiques conjoncturelles ?",
-      year: "2022",
-      location: "Amérique du Nord"
-    },
-    {
-      question: "Comment les politiques économiques agissent-elles dans le cadre européen ?",
-      year: "2024",
-      location: "Autres centres étrangers"
+      question: "Dans quelle mesure les politiques monétaire et budgétaires parviennent-elles à agir sur la conjoncture des pays membres de la zone euro ?",
+      year: "2025",
+      location: "France métropolitaine"
     }
   ],
   '6': [
