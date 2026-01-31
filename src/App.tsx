@@ -10,6 +10,7 @@ import { EC1Topics } from "./components/EC1Topics";
 import { EC2Topics } from "./components/EC2Topics";
 import { EC3Topics } from "./components/EC3Topics";
 import DissertationSubject from "./pages/DissertationSubject";
+import EC1Subject from "./pages/EC1Subject";
 import EC3Subject from "./pages/EC3Subject";
 import EC2Subject from "./pages/EC2Subject";
 import DevoirPage from "./pages/DevoirPage";
@@ -139,6 +140,10 @@ function App() {
           <Route
             path="/dissertation/:chapterId/sujet/:sujetId"
             element={<DissertationSubject />}
+          />
+          <Route
+            path="/ec1/:chapterId/sujet/:sujetId"
+            element={<EC1Subject />}
           />
           <Route
             path="/ec3/:chapterId/sujet/:sujetId"
