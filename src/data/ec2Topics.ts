@@ -146,7 +146,7 @@ export const ec2Topics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "vous présenterez le marché unique et ses effets sur la croissance économique.",
+      question: "Vous présenterez le marché unique et ses effets sur la croissance économique.",
       year: "2025",
       location: "France métropolitaine"
     }
