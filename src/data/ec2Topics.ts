@@ -149,6 +149,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous présenterez le marché unique et ses effets sur la croissance économique.",
       year: "2025",
       location: "France métropolitaine"
+    },
+    {
+      question: "Vous présenterez les objectifs de la politique européenne de la concurrence.",
+      year: "2022",
+      location: "La Réunion"
     }
   ],
   '6': [
