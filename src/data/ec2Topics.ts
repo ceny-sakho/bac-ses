@@ -146,7 +146,7 @@ export const ec2Topics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "Vous montrerez que l'euro constitue une contrainte pour les politiques économiques nationales.",
+      question: "Pourquoi un choc asymétrique peut induire des difficultés de mise en œuvre des politiques économiques dans la zone euro.",
       year: "2023",
       location: "Amérique du Nord"
     }
