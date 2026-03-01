@@ -107,17 +107,17 @@ export const dissertationTopics: TopicsByChapter = {
   ],
   '3': [
     {
-      question: "Comment les différentes politiques permettent-elles de lutter contre le chômage ?",
+      question: "La lutte contre le chômage passe-t-elle nécessairement par la mise en œuvre de politiques de soutien de la demande globale ?",
       year: "2024",
       location: "Autres centres étrangers"
     },
     {
-      question: "La lutte contre le chômage passe-t-elle nécessairement par la mise en œuvre de politiques de soutien de la demande globale ?",
+      question: "Comment peut-on expliquer le chômage structurel ?",
       year: "2023",
       location: "La Réunion"
     },
     {
-      question: "Comment peut-on expliquer le chômage structurel ?",
+      question: "Comment les différentes politiques permettent-elles de lutter contre le chômage ?",
       year: "2023",
       location: "Autres centres étrangers"
     }
