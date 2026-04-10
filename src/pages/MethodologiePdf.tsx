@@ -69,13 +69,22 @@ const MethodologiePdf: React.FC = () => {
                 className="w-full h-[70vh]"
               />
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-4">
               <Button
                 onClick={handleDownload}
-                className="flex items-center gap-2 bg-gris-sideral hover:bg-gris-sideral/90 text-white"
+                className="flex items-center gap-2 bg-gris-sideral hover:bg-gris-sideral/90 text-white min-w-[200px]"
               >
                 <Download className="h-4 w-4" />
                 Télécharger le PDF
+              </Button>
+              <Button
+                asChild
+                className="flex items-center gap-2 bg-gris-sideral hover:bg-gris-sideral/90 text-white min-w-[200px]"
+              >
+                <a href="https://grand-oral-coach.lovable.app" target="_blank" rel="noopener noreferrer">
+                  <Bot className="h-4 w-4" />
+                  Assistant IA
+                </a>
               </Button>
             </div>
           </>
