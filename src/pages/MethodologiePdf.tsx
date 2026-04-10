@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ArrowLeft, Download } from "lucide-react";
+import { ArrowLeft, Download, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const methodologyTitles: Record<string, string> = {
