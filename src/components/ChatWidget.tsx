@@ -10,6 +10,12 @@ interface Message {
   content: string;
 }
 
+const SYSTEM_PROMPT =
+  "Tu es un tuteur expert en SES pour le Baccalauréat français. Ton but est d'aider les élèves sur la méthode (EC1, EC2, EC3, dissertation) et les concepts clés. Ne donne jamais la rédaction toute faite à copier-coller, guide l'élève avec la méthode socratique. Sois bienveillant et utilise un vocabulaire académique.";
+
+const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_API_KEY = "gsk_CLE_A_REMPLACER_MANUELLEMENT";
+
 const ChatWidget: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -38,36 +44,45 @@ const ChatWidget: React.FC = () => {
     setLoading(true);
 
     try {
-      // Save user message to chat_history
+      // Save user message to Supabase chat_history
       await supabase.from("chat_history").insert({
         session_id: sessionId,
         role: "user",
         content: text,
       });
 
-      // Search relevant documents via RPC
-      const { data: docs, error } = await supabase.rpc("match_documents", {
-        query_text: text,
+      // Build conversation history for Groq
+      const allMessages = [...messages, userMsg];
+      const groqMessages = [
+        { role: "system" as const, content: SYSTEM_PROMPT },
+        ...allMessages
+          .filter((m) => m.id !== "welcome")
+          .map((m) => ({ role: m.role as "user" | "assistant", content: m.content })),
+      ];
+
+      // Call Groq API
+      const response = await fetch(GROQ_API_URL, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${GROQ_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "llama3-70b-8192",
+          messages: groqMessages,
+          temperature: 0.7,
+          max_tokens: 1024,
+        }),
       });
 
-      let reply: string;
-
-      if (error) {
-        console.error("RPC error:", error);
-        reply = "Désolé, je n'ai pas pu chercher dans les cours. Réessaie plus tard. 🔧";
-      } else if (docs && docs.length > 0) {
-        const topResults = docs.slice(0, 3);
-        reply =
-          "Voici ce que j'ai trouvé dans les cours :\n\n" +
-          topResults
-            .map(
-              (doc: { content: string; metadata?: Record<string, unknown> }, i: number) =>
-                `📖 **Résultat ${i + 1}** :\n${doc.content.slice(0, 300)}${doc.content.length > 300 ? "…" : ""}`
-            )
-            .join("\n\n");
-      } else {
-        reply = "Je n'ai pas trouvé de résultat correspondant dans les cours. Essaie de reformuler ta question ! 🤔";
+      if (!response.ok) {
+        const errBody = await response.text();
+        console.error("Groq API error:", response.status, errBody);
+        throw new Error(`Groq API error ${response.status}`);
       }
+
+      const data = await response.json();
+      const reply = data.choices?.[0]?.message?.content ?? "Désolé, je n'ai pas pu répondre. 🔧";
 
       const assistantMsg: Message = {
         id: (Date.now() + 1).toString(),
@@ -77,7 +92,7 @@ const ChatWidget: React.FC = () => {
 
       setMessages((prev) => [...prev, assistantMsg]);
 
-      // Save assistant reply to chat_history
+      // Save assistant reply to Supabase chat_history
       await supabase.from("chat_history").insert({
         session_id: sessionId,
         role: "assistant",
@@ -144,7 +159,7 @@ const ChatWidget: React.FC = () => {
               <div className="flex justify-start">
                 <div className="bg-secondary text-secondary-foreground rounded-lg px-3 py-2 text-sm flex items-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Recherche en cours…
+                  Réflexion en cours…
                 </div>
               </div>
             )}
