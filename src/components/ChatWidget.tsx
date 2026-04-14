@@ -51,20 +51,31 @@ const ChatWidget: React.FC = () => {
         content: text,
       });
 
-      // Build conversation history for Groq
+      // 1. Chercher les cours dans Supabase
+      const { data: docs } = await supabase
+        .from('documents')
+        .select('content')
+        .limit(3);
+
+      const context = docs?.map(d => d.content).join('\n\n') || "Pas de cours spécifique trouvé.";
+
+      // 2. Préparer les messages pour Groq
       const allMessages = [...messages, userMsg];
       const groqMessages = [
-        { role: "system" as const, content: SYSTEM_PROMPT },
+        { 
+          role: "system" as const, 
+          content: `${SYSTEM_PROMPT}\n\nVoici tes cours de référence pour aider l'élève :\n${context}` 
+        },
         ...allMessages
           .filter((m) => m.id !== "welcome")
           .map((m) => ({ role: m.role as "user" | "assistant", content: m.content })),
       ];
 
-      // Call Groq API
+      // 3. Appeler Groq avec le contexte du cours
       const response = await fetch(GROQ_API_URL, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${GROQ_API_KEY}`,
+          "Authorization": `Bearer ${GROQ_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
