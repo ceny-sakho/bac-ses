@@ -16,6 +16,7 @@ import EC2Subject from "./pages/EC2Subject";
 import DevoirPage from "./pages/DevoirPage";
 import Methodologie from "./pages/Methodologie";
 import MethodologiePdf from "./pages/MethodologiePdf";
+import ChatWidget from "./components/ChatWidget";
 
 function App() {
   const dissertationChapters = [
@@ -81,6 +82,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen">
+        <ChatWidget />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/matiere/:subject" element={<SubjectView />} />
