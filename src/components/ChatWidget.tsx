@@ -14,7 +14,7 @@ const SYSTEM_PROMPT =
   "Tu es un tuteur expert en SES pour le Baccalauréat français. Ton but est d'aider les élèves sur la méthode (EC1, EC2, EC3, dissertation) et les concepts clés. Ne donne jamais la rédaction toute faite à copier-coller, guide l'élève avec la méthode socratique. Sois bienveillant et utilise un vocabulaire académique.";
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_API_KEY = "gsk_CLE_A_REMPLACER_MANUELLEMENT";
+const GROQ_API_KEY = "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";
 
 const ChatWidget: React.FC = () => {
   const [open, setOpen] = useState(false);
