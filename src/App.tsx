@@ -82,6 +82,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen">
+        <ChatWidget />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/matiere/:subject" element={<SubjectView />} />
