@@ -51,13 +51,16 @@ const ChatWidget: React.FC = () => {
         content: text,
       });
 
-      // 1. Chercher les cours dans Supabase
+     // 1. Recherche par mots-clés (pour gérer tes 180 blocs)
       const { data: docs } = await supabase
         .from('documents')
-        .select('content')
-        .limit(3);
+        .select('content, title')
+        .or(`title.ilike.%${text}%,content.ilike.%${text}%`)
+        .limit(4);
 
-      const context = docs?.map(d => d.content).join('\n\n') || "Pas de cours spécifique trouvé.";
+      const context = docs && docs.length > 0 
+        ? docs.map(d => `[Chapitre: ${d.title}]\n${d.content}`).join('\n\n')
+        : "Pas de cours spécifique trouvé dans la base.";
 
       // 2. Préparer les messages pour Groq
       const allMessages = [...messages, userMsg];
