@@ -51,21 +51,33 @@ const GenerateEmbeddings: React.FC = () => {
 
       for (let i = 0; i < docs.length; i++) {
         try {
+          console.log(`[Embeddings] ${i + 1}/${docs.length} — doc ${docs[i].id}`);
           const embedding = await getEmbedding(docs[i].content);
+          console.log(`[Embeddings] Vecteur reçu: ${embedding.length} dimensions`);
+
+          // Envoyer comme array natif, pas comme string JSON
           const { error: updateError } = await supabase
             .from("documents")
-            .update({ embedding: JSON.stringify(embedding) })
+            .update({ embedding: embedding as any })
             .eq("id", docs[i].id);
 
           if (updateError) {
-            console.error(`Erreur update doc ${docs[i].id}:`, updateError);
+            console.error(`[Embeddings] Erreur update doc ${docs[i].id}:`, JSON.stringify(updateError));
+            toast.error(`Erreur update doc ${docs[i].id}: ${updateError.message}`);
           } else {
+            console.log(`[Embeddings] ✅ Doc ${docs[i].id} mis à jour`);
             successCount++;
           }
-        } catch (err) {
-          console.error(`Erreur embedding doc ${docs[i].id}:`, err);
+        } catch (err: any) {
+          console.error(`[Embeddings] ❌ Doc ${docs[i].id}:`, err?.message || err);
+          toast.error(`Erreur doc ${docs[i].id}: ${err?.message}`);
         }
         setProgress({ done: i + 1, total: docs.length });
+
+        // Pause 500ms entre chaque appel pour éviter le rate-limit 429
+        if (i < docs.length - 1) {
+          await new Promise(r => setTimeout(r, 500));
+        }
       }
 
       toast.success(`${successCount}/${docs.length} embeddings générés avec succès !`);
