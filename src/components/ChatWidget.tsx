@@ -72,16 +72,21 @@ const ChatWidget: React.FC = () => {
         content: text,
       });
 
-     // 1. Recherche par mots-clés (pour gérer tes 180 blocs)
-      const { data: docs } = await supabase
-        .from('documents')
-        .select('content, title')
-        .or(`title.ilike.%${text}%,content.ilike.%${text}%`)
-        .limit(4);
-
-      const context = docs && docs.length > 0 
-        ? docs.map(d => `[Chapitre: ${d.title}]\n${d.content}`).join('\n\n')
-        : "Pas de cours spécifique trouvé dans la base.";
+      // 1. Recherche vectorielle via Voyage AI + match_documents
+      let context = "Pas de cours spécifique trouvé dans la base.";
+      try {
+        const embedding = await getQueryEmbedding(text);
+        const { data: docs, error } = await supabase.rpc("match_documents", {
+          query_embedding: JSON.stringify(embedding),
+          match_threshold: 0.5,
+          match_count: 4,
+        });
+        if (!error && docs && docs.length > 0) {
+          context = docs.map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`).join('\n\n');
+        }
+      } catch (embErr) {
+        console.warn("Embedding search failed, continuing without context:", embErr);
+      }
 
       // 2. Préparer les messages pour Groq
       const allMessages = [...messages, userMsg];
