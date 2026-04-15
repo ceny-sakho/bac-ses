@@ -16,6 +16,27 @@ const SYSTEM_PROMPT =
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_API_KEY = "gsk_" + "dbFNVAu4q4npCnAbBQcnWGdyb3FYOEmOOgLdXTYvfE6FL4DSsJh3";
 
+const VOYAGE_API_URL = "https://api.voyageai.com/v1/embeddings";
+const VOYAGE_API_KEY = "pa-yGdft9DXXoKTs2EdzrJuGPXyAKH6sdIMjAVfyCJqRVJ";
+
+async function getQueryEmbedding(text: string): Promise<number[]> {
+  const res = await fetch(VOYAGE_API_URL, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${VOYAGE_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "voyage-3-lite",
+      input: [text],
+      input_type: "query",
+    }),
+  });
+  if (!res.ok) throw new Error(`Voyage API error ${res.status}`);
+  const data = await res.json();
+  return data.data[0].embedding;
+}
+
 const ChatWidget: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
