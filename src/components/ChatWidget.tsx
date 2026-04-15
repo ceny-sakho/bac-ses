@@ -16,6 +16,27 @@ const SYSTEM_PROMPT =
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_API_KEY = "gsk_" + "dbFNVAu4q4npCnAbBQcnWGdyb3FYOEmOOgLdXTYvfE6FL4DSsJh3";
 
+const VOYAGE_API_URL = "https://api.voyageai.com/v1/embeddings";
+const VOYAGE_API_KEY = "pa-yGdft9DXXoKTs2EdzrJuGPXyAKH6sdIMjAVfyCJqRVJ";
+
+async function getQueryEmbedding(text: string): Promise<number[]> {
+  const res = await fetch(VOYAGE_API_URL, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${VOYAGE_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "voyage-3-lite",
+      input: [text],
+      input_type: "query",
+    }),
+  });
+  if (!res.ok) throw new Error(`Voyage API error ${res.status}`);
+  const data = await res.json();
+  return data.data[0].embedding;
+}
+
 const ChatWidget: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -51,16 +72,21 @@ const ChatWidget: React.FC = () => {
         content: text,
       });
 
-     // 1. Recherche par mots-clés (pour gérer tes 180 blocs)
-      const { data: docs } = await supabase
-        .from('documents')
-        .select('content, title')
-        .or(`title.ilike.%${text}%,content.ilike.%${text}%`)
-        .limit(4);
-
-      const context = docs && docs.length > 0 
-        ? docs.map(d => `[Chapitre: ${d.title}]\n${d.content}`).join('\n\n')
-        : "Pas de cours spécifique trouvé dans la base.";
+      // 1. Recherche vectorielle via Voyage AI + match_documents
+      let context = "Pas de cours spécifique trouvé dans la base.";
+      try {
+        const embedding = await getQueryEmbedding(text);
+        const { data: docs, error } = await supabase.rpc("match_documents", {
+          query_embedding: JSON.stringify(embedding),
+          match_threshold: 0.5,
+          match_count: 4,
+        });
+        if (!error && docs && docs.length > 0) {
+          context = docs.map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`).join('\n\n');
+        }
+      } catch (embErr) {
+        console.warn("Embedding search failed, continuing without context:", embErr);
+      }
 
       // 2. Préparer les messages pour Groq
       const allMessages = [...messages, userMsg];
