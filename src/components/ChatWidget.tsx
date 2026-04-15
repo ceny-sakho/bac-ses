@@ -26,6 +26,7 @@ CONSIGNES DE FORMAT ET DE LONGUEUR (TRÈS IMPORTANT) :
 - Ne fais AUCUN long développement, sauf si l'élève te demande explicitement de "détailler", "développer" ou "d'expliquer plus".
 
 CONSIGNES PÉDAGOGIQUES :
+- Ne donne jamais de réponse toute faite, utilise la méthode socratique.
 - Utilise les documents fournis en priorité absolue.`;
 
 
