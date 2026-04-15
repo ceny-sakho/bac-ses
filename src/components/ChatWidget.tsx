@@ -197,9 +197,10 @@ const ChatWidget: React.FC = () => {
                   className={cn(
                     "max-w-[80%] rounded-lg px-3 py-2 text-sm leading-relaxed whitespace-pre-line",
                     msg.role === "user"
-                      ? "bg-primary text-primary-foreground"
+                      ? "text-white"
                       : "bg-secondary text-secondary-foreground"
                   )}
+                  style={msg.role === "user" ? { backgroundColor: '#bc9e82' } : {}}
                 >
                   {msg.content}
                 </div>
