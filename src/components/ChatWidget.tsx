@@ -180,7 +180,7 @@ style={{ backgroundColor: '#bc9e82' }}
           className="fixed bottom-6 right-6 z-[9999] flex w-[360px] max-w-[calc(100vw-2rem)] flex-col rounded-xl border bg-card text-card-foreground shadow-2xl overflow-hidden"
           style={{ height: "min(500px, calc(100vh - 4rem))" }}
         >
-          <div className="flex items-center justify-between bg-primary px-4 py-3">
+          <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: '#bc9e82', color: 'white' }}>
             <div className="flex items-center gap-2 text-primary-foreground">
               <GraduationCap className="h-5 w-5" />
               <span className="font-semibold text-sm">Tuteur SES AI</span>
