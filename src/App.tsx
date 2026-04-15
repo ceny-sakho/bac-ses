@@ -17,6 +17,7 @@ import DevoirPage from "./pages/DevoirPage";
 import Methodologie from "./pages/Methodologie";
 import MethodologiePdf from "./pages/MethodologiePdf";
 import ChatWidget from "./components/ChatWidget";
+import GenerateEmbeddings from "./components/GenerateEmbeddings";
 
 function App() {
   const dissertationChapters = [
@@ -83,6 +84,7 @@ function App() {
     <Router>
       <div className="min-h-screen">
         <ChatWidget />
+        <GenerateEmbeddings />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/matiere/:subject" element={<SubjectView />} />
