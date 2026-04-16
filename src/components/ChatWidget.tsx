@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { GraduationCap, X, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { supabase as externalSupabase } from "@/lib/supabase";
-import { supabase as cloudSupabase } from "@/integrations/supabase/client";
 
 interface Message {
   id: string;
@@ -11,32 +9,12 @@ interface Message {
   content: string;
 }
 
-const VOYAGE_API_URL = "https://api.voyageai.com/v1/embeddings";
-const VOYAGE_API_KEY = "pa-yGdft9DXXoKTs2EdzrJuGPXyAKH6sdIMjAVfyCJqRVJ";
-
-async function getQueryEmbedding(text: string): Promise<number[]> {
-  const res = await fetch(VOYAGE_API_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${VOYAGE_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "voyage-3-lite",
-      input: [text],
-      input_type: "query",
-    }),
-  });
-  if (!res.ok) throw new Error(`Voyage API error ${res.status}`);
-  const data = await res.json();
-  return data.data[0].embedding;
-}
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-tuteur-ses`;
 
 const ChatWidget: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [sessionId] = useState(() => crypto.randomUUID());
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -60,54 +38,29 @@ const ChatWidget: React.FC = () => {
     setLoading(true);
 
     try {
-      // Save user message to external Supabase chat_history
-      await externalSupabase.from("chat_history").insert({
-        session_id: sessionId,
-        role: "user",
-        content: text,
-      });
-
-      // 1. Recherche vectorielle via Voyage AI + match_documents (external Supabase)
-      let context = "Pas de cours spécifique trouvé dans la base.";
-      try {
-        const embedding = await getQueryEmbedding(text);
-        const { data: docs, error } = await externalSupabase.rpc("match_documents", {
-          query_embedding: JSON.stringify(embedding),
-          match_threshold: 0.5,
-          match_count: 1,
-        });
-        if (!error && docs && docs.length > 0) {
-          context = docs
-            .map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`)
-            .join("\n\n");
-        }
-      } catch (embErr) {
-        console.warn("Embedding search failed, continuing without context:", embErr);
-      }
-
-      // 2. Préparer les messages pour l'edge function
-      const allMessages = [...messages, userMsg];
-      const chatMessages = allMessages
+      const chatMessages = [...messages, userMsg]
         .filter((m) => m.id !== "welcome")
         .map((m) => ({ role: m.role, content: m.content }));
 
-      // 3. Appeler l'edge function avec streaming
-      const resp = await cloudSupabase.functions.invoke("chat-tuteur-ses", {
-        body: { messages: chatMessages, context },
+      const resp = await fetch(CHAT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ messages: chatMessages }),
       });
 
-      if (resp.error) {
-        throw new Error(resp.error.message || "Erreur edge function");
+      if (!resp.ok || !resp.body) {
+        throw new Error(`Erreur ${resp.status}`);
       }
 
-      // Handle streaming response
-      const reader = (resp.data as ReadableStream).getReader();
+      const reader = resp.body.getReader();
       const decoder = new TextDecoder();
       let assistantContent = "";
       let textBuffer = "";
       const assistantId = (Date.now() + 1).toString();
 
-      // Add empty assistant message
       setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "" }]);
 
       let streamDone = false;
@@ -171,20 +124,11 @@ const ChatWidget: React.FC = () => {
         }
       }
 
-      // Fallback if no content streamed
       if (!assistantContent) {
-        assistantContent = "Désolé, je n'ai pas pu répondre. 🔧";
         setMessages((prev) =>
-          prev.map((m) => (m.id === assistantId ? { ...m, content: assistantContent } : m))
+          prev.map((m) => (m.id === assistantId ? { ...m, content: "Désolé, je n'ai pas pu répondre. 🔧" } : m))
         );
       }
-
-      // Save assistant reply to external Supabase chat_history
-      await externalSupabase.from("chat_history").insert({
-        session_id: sessionId,
-        role: "assistant",
-        content: assistantContent,
-      });
     } catch (err) {
       console.error("Chat error:", err);
       setMessages((prev) => [
@@ -219,11 +163,11 @@ const ChatWidget: React.FC = () => {
           style={{ height: "min(500px, calc(100vh - 4rem))" }}
         >
           <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: "#bc9e82", color: "white" }}>
-            <div className="flex items-center gap-2 text-primary-foreground">
+            <div className="flex items-center gap-2">
               <GraduationCap className="h-5 w-5" />
               <span className="font-semibold text-sm">Tuteur SES AI</span>
             </div>
-            <button onClick={() => setOpen(false)} className="text-primary-foreground/80 hover:text-primary-foreground" aria-label="Fermer">
+            <button onClick={() => setOpen(false)} className="opacity-80 hover:opacity-100" aria-label="Fermer">
               <X className="h-5 w-5" />
             </button>
           </div>
@@ -242,7 +186,7 @@ const ChatWidget: React.FC = () => {
                 </div>
               </div>
             ))}
-            {loading && (
+            {loading && messages[messages.length - 1]?.role !== "assistant" && (
               <div className="flex justify-start">
                 <div className="bg-secondary text-secondary-foreground rounded-lg px-3 py-2 text-sm flex items-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
