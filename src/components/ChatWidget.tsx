@@ -2,36 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { GraduationCap, X, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { supabase } from "@/lib/supabase";
+import { supabase as externalSupabase } from "@/lib/supabase";
+import { supabase as cloudSupabase } from "@/integrations/supabase/client";
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
 }
-
-const SYSTEM_PROMPT = `Tu es un tuteur expert en SES (Sciences Économiques et Sociales). 
-
-RÈGLE ABSOLUE DE PÉRIMÈTRE : 
-1. Tu ne dois répondre QU'AUX questions portant sur l'économie, la sociologie, la science politique ou la méthode du Bac SES.
-2. Tu es autorisé à aider sur le "Grand Oral" même si cela croise d'autres matières.
-3. Pour TOUT LE RESTE (cuisine, vie quotidienne, sport, etc.), tu as l'INTERDICTION FORMELLE de répondre. Dis : "Désolé, en tant que tuteur de SES, je ne peux pas t'aider sur ce sujet."
-
-RÈGLE ABSOLUE SUR LA MÉTHODOLOGIE :
-Tu as l'INTERDICTION FORMELLE d'inventer ou de deviner une méthode. Tu dois EXCLUSIVEMENT utiliser la méthode fournie dans les documents du contexte. Si aucune fiche méthode n'apparaît, réponds : "Je n'ai pas accès à la fiche méthode du professeur pour cet exercice."
-
-CONSIGNES DE FORMAT ET DE LONGUEUR (TRÈS IMPORTANT) :
-- Sois ultra-concis, clair et va droit à l'essentiel.
-- Fais des réponses très courtes (idéalement 2 à 4 phrases maximum).
-- Ne fais AUCUN long développement, sauf si l'élève te demande explicitement de "détailler", "développer" ou "d'expliquer plus".
-
-CONSIGNES PÉDAGOGIQUES :
-- Ne donne jamais de réponse toute faite, utilise la méthode socratique.
-- Utilise les documents fournis en priorité absolue.`;
-
-
-const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_API_KEY = "gsk_" + "dbFNVAu4q4npCnAbBQcnWGdyb3FYOEmOOgLdXTYvfE6FL4DSsJh3";
 
 const VOYAGE_API_URL = "https://api.voyageai.com/v1/embeddings";
 const VOYAGE_API_KEY = "pa-yGdft9DXXoKTs2EdzrJuGPXyAKH6sdIMjAVfyCJqRVJ";
@@ -40,7 +18,7 @@ async function getQueryEmbedding(text: string): Promise<number[]> {
   const res = await fetch(VOYAGE_API_URL, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${VOYAGE_API_KEY}`,
+      Authorization: `Bearer ${VOYAGE_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -82,78 +60,130 @@ const ChatWidget: React.FC = () => {
     setLoading(true);
 
     try {
-      // Save user message to Supabase chat_history
-      await supabase.from("chat_history").insert({
+      // Save user message to external Supabase chat_history
+      await externalSupabase.from("chat_history").insert({
         session_id: sessionId,
         role: "user",
         content: text,
       });
 
-      // 1. Recherche vectorielle via Voyage AI + match_documents
+      // 1. Recherche vectorielle via Voyage AI + match_documents (external Supabase)
       let context = "Pas de cours spécifique trouvé dans la base.";
       try {
         const embedding = await getQueryEmbedding(text);
-        const { data: docs, error } = await supabase.rpc("match_documents", {
+        const { data: docs, error } = await externalSupabase.rpc("match_documents", {
           query_embedding: JSON.stringify(embedding),
           match_threshold: 0.5,
           match_count: 1,
         });
         if (!error && docs && docs.length > 0) {
-          context = docs.map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`).join('\n\n');
+          context = docs
+            .map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`)
+            .join("\n\n");
         }
       } catch (embErr) {
         console.warn("Embedding search failed, continuing without context:", embErr);
       }
 
-      // 2. Préparer les messages pour Groq
+      // 2. Préparer les messages pour l'edge function
       const allMessages = [...messages, userMsg];
-      const groqMessages = [
-        { 
-          role: "system" as const, 
-          content: `${SYSTEM_PROMPT}\n\nVoici tes cours de référence pour aider l'élève :\n${context}` 
-        },
-        ...allMessages
-          .filter((m) => m.id !== "welcome")
-          .map((m) => ({ role: m.role as "user" | "assistant", content: m.content })),
-      ];
+      const chatMessages = allMessages
+        .filter((m) => m.id !== "welcome")
+        .map((m) => ({ role: m.role, content: m.content }));
 
-      // 3. Appeler Groq avec le contexte du cours
-      const response = await fetch(GROQ_API_URL, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${GROQ_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: groqMessages,
-          temperature: 0.7,
-          max_tokens: 1024,
-        }),
+      // 3. Appeler l'edge function avec streaming
+      const resp = await cloudSupabase.functions.invoke("chat-tuteur-ses", {
+        body: { messages: chatMessages, context },
       });
 
-      if (!response.ok) {
-        const errBody = await response.text();
-        console.error("Groq API error:", response.status, errBody);
-        throw new Error(`Groq API error ${response.status}`);
+      if (resp.error) {
+        throw new Error(resp.error.message || "Erreur edge function");
       }
 
-      const data = await response.json();
-      const reply = data.choices?.[0]?.message?.content ?? "Désolé, je n'ai pas pu répondre. 🔧";
+      // Handle streaming response
+      const reader = (resp.data as ReadableStream).getReader();
+      const decoder = new TextDecoder();
+      let assistantContent = "";
+      let textBuffer = "";
+      const assistantId = (Date.now() + 1).toString();
 
-      const assistantMsg: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        content: reply,
-      };
+      // Add empty assistant message
+      setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "" }]);
 
-      setMessages((prev) => [...prev, assistantMsg]);
+      let streamDone = false;
+      while (!streamDone) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        textBuffer += decoder.decode(value, { stream: true });
 
-      // Save assistant reply to Supabase chat_history
-      await supabase.from("chat_history").insert({
+        let newlineIndex: number;
+        while ((newlineIndex = textBuffer.indexOf("\n")) !== -1) {
+          let line = textBuffer.slice(0, newlineIndex);
+          textBuffer = textBuffer.slice(newlineIndex + 1);
+
+          if (line.endsWith("\r")) line = line.slice(0, -1);
+          if (line.startsWith(":") || line.trim() === "") continue;
+          if (!line.startsWith("data: ")) continue;
+
+          const jsonStr = line.slice(6).trim();
+          if (jsonStr === "[DONE]") {
+            streamDone = true;
+            break;
+          }
+
+          try {
+            const parsed = JSON.parse(jsonStr);
+            const delta = parsed.choices?.[0]?.delta?.content as string | undefined;
+            if (delta) {
+              assistantContent += delta;
+              const snapshot = assistantContent;
+              setMessages((prev) =>
+                prev.map((m) => (m.id === assistantId ? { ...m, content: snapshot } : m))
+              );
+            }
+          } catch {
+            textBuffer = line + "\n" + textBuffer;
+            break;
+          }
+        }
+      }
+
+      // Flush remaining buffer
+      if (textBuffer.trim()) {
+        for (let raw of textBuffer.split("\n")) {
+          if (!raw) continue;
+          if (raw.endsWith("\r")) raw = raw.slice(0, -1);
+          if (raw.startsWith(":") || raw.trim() === "") continue;
+          if (!raw.startsWith("data: ")) continue;
+          const jsonStr = raw.slice(6).trim();
+          if (jsonStr === "[DONE]") continue;
+          try {
+            const parsed = JSON.parse(jsonStr);
+            const delta = parsed.choices?.[0]?.delta?.content as string | undefined;
+            if (delta) {
+              assistantContent += delta;
+              const snapshot = assistantContent;
+              setMessages((prev) =>
+                prev.map((m) => (m.id === assistantId ? { ...m, content: snapshot } : m))
+              );
+            }
+          } catch { /* ignore */ }
+        }
+      }
+
+      // Fallback if no content streamed
+      if (!assistantContent) {
+        assistantContent = "Désolé, je n'ai pas pu répondre. 🔧";
+        setMessages((prev) =>
+          prev.map((m) => (m.id === assistantId ? { ...m, content: assistantContent } : m))
+        );
+      }
+
+      // Save assistant reply to external Supabase chat_history
+      await externalSupabase.from("chat_history").insert({
         session_id: sessionId,
         role: "assistant",
-        content: reply,
+        content: assistantContent,
       });
     } catch (err) {
       console.error("Chat error:", err);
@@ -176,7 +206,7 @@ const ChatWidget: React.FC = () => {
         <button
           onClick={() => setOpen(true)}
           className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-colors"
-          style={{ backgroundColor: '#bc9e82' }}
+          style={{ backgroundColor: "#bc9e82" }}
           aria-label="Ouvrir le tuteur SES AI"
         >
           <GraduationCap className="h-7 w-7" />
@@ -188,7 +218,7 @@ const ChatWidget: React.FC = () => {
           className="fixed bottom-6 right-6 z-[9999] flex w-[360px] max-w-[calc(100vw-2rem)] flex-col rounded-xl border bg-card text-card-foreground shadow-2xl overflow-hidden"
           style={{ height: "min(500px, calc(100vh - 4rem))" }}
         >
-          <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: '#bc9e82', color: 'white' }}>
+          <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: "#bc9e82", color: "white" }}>
             <div className="flex items-center gap-2 text-primary-foreground">
               <GraduationCap className="h-5 w-5" />
               <span className="font-semibold text-sm">Tuteur SES AI</span>
@@ -204,11 +234,9 @@ const ChatWidget: React.FC = () => {
                 <div
                   className={cn(
                     "max-w-[80%] rounded-lg px-3 py-2 text-sm leading-relaxed whitespace-pre-line",
-                    msg.role === "user"
-                      ? "text-white"
-                      : "bg-secondary text-secondary-foreground"
+                    msg.role === "user" ? "text-white" : "bg-secondary text-secondary-foreground"
                   )}
-                  style={msg.role === "user" ? { backgroundColor: '#bc9e82' } : {}}
+                  style={msg.role === "user" ? { backgroundColor: "#bc9e82" } : {}}
                 >
                   {msg.content}
                 </div>
@@ -225,10 +253,7 @@ const ChatWidget: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          <form
-            onSubmit={(e) => { e.preventDefault(); handleSend(); }}
-            className="flex items-center gap-2 border-t p-3"
-          >
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex items-center gap-2 border-t p-3">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -236,7 +261,7 @@ const ChatWidget: React.FC = () => {
               disabled={loading}
               className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
             />
-            <Button type="submit" size="icon" className="shrink-0" style={{ backgroundColor: '#bc9e82', color: 'white' }} disabled={loading}>
+            <Button type="submit" size="icon" className="shrink-0" style={{ backgroundColor: "#bc9e82", color: "white" }} disabled={loading}>
               <Send className="h-4 w-4" />
             </Button>
           </form>
