@@ -96,7 +96,7 @@ const ChatWidget: React.FC = () => {
         const { data: docs, error } = await supabase.rpc("match_documents", {
           query_embedding: JSON.stringify(embedding),
           match_threshold: 0.5,
-          match_count: 4,
+          match_count: 2,
         });
         if (!error && docs && docs.length > 0) {
           context = docs.map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`).join('\n\n');
