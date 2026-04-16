@@ -96,7 +96,7 @@ const ChatWidget: React.FC = () => {
         const { data: docs, error } = await supabase.rpc("match_documents", {
           query_embedding: JSON.stringify(embedding),
           match_threshold: 0.5,
-          match_count: 2,
+          match_count: 1,
         });
         if (!error && docs && docs.length > 0) {
           context = docs.map((d: any) => `[Chapitre: ${d.title}] (similarité: ${(d.similarity * 100).toFixed(0)}%)\n${d.content}`).join('\n\n');
@@ -125,7 +125,7 @@ const ChatWidget: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
+          model: "llama-3.3-70b-versatile",
           messages: groqMessages,
           temperature: 0.7,
           max_tokens: 1024,
