@@ -91,7 +91,7 @@ const GenerateEmbeddings: React.FC = () => {
 
   return (
     <div className="fixed top-4 right-4 z-[9998]">
-      <Button onClick={handleGenerate} disabled={loading} variant="outline" className="gap-2">
+      <Button style={{ display: 'none' }} onClick={handleGenerate} disabled={loading} variant="outline" className="gap-2">
         {loading ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
