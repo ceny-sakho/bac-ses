@@ -9,6 +9,7 @@ const methodologyTitles: Record<string, string> = {
   ec1: "Méthodologie — EC1",
   ec2: "Méthodologie — EC2",
   ec3: "Méthodologie — EC3",
+  "savoir-faire": "Méthodologie — Savoir-faire",
 };
 
 const MethodologiePdf: React.FC = () => {
