@@ -9,6 +9,7 @@ const methodologyItems = [
   { id: "ec1", label: "EC1" },
   { id: "ec2", label: "EC2" },
   { id: "ec3", label: "EC3" },
+  { id: "savoir-faire", label: "SAVOIR-FAIRE" },
 ];
 
 const Methodologie: React.FC = () => {
