@@ -32,6 +32,12 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
       // Nettoyer le paramètre après l'avoir utilisé
       searchParams.delete('tab');
       setSearchParams(searchParams, { replace: true });
+    } else if (tab === 'synthese') {
+      setShowSynthesis(true);
+      setShowDevoirs(false);
+      setShowCours(false);
+      searchParams.delete('tab');
+      setSearchParams(searchParams, { replace: true });
     }
   }, [searchParams, setSearchParams]);
 
