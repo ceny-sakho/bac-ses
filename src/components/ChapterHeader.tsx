@@ -37,9 +37,9 @@ const ChapterHeader = ({ title, subtitle }: ChapterHeaderProps) => {
     else if (from === 'programme' && expandedLevel) {
       navigate(`/?expandedLevel=${encodeURIComponent(expandedLevel)}`);
     }
-    // Fallback vers la page précédente
+    // Fallback explicite vers l'accueil
     else {
-      navigate(-1);
+      navigate('/', { replace: true });
     }
   };
 
