@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -14,6 +14,7 @@ const methodologyTitles: Record<string, string> = {
 
 const MethodologiePdf: React.FC = () => {
   const { type } = useParams();
+  const navigate = useNavigate();
   const [pdfExists, setPdfExists] = useState<boolean | null>(null);
 
   const methodType = type || "methodologie";
@@ -46,7 +47,7 @@ const MethodologiePdf: React.FC = () => {
     <main className="max-w-7xl mx-auto px-4 py-8">
       <Button
         variant="ghost"
-        onClick={() => window.history.back()}
+        onClick={() => navigate('/methodologie', { replace: true })}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
         aria-label="Retour"
       >

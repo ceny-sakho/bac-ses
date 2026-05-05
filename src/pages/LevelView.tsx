@@ -41,7 +41,7 @@ const LevelView = () => {
           <Button 
             variant="ghost" 
             className="mb-4 hover:bg-[#403E43] hover:text-white transition-colors"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/', { replace: true })}
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
             Retour
