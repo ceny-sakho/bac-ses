@@ -16,6 +16,7 @@ import EC2Subject from "./pages/EC2Subject";
 import DevoirPage from "./pages/DevoirPage";
 import Methodologie from "./pages/Methodologie";
 import MethodologiePdf from "./pages/MethodologiePdf";
+import ObjectifPage from "./pages/ObjectifPage";
 import ChatWidget from "./components/ChatWidget";
 import GenerateEmbeddings from "./components/GenerateEmbeddings";
 
@@ -159,6 +160,7 @@ function App() {
           />
           <Route path="/methodologie" element={<Methodologie />} />
           <Route path="/methodologie/:type" element={<MethodologiePdf />} />
+          <Route path="/objectif/:chapterId/:objectifNum" element={<ObjectifPage />} />
         </Routes>
       </div>
     </Router>
