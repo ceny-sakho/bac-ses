@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck, Settings } from "lucide-react";
+import { BookOpen, GraduationCap, BookOpenText, ClipboardCheck, Settings, Target } from "lucide-react";
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { SynthesisViewer } from './synthesis/SynthesisViewer';
 import { DevoirsViewer } from './devoirs/DevoirsViewer';
@@ -87,14 +87,31 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   if (showSynthesis) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <Button 
-          variant="ghost" 
-          onClick={() => setShowSynthesis(false)}
-          className="mb-6 hover:bg-[#403E43] hover:text-white"
-        >
-          <BookOpenText className="mr-2 h-4 w-4" />
-          Retour au chapitre
-        </Button>
+        <div className="mb-6 flex flex-wrap items-center gap-3">
+          <Button
+            variant="ghost"
+            onClick={() => setShowSynthesis(false)}
+            className="hover:bg-[#403E43] hover:text-white"
+          >
+            <BookOpenText className="mr-2 h-4 w-4" />
+            Retour au chapitre
+          </Button>
+          {objectives.map((_, i) => {
+            const num = i + 1;
+            const fullChapterId = location.pathname.split('/').pop();
+            return (
+              <Button
+                key={num}
+                variant="outline"
+                onClick={() => navigate(`/objectif/${fullChapterId}/${num}`)}
+                className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
+              >
+                <Target className="w-4 h-4" />
+                OBJECTIF-{num}
+              </Button>
+            );
+          })}
+        </div>
         <SynthesisViewer 
           chapterId={chapterId}
           level={level}
