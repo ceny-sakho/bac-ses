@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { BacExercises } from '@/components/BacExercises';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
