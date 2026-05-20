@@ -3,16 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { BacExercises } from '@/components/BacExercises';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 const BacSubjects = () => {
-  const navigate = useNavigate();
+  const { back } = useAppNavigation();
 
   return (
     <div className="container mx-auto p-4">
       <div className="mb-6">
         <Button 
           variant="ghost" 
-          onClick={() => navigate('/', { replace: true })}
+          onClick={() => back('/')}
           className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" />
