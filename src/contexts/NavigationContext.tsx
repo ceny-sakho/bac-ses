@@ -56,7 +56,7 @@ export const buildBacPath = (tab: BacTab = "dissertation") =>
 export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [stack, setStack] = useState<NavigationEntry[]>([]);
+  const [, setStack] = useState<NavigationEntry[]>([]);
   const stackRef = useRef<NavigationEntry[]>([]);
   const [activeBacTab, setActiveBacTab] = useState<BacTab>("dissertation");
 
