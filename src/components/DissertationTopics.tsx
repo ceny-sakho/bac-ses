@@ -7,6 +7,7 @@ import { DissertationTable } from './dissertation/DissertationTable';
 import { PdfViewer } from './dissertation/PdfViewer';
 import { dissertationTopics } from '@/data/dissertationTopics';
 import { DissertationTopic } from '@/types/dissertation';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 interface DissertationTopicsProps {
   chapter: string;
@@ -15,6 +16,7 @@ interface DissertationTopicsProps {
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
   const navigate = useNavigate();
+  const { back, getBacPath, push } = useAppNavigation();
   const [showPdf, setShowPdf] = useState(false);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
   const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
@@ -29,7 +31,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
   }, [showPdf]);
 
   const handleTopicClick = (topic: DissertationTopic, index: number) => {
-    navigate(`/dissertation/${chapter}/sujet/${index + 1}`);
+    push(`/dissertation/${chapter}/sujet/${index + 1}`);
   };
 
   const handleFileUpload = (file: File) => {
@@ -72,7 +74,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Button 
         variant="ghost" 
-        onClick={() => navigate('/sujets-bac', { replace: true })}
+          onClick={() => back(getBacPath())}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
