@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -15,7 +14,6 @@ interface DissertationTopicsProps {
 }
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
-  const navigate = useNavigate();
   const { back, getBacPath, push } = useAppNavigation();
   const [showPdf, setShowPdf] = useState(false);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
