@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PdfViewer } from "@/components/dissertation/PdfViewer";
+import { useAppNavigation } from "@/contexts/NavigationContext";
 
 
 const DissertationSubject: React.FC = () => {
-  const navigate = useNavigate();
+  const { back } = useAppNavigation();
   const { chapterId, sujetId } = useParams();
 
   const chapter = chapterId || "1";
@@ -21,7 +22,7 @@ const DissertationSubject: React.FC = () => {
     <main className="max-w-7xl mx-auto px-4 py-8">
       <Button
         variant="ghost"
-        onClick={() => navigate(`/dissertation/${chapter}`, { replace: true })}
+        onClick={() => back(`/dissertation/${chapter}`)}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
         aria-label="Retour"
       >
