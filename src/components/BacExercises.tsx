@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAppNavigation, type BacTab } from '@/contexts/NavigationContext';
 
 export const BacExercises = () => {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { activeBacTab, setActiveBacTab, push } = useAppNavigation();
   
