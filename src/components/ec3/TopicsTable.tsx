@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 interface Topic {
   question: string;
@@ -13,10 +13,10 @@ interface TopicsTableProps {
 }
 
 export const TopicsTable: React.FC<TopicsTableProps> = ({ topics, chapter }) => {
-  const navigate = useNavigate();
+  const { push } = useAppNavigation();
 
   const handleTopicClick = (index: number) => {
-    navigate(`/ec3/${chapter}/sujet/${index + 1}`);
+    push(`/ec3/${chapter}/sujet/${index + 1}`);
   };
 
   return (
