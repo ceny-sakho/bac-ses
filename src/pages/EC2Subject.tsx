@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ArrowLeft, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAppNavigation } from "@/contexts/NavigationContext";
 
 const EC2Subject: React.FC = () => {
-  const navigate = useNavigate();
+  const { back } = useAppNavigation();
   const { chapterId, sujetId } = useParams();
 
   const chapter = chapterId || "1";
@@ -29,7 +30,7 @@ const EC2Subject: React.FC = () => {
     <main className="max-w-7xl mx-auto px-4 py-8">
       <Button
         variant="ghost"
-        onClick={() => navigate(`/ec2/${chapter}`, { replace: true })}
+        onClick={() => back(`/ec2/${chapter}`)}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
         aria-label="Retour"
       >

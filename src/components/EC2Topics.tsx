@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { ec2Topics } from '@/data/ec2Topics';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 interface EC2Topic {
   question: string;
@@ -16,14 +16,14 @@ interface EC2TopicsProps {
 }
 
 export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
-  const navigate = useNavigate();
+  const { back, getBacPath, push } = useAppNavigation();
   const topics = ec2Topics[chapter] || [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Button 
         variant="ghost" 
-        onClick={() => navigate('/sujets-bac?tab=ec2', { replace: true })}
+        onClick={() => back(getBacPath())}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -45,7 +45,7 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
             {topics.map((topic, index) => (
               <tr 
                 key={index}
-                onClick={() => navigate(`/ec2/${chapter}/sujet/${index + 1}`)}
+                onClick={() => push(`/ec2/${chapter}/sujet/${index + 1}`)}
                 className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
               >
                 <td className="px-6 py-4">{topic.question}</td>
