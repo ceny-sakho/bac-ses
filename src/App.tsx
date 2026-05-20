@@ -19,6 +19,7 @@ import MethodologiePdf from "./pages/MethodologiePdf";
 import ObjectifPage from "./pages/ObjectifPage";
 import ChatWidget from "./components/ChatWidget";
 import GenerateEmbeddings from "./components/GenerateEmbeddings";
+import { NavigationProvider } from "./contexts/NavigationContext";
 
 function App() {
   const dissertationChapters = [
@@ -83,86 +84,88 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen">
-        <ChatWidget />
-        <GenerateEmbeddings />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/matiere/:subject" element={<SubjectView />} />
-          <Route path="/niveau/:level" element={<LevelView />} />
-          <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
-          <Route path="/sujets-bac" element={<BacSubjects />} />
-          <Route path="/devoir/:level/:chapterId/:devoirId" element={<DevoirPage />} />
-          {dissertationChapters.map((chapter) => (
-            <Route
-              key={chapter.id}
-              path={`/dissertation/${chapter.id}`}
-              element={
-                <DissertationTopics
-                  chapter={chapter.id}
-                  title={`Dissertation Chapitre ${chapter.id} : ${chapter.title}`}
-                />
-              }
-            />
-          ))}
-          {ec1Chapters.map((chapter) => (
-            <Route
-              key={chapter.id}
-              path={`/ec1/${chapter.id}`}
-              element={
-                <EC1Topics
-                  chapter={chapter.id}
-                  title={`EC1 Chapitre ${chapter.id} : ${chapter.title}`}
-                />
-              }
-            />
-          ))}
-          {ec2Chapters.map((chapter) => (
-            <Route
-              key={chapter.id}
-              path={`/ec2/${chapter.id}`}
-              element={
-                <EC2Topics
-                  chapter={chapter.id}
-                  title={`EC2 Chapitre ${chapter.id} : ${chapter.title}`}
-                />
-              }
-            />
-          ))}
-          {ec3Chapters.map((chapter) => (
-            <Route
-              key={chapter.id}
-              path={`/ec3/${chapter.id}`}
-              element={
-                <EC3Topics
-                  chapter={chapter.id}
-                  title={`EC3 Chapitre ${chapter.id} : ${chapter.title}`}
-                />
-              }
-            />
-          ))}
+      <NavigationProvider>
+        <div className="min-h-screen">
+          <ChatWidget />
+          <GenerateEmbeddings />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/matiere/:subject" element={<SubjectView />} />
+            <Route path="/niveau/:level" element={<LevelView />} />
+            <Route path="/chapitre/:chapterId" element={<ChapterDetail />} />
+            <Route path="/sujets-bac" element={<BacSubjects />} />
+            <Route path="/devoir/:level/:chapterId/:devoirId" element={<DevoirPage />} />
+            {dissertationChapters.map((chapter) => (
+              <Route
+                key={chapter.id}
+                path={`/dissertation/${chapter.id}`}
+                element={
+                  <DissertationTopics
+                    chapter={chapter.id}
+                    title={`Dissertation Chapitre ${chapter.id} : ${chapter.title}`}
+                  />
+                }
+              />
+            ))}
+            {ec1Chapters.map((chapter) => (
+              <Route
+                key={chapter.id}
+                path={`/ec1/${chapter.id}`}
+                element={
+                  <EC1Topics
+                    chapter={chapter.id}
+                    title={`EC1 Chapitre ${chapter.id} : ${chapter.title}`}
+                  />
+                }
+              />
+            ))}
+            {ec2Chapters.map((chapter) => (
+              <Route
+                key={chapter.id}
+                path={`/ec2/${chapter.id}`}
+                element={
+                  <EC2Topics
+                    chapter={chapter.id}
+                    title={`EC2 Chapitre ${chapter.id} : ${chapter.title}`}
+                  />
+                }
+              />
+            ))}
+            {ec3Chapters.map((chapter) => (
+              <Route
+                key={chapter.id}
+                path={`/ec3/${chapter.id}`}
+                element={
+                  <EC3Topics
+                    chapter={chapter.id}
+                    title={`EC3 Chapitre ${chapter.id} : ${chapter.title}`}
+                  />
+                }
+              />
+            ))}
 
-          <Route
-            path="/dissertation/:chapterId/sujet/:sujetId"
-            element={<DissertationSubject />}
-          />
-          <Route
-            path="/ec1/:chapterId/sujet/:sujetId"
-            element={<EC1Subject />}
-          />
-          <Route
-            path="/ec3/:chapterId/sujet/:sujetId"
-            element={<EC3Subject />}
-          />
-          <Route
-            path="/ec2/:chapterId/sujet/:sujetId"
-            element={<EC2Subject />}
-          />
-          <Route path="/methodologie" element={<Methodologie />} />
-          <Route path="/methodologie/:type" element={<MethodologiePdf />} />
-          <Route path="/objectif/:chapterId/:objectifNum" element={<ObjectifPage />} />
-        </Routes>
-      </div>
+            <Route
+              path="/dissertation/:chapterId/sujet/:sujetId"
+              element={<DissertationSubject />}
+            />
+            <Route
+              path="/ec1/:chapterId/sujet/:sujetId"
+              element={<EC1Subject />}
+            />
+            <Route
+              path="/ec3/:chapterId/sujet/:sujetId"
+              element={<EC3Subject />}
+            />
+            <Route
+              path="/ec2/:chapterId/sujet/:sujetId"
+              element={<EC2Subject />}
+            />
+            <Route path="/methodologie" element={<Methodologie />} />
+            <Route path="/methodologie/:type" element={<MethodologiePdf />} />
+            <Route path="/objectif/:chapterId/:objectifNum" element={<ObjectifPage />} />
+          </Routes>
+        </div>
+      </NavigationProvider>
     </Router>
   );
 }
