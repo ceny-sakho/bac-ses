@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { EC1Topic } from '@/types/ec1';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 interface TopicsTableProps {
   topics: EC1Topic[];
@@ -8,10 +8,10 @@ interface TopicsTableProps {
 }
 
 export const TopicsTable: React.FC<TopicsTableProps> = ({ topics, chapter }) => {
-  const navigate = useNavigate();
+  const { push } = useAppNavigation();
 
   const handleTopicClick = (index: number) => {
-    navigate(`/ec1/${chapter}/sujet/${index + 1}`);
+    push(`/ec1/${chapter}/sujet/${index + 1}`);
   };
 
   return (
