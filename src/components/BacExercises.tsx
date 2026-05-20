@@ -1,27 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
+import { useAppNavigation, type BacTab } from '@/contexts/NavigationContext';
 
 export const BacExercises = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { activeBacTab, setActiveBacTab, push } = useAppNavigation();
   
   const getInitialTab = () => {
     const tabFromUrl = searchParams.get('tab');
     if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3'].includes(tabFromUrl)) {
-      return tabFromUrl;
+      return tabFromUrl as BacTab;
     }
-    return 'dissertation';
+    return activeBacTab;
   };
 
-  const handleTabChange = (value: string) => {
-    if (value === 'dissertation') {
-      searchParams.delete('tab');
-    } else {
-      searchParams.set('tab', value);
+  useEffect(() => {
+    const tabFromUrl = searchParams.get('tab');
+    if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3'].includes(tabFromUrl)) {
+      setActiveBacTab(tabFromUrl as BacTab);
+      return;
     }
-    setSearchParams(searchParams, { replace: true });
+
+    if (activeBacTab !== 'dissertation') {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.set('tab', activeBacTab);
+      setSearchParams(nextParams, { replace: true });
+    }
+  }, [activeBacTab, searchParams, setActiveBacTab, setSearchParams]);
+
+  const handleTabChange = (value: string) => {
+    const nextParams = new URLSearchParams(searchParams);
+    setActiveBacTab(value as BacTab);
+    if (value === 'dissertation') {
+      nextParams.delete('tab');
+    } else {
+      nextParams.set('tab', value);
+    }
+    setSearchParams(nextParams, { replace: true });
   };
   
   const dissertationChapters = [
@@ -112,7 +130,7 @@ export const BacExercises = () => {
                   <Card 
                     key={chapter.id}
                     className="cursor-pointer hover:shadow-lg transition-shadow"
-                    onClick={() => navigate(`/dissertation/${chapter.id}`)}
+                    onClick={() => push(`/dissertation/${chapter.id}`)}
                   >
                     <CardContent className="p-4">
                       <h4 className="font-medium">Chapitre {chapter.id}</h4>
@@ -137,7 +155,7 @@ export const BacExercises = () => {
                   <Card 
                     key={chapter.id}
                     className="cursor-pointer hover:shadow-lg transition-shadow"
-                    onClick={() => navigate(`/ec1/${chapter.id}`)}
+                    onClick={() => push(`/ec1/${chapter.id}`)}
                   >
                     <CardContent className="p-4">
                       <h4 className="font-medium">Chapitre {chapter.id}</h4>
@@ -162,7 +180,7 @@ export const BacExercises = () => {
                   <Card 
                     key={chapter.id}
                     className="cursor-pointer hover:shadow-lg transition-shadow"
-                    onClick={() => navigate(`/ec2/${chapter.id}`)}
+                    onClick={() => push(`/ec2/${chapter.id}`)}
                   >
                     <CardContent className="p-4">
                       <h4 className="font-medium">Chapitre {chapter.id}</h4>
@@ -193,7 +211,7 @@ export const BacExercises = () => {
                   <Card 
                     key={chapter.id}
                     className="cursor-pointer hover:shadow-lg transition-shadow"
-                    onClick={() => navigate(`/ec3/${chapter.id}`)}
+                    onClick={() => push(`/ec3/${chapter.id}`)}
                   >
                     <CardContent className="p-4">
                       <h4 className="font-medium">Chapitre {chapter.id}</h4>
