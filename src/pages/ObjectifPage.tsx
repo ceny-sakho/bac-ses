@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, Volume2 } from "lucide-react";
@@ -20,7 +20,6 @@ const ObjectifPage: React.FC = () => {
   const { chapterId, objectifNum } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [isHovering, setIsHovering] = useState(false);
 
   const level = chapterId?.split("-")[0] || "terminale";
   const chNumStr = chapterId?.split("ch")[1] || "1";
@@ -76,23 +75,21 @@ const ObjectifPage: React.FC = () => {
             </audio>
           </div>
 
-          <div
-            className="relative bg-white shadow-lg rounded-lg"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            <embed src={pdfUrl} className="w-full h-[800px] rounded-lg" type="application/pdf" />
-            {isHovering && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                <Button
-                  onClick={handleDownload}
-                  className="bg-gris-sideral hover:bg-[#2A292D] text-white flex items-center gap-2"
-                >
-                  <Download className="h-4 w-4" />
-                  Télécharger l'objectif
-                </Button>
-              </div>
-            )}
+          <div className="relative bg-white shadow-lg rounded-lg overflow-hidden">
+            <iframe
+              src={pdfUrl}
+              title={`Objectif ${num}`}
+              className="w-full h-[800px] rounded-lg border-0"
+            />
+            <div className="flex justify-center p-4 border-t bg-white">
+              <Button
+                onClick={handleDownload}
+                className="bg-gris-sideral hover:bg-[#2A292D] text-white flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                Télécharger l'objectif
+              </Button>
+            </div>
           </div>
         </div>
       </div>
