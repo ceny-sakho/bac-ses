@@ -5,6 +5,12 @@ import { ArrowLeft, Download, Volume2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { chaptersData } from "@/data/chaptersData";
 
+const normalizeChapterSlug = (slug: string) =>
+  slug
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
 const getSubjectFolder = (level: string, chapterNumber: number): string => {
   if (level === "seconde") {
     if (chapterNumber <= 3) return "economie";
@@ -21,8 +27,9 @@ const ObjectifPage: React.FC = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const level = chapterId?.split("-")[0] || "terminale";
-  const chNumStr = chapterId?.split("ch")[1] || "1";
+  const normalizedChapterId = normalizeChapterSlug(chapterId || "terminale-ch1");
+  const level = normalizedChapterId.split("-")[0] || "terminale";
+  const chNumStr = normalizedChapterId.split("ch")[1] || "1";
   const chNum = parseInt(chNumStr, 10);
   const subjectFolder = getSubjectFolder(level, chNum);
   const num = objectifNum || "1";
@@ -30,7 +37,7 @@ const ObjectifPage: React.FC = () => {
   const pdfUrl = `/${level}/${subjectFolder}/chapitre${chNum}/synthese/objectif${num}/objectif-${num}.pdf`;
   const audioUrl = `/${level}/${subjectFolder}/chapitre${chNum}/synthese/objectif${num}/audio-${num}.mp3`;
 
-  const chapter = chapterId ? chaptersData[chapterId] : undefined;
+  const chapter = chaptersData[normalizedChapterId];
   const objectiveText = chapter?.objectives?.[parseInt(num, 10) - 1];
 
   const handleDownload = () => {
@@ -45,14 +52,14 @@ const ObjectifPage: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [chapterId, objectifNum]);
+  }, [normalizedChapterId, objectifNum]);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Button
           variant="ghost"
-          onClick={() => navigate(`/chapitre/${chapterId}?tab=synthese`, { replace: true })}
+          onClick={() => navigate(`/chapitre/${normalizedChapterId}?tab=synthese`, { replace: true })}
           className="mb-6 hover:bg-[#403E43] hover:text-white"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />

@@ -22,6 +22,12 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   const [showDevoirs, setShowDevoirs] = useState(false);
   const [showCours, setShowCours] = useState(false);
 
+  const normalizeChapterSlug = (slug: string) =>
+    slug
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+
   // Gérer l'ouverture automatique de l'onglet devoirs via query param
   useEffect(() => {
     const tab = searchParams.get('tab');
@@ -104,7 +110,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           </Button>
           {objectives.map((_, i) => {
             const num = i + 1;
-            const fullChapterId = location.pathname.split('/').pop();
+            const fullChapterId = normalizeChapterSlug(location.pathname.split('/').pop() || '');
             return (
               <Button
                 key={num}
