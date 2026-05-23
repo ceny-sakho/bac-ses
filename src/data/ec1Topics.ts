@@ -445,11 +445,6 @@ export const ec1Topics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "Comment la préservation de l'environnement est-elle devenue un problème public ?",
-      year: "2020",
-      location: "France métropolitaine"
-    },
-    {
       question: "Vous expliquerez pourquoi, en présence de bien commun, les négociations et accords internationaux liés à la préservation de l'environnement sont contraints par des stratégies de passager clandestin.",
       year: "2026",
       location: "Amérique du Nord"
