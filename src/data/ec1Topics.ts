@@ -445,26 +445,6 @@ export const ec1Topics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "Comment les pouvoirs publics peuvent-ils lutter contre le changement climatique ?",
-      year: "2024",
-      location: "Asie"
-    },
-    {
-      question: "Les instruments dont disposent les pouvoirs publics pour préserver l'environnement sont-ils efficaces ?",
-      year: "2023",
-      location: "Amérique du Nord"
-    },
-    {
-      question: "Dans quelle mesure les instruments dont disposent les pouvoirs publics pour faire face aux externalités négatives sur l'environnement sont-ils efficaces ?",
-      year: "2023",
-      location: "France métropolitaine"
-    },
-    {
-      question: "Comment les questions environnementales sont-elles devenues un problème public ?",
-      year: "2023",
-      location: "Autres centres étrangers"
-    },
-    {
       question: "Comment la préservation de l'environnement est-elle devenue un problème public ?",
       year: "2020",
       location: "France métropolitaine"
