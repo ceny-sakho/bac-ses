@@ -75,5 +75,10 @@ export const chapter2Topics: EC1Topic[] = [
     question: "Vous présenterez le rôle des avantages comparatifs dans la spécialisation internationale.",
     year: "2023",
     location: "Amérique du Nord"
+  },
+  {
+    question: "À partir d'un exemple, vous montrerez que la fragmentation de la chaîne de valeur explique une partie du commerce international.",
+    year: "2025",
+    location: "France métropolitaine"
   }
 ];
