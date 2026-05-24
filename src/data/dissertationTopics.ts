@@ -211,6 +211,16 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Dans quelle mesure l'approche en termes de classes sociales est-elle pertinente pour rendre compte de la société française aujourd'hui ?",
       year: "2021",
       location: "France métropolitaine"
+    },
+    {
+      question: "Les classes sociales sont-elles le seul élément de structuration de la société française actuelle ?",
+      year: "2025",
+      location: "Asie"
+    },
+    {
+      question: "Une approche en termes de classes sociales suffit-elle à rendre compte de la structure de la société française actuelle ?",
+      year: "2025",
+      location: "France métropolitaine"
     }
   ],
   '7': [
