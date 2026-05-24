@@ -393,6 +393,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous montrerez comment la taxation peut permettre de faire face aux externalités négatives sur l'environnement.",
       year: "2021",
       location: "France métropolitaine"
+    },
+    {
+      question: "Vous montrerez que les négociations internationales liées à la préservation de l'environnement sont contraintes par des stratégies de passager clandestin.",
+      year: "2025",
+      location: "France métropolitaine"
     }
   ]
 };
