@@ -314,6 +314,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Peut-on expliquer l'engagement politique seulement par des variables sociodémographiques ?",
       year: "2021",
       location: "France métropolitaine"
+    },
+    {
+      question: "L'engagement politique s'explique-t-il seulement par des variables sociodémographiques ?",
+      year: "2025",
+      location: "France métropolitaine, Remplacement"
     }
   ],
   '11': [
