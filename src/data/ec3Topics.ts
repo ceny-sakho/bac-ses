@@ -110,6 +110,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que la spécialisation internationale des pays s'appuie sur plusieurs facteurs.",
             year: "2024",
             location: "Amérique du Nord"
+          },
+          {
+            question: "Vous montrerez que le commerce international a différents effets possibles.",
+            year: "2025",
+            location: "Autres centres étrangers"
           }
         ];
       case '3':
