@@ -20,5 +20,10 @@ export const chapter8Topics: EC1Topic[] = [
     question: "Présentez un argument pour montrer que les niveaux de formation contribuent à expliquer la mobilité sociale.",
     year: "2024",
     location: "Amérique du Sud"
+  },
+  {
+    question: "Présentez deux limites des tables de mobilité comme instrument de mesure de la mobilité sociale.",
+    year: "2025",
+    location: "France métropolitaine"
   }
 ];
