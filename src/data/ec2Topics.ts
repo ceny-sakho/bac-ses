@@ -93,6 +93,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous montrerez que les sources de la croissance sont multiples.",
       year: "2024",
       location: "Amérique du Sud"
+    },
+    {
+      question: "Vous présenterez une explication du commerce international entre pays comparables.",
+      year: "2025",
+      location: "Amérique du Nord"
     }
   ],
   '3': [
