@@ -60,5 +60,10 @@ export const chapter5Topics: EC1Topic[] = [
     question: "Quels sont les objectifs de la politique européenne de concurrence ?",
     year: "2023",
     location: "Liban"
+  },
+  {
+    question: "Présentez un effet du marché unique sur la croissance économique au sein de l'Union européenne.",
+    year: "2025",
+    location: "Asie"
   }
 ];
