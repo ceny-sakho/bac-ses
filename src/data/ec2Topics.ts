@@ -233,7 +233,7 @@ export const ec2Topics: TopicsByChapter = {
       location: "La Réunion"
     },
     {
-      question: "Vous montrerez que la pratique de la lecture est corrélée à l'âge et au sexe.",
+      question: "Vous montrerez que la position dans le cycle de vie est un facteur de structuration et de hiérarchisation de l'espace social.",
       year: "2023",
       location: "Amérique du Nord"
     },
