@@ -154,6 +154,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous présenterez les objectifs de la politique européenne de la concurrence.",
       year: "2022",
       location: "La Réunion"
+    },
+    {
+      question: "vous présenterez les difficultés de coordination entre la politique monétaire et les politiques budgétaires dans les pays de la zone euro.",
+      year: "2026",
+      location: "Amérique du Nord"
     }
   ],
   '6': [
