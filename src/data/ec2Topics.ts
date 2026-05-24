@@ -150,6 +150,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous expliquerez les effets des fluctuations de l'activité économique sur le chômage conjoncturel.",
       year: "2025",
       location: "Asie"
+    },
+    {
+      question: "Vous présenterez deux politiques différentes pouvant être mises en œuvre pour lutter contre le chômage.",
+      year: "2025",
+      location: "France métropolitaine, Remplacement"
     }
   ],
   '4': [
