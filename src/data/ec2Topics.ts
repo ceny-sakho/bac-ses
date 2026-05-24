@@ -301,7 +301,7 @@ export const ec2Topics: TopicsByChapter = {
   ],
   '10': [
     {
-      question: "Vous montrerez que l'engagement politique peut prendre des formes variées.",
+      question: "Vous montrerez que l'engagement politique peut dépendre de différentes variables sociodémographiques.",
       year: "2023",
       location: "Liban"
     },
