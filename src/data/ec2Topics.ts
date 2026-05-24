@@ -125,6 +125,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous expliquerez la corrélation entre le taux de chômage et le taux de croissance du PIB de 2010 à 2017.",
       year: "2021",
       location: "France métropolitaine"
+    },
+    {
+      question: "Expliquez comment les problèmes d'appariement sont source de chômage.",
+      year: "2025",
+      location: "Amérique du Nord"
     }
   ],
   '4': [
