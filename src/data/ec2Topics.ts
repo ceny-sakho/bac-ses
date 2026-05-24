@@ -359,6 +359,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous montrerez que l'engagement politique dépend de variables sociodémographiques.",
       year: "2025",
       location: "Autres centres étrangers"
+    },
+    {
+      question: "Vous montrerez que le vote dépend de variables sociodémographiques.",
+      year: "2023",
+      location: "Liban"
     }
   ],
   '11': [
