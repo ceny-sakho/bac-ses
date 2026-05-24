@@ -46,6 +46,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous montrerez que les droits de propriété incitent à investir et à innover.",
       year: "2025",
       location: "Autres centres étrangers"
+    },
+    {
+      question: "Vous montrerez que l'accroissement de la productivité globale des facteurs est source de la croissance économique.",
+      year: "2025",
+      location: "France métropolitaine"
     }
   ],
   '2': [
