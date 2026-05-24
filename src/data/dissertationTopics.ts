@@ -183,7 +183,7 @@ export const dissertationTopics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "Comment est structurée la société française actuelle ?",
+      question: "L'approche en termes de classes sociales suffit-elle à rendre compte de la structure de la société française actuelle ?",
       year: "2023",
       location: "Liban"
     },
