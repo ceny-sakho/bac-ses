@@ -184,8 +184,8 @@ export const dissertationTopics: TopicsByChapter = {
     },
     {
       question: "L'approche en termes de classes sociales suffit-elle à rendre compte de la structure de la société française actuelle ?",
-      year: "2023",
-      location: "Liban"
+      year: "2024",
+      location: "Amérique du Sud"
     },
     {
       question: "L'approche en termes de classes sociales permet-elle de rendre compte de la structure actuelle de la société française ?",
