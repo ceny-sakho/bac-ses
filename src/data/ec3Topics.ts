@@ -115,6 +115,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que le commerce international a différents effets possibles.",
             year: "2025",
             location: "Autres centres étrangers"
+          },
+          {
+            question: "Vous montrerez que le recours au protectionnisme peut présenter des avantages.",
+            year: "2025",
+            location: "France métropolitaine"
           }
         ];
       case '3':
