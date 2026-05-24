@@ -272,9 +272,9 @@ export const ec2Topics: TopicsByChapter = {
       location: "France métropolitaine"
     },
     {
-      question: "Vous montrerez que la fluidité sociale est un concept complexe.",
-      year: "2022",
-      location: "Amérique du Sud"
+      question: "Montrez quelles sont les spécificités de la mobilité sociale des hommes et des femmes (par rapport à leurs pères et à leurs mères).",
+      year: "2021",
+      location: "Autres centres étrangers"
     },
     {
       question: "Vous présenterez deux facteurs expliquant l'augmentation de la mobilité sociale ascendante des filles par rapport à leur mère entre 1977 et 2015.",
@@ -282,7 +282,7 @@ export const ec2Topics: TopicsByChapter = {
       location: "Amérique du Nord"
     },
     {
-      question: "vous mettrez en évidence les caractéristiques de la mobilité sociale des femmes.",
+      question: "Vous mettrez en évidence les caractéristiques de la mobilité sociale des femmes.",
       year: "2025",
       location: "Asie"
     }
