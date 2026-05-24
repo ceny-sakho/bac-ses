@@ -41,6 +41,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous montrerez que l’accumulation des facteurs et l’accroissement de la productivité globale des facteurs sont des sources de la croissance économique.",
       year: "2026",
       location: "Amérique du Nord"
+    },
+    {
+      question: "Vous montrerez que les droits de propriété incitent à investir et à innover.",
+      year: "2025",
+      location: "Autres centres étrangers"
     }
   ],
   '2': [
