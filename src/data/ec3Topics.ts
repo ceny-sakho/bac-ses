@@ -242,6 +242,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que l'évolution de la structure socioprofessionnelle contribue à expliquer la mobilité sociale.",
             year: "2024",
             location: "Amérique du Sud"
+          },
+          {
+            question: "Vous montrerez que l'analyse de la société française en termes de classes sociales peut être contestée.",
+            year: "2025",
+            location: "Amérique du Nord"
           }
         ];
       case '7':
