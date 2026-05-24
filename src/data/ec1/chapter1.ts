@@ -102,8 +102,8 @@ export const chapter1Topics: EC1Topic[] = [
     location: "France métropolitaine"
   },
   {
-    question: "Quels sont les effets du marché unique sur la croissance économique dans l’Union européenne ?",
-    year: "2024",
+    question: "Vous montrerez comment une institution peut contribuer à la croissance économique.",
+    year: "2025",
     location: "Amérique du Nord"
   }
 ];
