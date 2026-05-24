@@ -343,6 +343,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Comment la préservation de l'environnement est-elle devenue un problème public ?",
       year: "2020",
       location: "France métropolitaine"
+    },
+    {
+      question: "L'action des pouvoirs publics pour lutter contre le changement climatique est-elle efficace ?",
+      year: "2026",
+      location: "Amérique du Nord"
     }
   ]
 };
