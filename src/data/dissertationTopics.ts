@@ -51,6 +51,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Quelles sont les sources de la croissance économique ?",
       year: "2024",
       location: "Autres centres étrangers"
+    },
+    {
+      question: "Quelles sont les sources de la croissance économique ?",
+      year: "2026",
+      location: "Amérique du Nord"
     }
   ],
   '2': [
