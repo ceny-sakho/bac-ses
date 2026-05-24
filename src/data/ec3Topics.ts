@@ -356,6 +356,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que l'évolution des formes d’organisation du travail a des effets positifs et négatifs sur les conditions de travail.",
             year: "2025",
             location: "Amérique du Nord"
+          },
+          {
+            question: "Vous montrerez que les évolutions des formes d'organisation du travail ont des effets positifs et négatifs sur les conditions de travail.",
+            year: "2026",
+            location: "Amérique du Nord"
           }
         ];
       case '10':
