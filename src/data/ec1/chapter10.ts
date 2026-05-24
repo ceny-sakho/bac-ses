@@ -115,5 +115,10 @@ export const chapter10Topics: EC1Topic[] = [
     question: "En quoi la consommation engagée peut-elle être comprise comme une forme d'engagement politique ?",
     year: "2020",
     location: "France métropolitaine"
+  },
+  {
+    question: "Vous présenterez les nouveaux enjeux de mobilisation de l’action collective.",
+    year: "2026",
+    location: "Amérique du Nord"
   }
 ];
