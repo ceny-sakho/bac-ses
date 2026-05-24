@@ -35,5 +35,10 @@ export const chapter12Topics: EC1Topic[] = [
     question: "Vous expliquerez pourquoi, en présence de bien commun, les négociations et accords internationaux liés à la préservation de l'environnement sont contraints par des stratégies de passager clandestin.",
     year: "2026",
     location: "Amérique du Nord"
+  },
+  {
+    question: "Présentez un avantage et une limite de la taxation en matière de préservation de l'environnement.",
+    year: "2025",
+    location: "Amérique du Nord"
   }
 ];
