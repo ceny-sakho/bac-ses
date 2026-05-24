@@ -353,6 +353,16 @@ export const dissertationTopics: TopicsByChapter = {
       question: "L'action des pouvoirs publics pour lutter contre le changement climatique est-elle efficace ?",
       year: "2026",
       location: "Amérique du Nord"
+    },
+    {
+      question: "À quelles limites et contraintes l’action publique et les négociations internationales pour la préservation de l’environnement se heurtent-elles ?",
+      year: "2025",
+      location: "Amérique du Nord"
+    },
+    {
+      question: "Quels sont les effets et limites des principaux instruments dont disposent les pouvoirs publics face aux externalités négatives sur l’environnement ?",
+      year: "2025",
+      location: "Asie"
     }
   ]
 };
