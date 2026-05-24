@@ -450,6 +450,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
           question: "Vous montrerez que les pouvoirs publics disposent de plusieurs instruments pour préserver l'environnement.",
           year: "2024",
           location: "Amérique du Sud"
+        },
+        {
+          question: "Vous montrerez que les instruments dont disposent les pouvoirs publics pour faire face aux externalités négatives sur l'environnement présentent des avantages.",
+          year: "2025",
+          location: "Autres centres étrangers"
         }
       ];
     default:
