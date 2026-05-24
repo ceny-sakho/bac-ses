@@ -45,5 +45,10 @@ export const chapter9Topics: EC1Topic[] = [
     question: "Présentez deux caractéristiques du modèle post-taylorien d'organisation du travail.",
     year: "2024",
     location: "Autres centres étrangers"
+  },
+  {
+    question: "Vous présenterez les principales caractéristiques du modèle taylorien d'organisation du travail.",
+    year: "2025",
+    location: "Autres centres étrangers"
   }
 ];
