@@ -257,6 +257,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que l'analyse de la société française en termes de classes sociales peut être contestée.",
             year: "2025",
             location: "Amérique du Nord"
+          },
+          {
+            question: "Vous montrerez que la structure socioprofessionnelle en France s'est transformée depuis la seconde moitié du vingtième siècle.",
+            year: "2025",
+            location: "France métropolitaine"
           }
         ];
       case '7':
