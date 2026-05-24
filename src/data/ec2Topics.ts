@@ -135,6 +135,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Expliquez comment les problèmes d'appariement sont source de chômage.",
       year: "2025",
       location: "Amérique du Nord"
+    },
+    {
+      question: "Vous expliquerez les effets des fluctuations de l'activité économique sur le chômage conjoncturel.",
+      year: "2025",
+      location: "Asie"
     }
   ],
   '4': [
