@@ -138,6 +138,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que le chômage structurel a plusieurs origines.",
             year: "2023",
             location: "Amérique du Nord"
+          },
+          {
+            question: "Vous montrerez que la lutte contre le chômage nécessite la mise en œuvre de différentes politiques.",
+            year: "2025",
+            location: "Asie"
           }
         ];
       case '4':
