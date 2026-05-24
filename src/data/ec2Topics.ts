@@ -36,6 +36,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Montrez que les contributions à la croissance ne se réduisent pas à la seule accumulation des facteurs de production.",
       year: "2021",
       location: "Asie"
+    },
+    {
+      question: "Vous montrerez que l’accumulation des facteurs et l’accroissement de la productivité globale des facteurs sont des sources de la croissance économique.",
+      year: "2026",
+      location: "Amérique du Nord"
     }
   ],
   '2': [
@@ -156,7 +161,7 @@ export const ec2Topics: TopicsByChapter = {
       location: "La Réunion"
     },
     {
-      question: "vous présenterez les difficultés de coordination entre la politique monétaire et les politiques budgétaires dans les pays de la zone euro.",
+      question: "Vous présenterez les difficultés de coordination entre la politique monétaire et les politiques budgétaires dans les pays de la zone euro.",
       year: "2026",
       location: "Amérique du Nord"
     }
