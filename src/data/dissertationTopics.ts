@@ -130,6 +130,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Comment les différentes politiques permettent-elles de lutter contre le chômage ?",
       year: "2023",
       location: "Autres centres étrangers"
+    },
+    {
+      question: "Comment expliquer et réduire le chômage structurel ?",
+      year: "2025",
+      location: "Amérique du Nord"
     }
   ],
   '4': [
