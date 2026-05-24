@@ -30,5 +30,10 @@ export const chapter3Topics: EC1Topic[] = [
     question: "Présentez un mécanisme montrant comment les politiques macroéconomiques de soutien de la demande globale permettent de lutter contre le chômage.",
     year: "2021",
     location: "Autres centres étrangers"
+  },
+  {
+    question: "Vous montrerez que les asymétries d'information sont une source de chômage structurel.",
+    year: "2025",
+    location: "France métropolitaine"
   }
 ];
