@@ -194,6 +194,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous présenterez les difficultés de coordination entre la politique monétaire et les politiques budgétaires dans les pays de la zone euro.",
       year: "2026",
       location: "Amérique du Nord"
+    },
+    {
+      question: "Vous présenterez le marché unique et ses effets sur la croissance économique.",
+      year: "2025",
+      location: "France métropolitaine, Remplacement"
     }
   ],
   '6': [
