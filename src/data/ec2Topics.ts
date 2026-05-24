@@ -260,6 +260,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous présenterez deux facteurs expliquant l'augmentation de la mobilité sociale ascendante des filles par rapport à leur mère entre 1977 et 2015.",
       year: "2024",
       location: "Amérique du Nord"
+    },
+    {
+      question: "vous mettrez en évidence les caractéristiques de la mobilité sociale des femmes.",
+      year: "2025",
+      location: "Asie"
     }
   ],
   '9': [
