@@ -409,6 +409,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que l'engagement politique dépend de différentes variables sociodémographiques.",
             year: "2024",
             location: "Amérique du Nord"
+          },
+          {
+            question: "Vous montrerez que l'action collective est diversifiée.",
+            year: "2025",
+            location: "France métropolitaine, Remplacement"
           }
         ];
       case '11':
