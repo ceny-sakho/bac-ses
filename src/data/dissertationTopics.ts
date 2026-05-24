@@ -324,6 +324,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "L'engagement politique ne dépend-il que de variables sociodémographiques ?",
       year: "2025",
       location: "Autres centres étrangers"
+    },
+    {
+      question: "Les variables sociodémographiques suffisent-elles à expliquer l’engagement politique ?",
+      year: "2024",
+      location: "Polynésie"
     }
   ],
   '11': [
