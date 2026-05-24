@@ -108,6 +108,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Quels sont les effets induits par le commerce international ?",
       year: "2024",
       location: "Amérique du Sud"
+    },
+    {
+      question: "Dans quelle mesure les effets induits par le commerce international justifient-ils le recours au protectionnisme ?",
+      year: "2025",
+      location: "France métropolitaine, Remplacement"
     }
   ],
   '3': [
