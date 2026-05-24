@@ -120,5 +120,10 @@ export const chapter10Topics: EC1Topic[] = [
     question: "Vous présenterez les nouveaux enjeux de mobilisation de l’action collective.",
     year: "2026",
     location: "Amérique du Nord"
+  },
+  {
+    question: "Vous montrerez comment les rétributions symboliques peuvent expliquer l'engagement politique, malgré le paradoxe de l'action collective.",
+    year: "2025",
+    location: "Asie"
   }
 ];
