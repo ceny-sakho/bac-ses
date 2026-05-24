@@ -65,5 +65,10 @@ export const chapter6Topics: EC1Topic[] = [
     question: "Présentez deux explications de l'évolution de la structure socioprofessionnelle en France depuis la seconde moitié du XXe siècle.",
     year: "2024",
     location: "Asie"
+  },
+  {
+    question: "Vous montrerez que la catégorie socioprofessionnelle est un facteur de structuration de l'espace social.",
+    year: "2025",
+    location: "Autres centres étrangers"
   }
 ];
