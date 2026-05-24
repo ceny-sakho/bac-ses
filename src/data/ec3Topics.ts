@@ -470,6 +470,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
           question: "Vous montrerez que les instruments dont disposent les pouvoirs publics pour faire face aux externalités négatives sur l'environnement présentent des avantages.",
           year: "2025",
           location: "Autres centres étrangers"
+        },
+        {
+          question: "Vous montrerez qu'en présence de bien commun les pays rencontrent des difficultés, dans les négociations internationales, pour préserver l'environnement.",
+          year: "2025",
+          location: "France métropolitaine, Remplacement"
         }
       ];
     default:
