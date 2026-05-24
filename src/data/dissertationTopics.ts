@@ -277,6 +277,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Dans quelle mesure les évolutions de l'emploi affaiblissent-elles le pouvoir intégrateur du travail ?",
       year: "2024",
       location: "France métropolitaine"
+    },
+    {
+      question: "Le travail aujourd'hui est-il toujours facteur d'intégration sociale ?",
+      year: "2025",
+      location: "Autres centres étrangers"
     }
   ],
   '10': [
