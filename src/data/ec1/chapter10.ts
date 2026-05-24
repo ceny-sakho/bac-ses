@@ -125,5 +125,10 @@ export const chapter10Topics: EC1Topic[] = [
     question: "Vous montrerez comment les rétributions symboliques peuvent expliquer l'engagement politique, malgré le paradoxe de l'action collective.",
     year: "2025",
     location: "Asie"
+  },
+  {
+    question: "Vous montrerez, à l'aide d'un exemple, que les incitations sélectives peuvent expliquer l'engagement politique.",
+    year: "2025",
+    location: "France métropolitaine"
   }
 ];
