@@ -24,9 +24,9 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             location: "Asie"
           },
           {
-            question: "Vous montrerez que la croissance économique soutenable se heurte à des limites écologiques.",
+            question: "Vous montrerez qu'il existe des limites écologiques à la croissance économique soutenable.",
             year: "2022",
-            location: "France métropolitaine"
+            location: "France métropolitaine, Remplacement"
           },
           {
             question: "Vous montrerez que le progrès technique est endogène.",
