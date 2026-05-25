@@ -120,6 +120,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que le recours au protectionnisme peut présenter des avantages.",
             year: "2025",
             location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez comment la productivité des firmes détermine la compétitivité, et donc la capacité à exporter d'un pays.",
+            year: "2022",
+            location: "Nouvelle-Calédonie"
           }
         ];
       case '3':
