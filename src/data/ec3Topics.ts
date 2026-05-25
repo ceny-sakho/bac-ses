@@ -231,7 +231,7 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
           {
             question: "Vous montrerez que l'approche en termes de classes sociales, pour rendre compte de la société française, peut être remise en cause.",
             year: "2022",
-            location: "Nouvelle-Calédonie"
+            location: "France métropolitaine"
           },
           {
             question: "Vous montrerez quels sont les processus qui remettent en cause une approche en termes de classes sociales pour rendre compte de la société française actuelle.",
