@@ -57,9 +57,9 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
       case '2':
         return [
           {
-            question: "Vous montrerez que l'école favorise l'égalité des chances.",
-            year: "2021",
-            location: "Autres centres étrangers"
+            question: "Vous montrerez que les effets du commerce international sur les inégalités sont contrastés.",
+            year: "2023",
+            location: "La Réunion"
           },
           {
             question: "Vous montrerez comment la productivité des firmes détermine la compétitivité, et donc la capacité à exporter d'un pays.",
