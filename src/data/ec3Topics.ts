@@ -235,8 +235,8 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
           },
           {
             question: "Vous montrerez quels sont les processus qui remettent en cause une approche en termes de classes sociales pour rendre compte de la société française actuelle.",
-            year: "2023",
-            location: "Polynésie"
+            year: "2022",
+            location: "Nouvelle-Calédonie"
           },
           {
             question: "Vous montrerez que différents processus permettent de comprendre les principales évolutions de la structure socioprofessionnelle.",
