@@ -44,7 +44,7 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             location: "La Réunion"
           },
           {
-            question: "Vous montrerez que les institutions jouent un rôle dans la croissance économique.",
+            question: "Vous montrerez comment les institutions influent sur la croissance économique.",
             year: "2023",
             location: "Autres centres étrangers"
           },
