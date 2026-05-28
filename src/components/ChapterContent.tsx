@@ -18,9 +18,6 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showSynthesis, setShowSynthesis] = useState(false);
-  const [showDevoirs, setShowDevoirs] = useState(false);
-  const [showCours, setShowCours] = useState(false);
 
   const normalizeChapterSlug = (slug: string) =>
     slug
@@ -28,24 +25,21 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase();
 
-  // Gérer l'ouverture automatique de l'onglet devoirs via query param
-  useEffect(() => {
-    const tab = searchParams.get('tab');
-    if (tab === 'devoirs') {
-      setShowDevoirs(true);
-      setShowSynthesis(false);
-      setShowCours(false);
-      // Nettoyer le paramètre après l'avoir utilisé
-      searchParams.delete('tab');
-      setSearchParams(searchParams, { replace: true });
-    } else if (tab === 'synthese') {
-      setShowSynthesis(true);
-      setShowDevoirs(false);
-      setShowCours(false);
-      searchParams.delete('tab');
-      setSearchParams(searchParams, { replace: true });
-    }
-  }, [searchParams, setSearchParams]);
+  // L'onglet/vue actif vit dans l'URL (?view=cours|synthese|devoirs)
+  // pour que window.history.back() restaure naturellement l'état précédent.
+  const currentView = searchParams.get('view') ?? searchParams.get('tab');
+  const showCours = currentView === 'cours';
+  const showSynthesis = currentView === 'synthese';
+  const showDevoirs = currentView === 'devoirs';
+
+  const openView = (view: 'cours' | 'synthese' | 'devoirs', replace = false) => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.delete('tab');
+    nextParams.set('view', view);
+    setSearchParams(nextParams, { replace });
+  };
+
+  const goBack = () => window.history.back();
 
   // Extraire le niveau et la matière de l'URL
   const getChapterInfo = () => {
@@ -90,7 +84,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           chapterId={chapterId}
           level={level}
           subject={subject}
-          onBackToChapter={() => setShowCours(false)}
+          onBackToChapter={goBack}
         />
       </div>
     );
@@ -102,7 +96,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
         <div className="mb-6 flex flex-wrap items-center gap-3">
           <Button
             variant="ghost"
-            onClick={() => setShowSynthesis(false)}
+            onClick={goBack}
             className="hover:bg-[#403E43] hover:text-white"
           >
             <BookOpenText className="mr-2 h-4 w-4" />
@@ -129,11 +123,8 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           level={level}
           subject={subject}
           image={image}
-          onBackToChapter={() => setShowSynthesis(false)}
-          onShowDevoirs={() => {
-            setShowSynthesis(false);
-            setShowDevoirs(true);
-          }}
+          onBackToChapter={goBack}
+          onShowDevoirs={() => openView('devoirs', true)}
         />
       </div>
     );
@@ -144,7 +135,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
       <div>
         <Button 
           variant="ghost" 
-          onClick={() => setShowDevoirs(false)}
+          onClick={goBack}
           className="ml-4 mt-4 hover:bg-[#403E43] hover:text-white"
         >
           <BookOpenText className="mr-2 h-4 w-4" />
@@ -155,11 +146,8 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           level={level}
           subject={subject}
           image={image}
-          onBackToChapter={() => setShowDevoirs(false)}
-          onShowSynthesis={() => {
-            setShowDevoirs(false);
-            setShowSynthesis(true);
-          }}
+          onBackToChapter={goBack}
+          onShowSynthesis={() => openView('synthese', true)}
         />
       </div>
     );
@@ -199,7 +187,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
         <Button 
           size="lg" 
           className="bg-[#B69B7D] hover:bg-[#9F876C] flex items-center gap-2"
-          onClick={() => setShowCours(true)}
+          onClick={() => openView('cours')}
         >
           <BookOpen className="w-5 h-5" />
           DÉCOUVRIR LE COURS
@@ -208,7 +196,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           size="lg" 
           variant="outline" 
           className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
-          onClick={() => setShowSynthesis(true)}
+          onClick={() => openView('synthese')}
         >
           <BookOpenText className="w-5 h-5" />
           SYNTHÈSE
@@ -217,7 +205,7 @@ export const ChapterContent: React.FC<ChapterContentProps> = ({
           size="lg" 
           variant="outline" 
           className="flex items-center gap-2 hover:bg-[#403E43] hover:text-white"
-          onClick={() => setShowDevoirs(true)}
+          onClick={() => openView('devoirs')}
         >
           <ClipboardCheck className="w-5 h-5" />
           DEVOIRS CORRIGÉS
