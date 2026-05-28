@@ -86,7 +86,7 @@ const SubjectView = () => {
     } else {
       searchParams.set('level', level);
     }
-    setSearchParams(searchParams, { replace: true });
+    setSearchParams(searchParams);
   };
 
   const getChaptersForSubject = (): ChaptersData => {
@@ -173,7 +173,7 @@ const SubjectView = () => {
           <Button 
             variant="ghost" 
             className="mb-4 hover:bg-[#403E43] hover:text-white transition-colors"
-            onClick={() => navigate('/', { replace: true })}
+            onClick={() => window.history.back()}
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
             Retour
