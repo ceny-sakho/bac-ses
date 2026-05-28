@@ -14,7 +14,7 @@ interface DissertationTopicsProps {
 }
 
 export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter, title }) => {
-  const { back, getBacPath, push } = useAppNavigation();
+  const { push } = useAppNavigation();
   const [showPdf, setShowPdf] = useState(false);
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number | null>(null);
   const [pdfFiles, setPdfFiles] = useState<{ [key: number]: string }>({});
