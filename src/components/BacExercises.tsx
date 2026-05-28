@@ -7,10 +7,12 @@ import { useAppNavigation, type BacTab } from '@/contexts/NavigationContext';
 export const BacExercises = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { activeBacTab, setActiveBacTab, push } = useAppNavigation();
-  
+
+  const validTabs = ['dissertation', 'ec1', 'ec2', 'ec3'];
+
   const getInitialTab = () => {
     const tabFromUrl = searchParams.get('tab');
-    if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3'].includes(tabFromUrl)) {
+    if (tabFromUrl && validTabs.includes(tabFromUrl)) {
       return tabFromUrl as BacTab;
     }
     return activeBacTab;
@@ -18,17 +20,10 @@ export const BacExercises = () => {
 
   useEffect(() => {
     const tabFromUrl = searchParams.get('tab');
-    if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3'].includes(tabFromUrl)) {
+    if (tabFromUrl && validTabs.includes(tabFromUrl)) {
       setActiveBacTab(tabFromUrl as BacTab);
-      return;
     }
-
-    if (activeBacTab !== 'dissertation') {
-      const nextParams = new URLSearchParams(searchParams);
-      nextParams.set('tab', activeBacTab);
-      setSearchParams(nextParams, { replace: true });
-    }
-  }, [activeBacTab, searchParams, setActiveBacTab, setSearchParams]);
+  }, [searchParams, setActiveBacTab]);
 
   const handleTabChange = (value: string) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -38,7 +33,8 @@ export const BacExercises = () => {
     } else {
       nextParams.set('tab', value);
     }
-    setSearchParams(nextParams, { replace: true });
+    // Push (no replace) so each tab change is a history entry and Retour restores the previous tab.
+    setSearchParams(nextParams);
   };
   
   const dissertationChapters = [
