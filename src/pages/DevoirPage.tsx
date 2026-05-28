@@ -16,8 +16,7 @@ const DevoirPage = () => {
   const devoir = devoirs[devoirIndex];
 
   const handleBack = () => {
-    // Naviguer vers la page du chapitre avec le paramètre pour afficher l'onglet devoirs
-    navigate(`/chapitre/${level}-ch${chapterNumber}?tab=devoirs`, { replace: true });
+    window.history.back();
   };
 
   const handleDownload = () => {

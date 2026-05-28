@@ -59,7 +59,7 @@ const ObjectifPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Button
           variant="ghost"
-          onClick={() => navigate(`/chapitre/${normalizedChapterId}?tab=synthese`, { replace: true })}
+          onClick={() => window.history.back()}
           className="mb-6 hover:bg-[#403E43] hover:text-white"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
