@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export type BacTab = "dissertation" | "ec1" | "ec2" | "ec3";
+export type BacTab = "dissertation" | "ec1" | "ec2" | "ec3" | "filtres";
 
 interface NavigationEntry {
   pathname: string;
@@ -40,7 +40,11 @@ interface NavigationContextValue {
 const NavigationContext = createContext<NavigationContextValue | null>(null);
 
 const isBacTab = (value: unknown): value is BacTab =>
-  value === "dissertation" || value === "ec1" || value === "ec2" || value === "ec3";
+  value === "dissertation" ||
+  value === "ec1" ||
+  value === "ec2" ||
+  value === "ec3" ||
+  value === "filtres";
 
 const asObject = (value: unknown): Record<string, unknown> => {
   if (value && typeof value === "object" && !Array.isArray(value)) {
