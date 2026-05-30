@@ -3,16 +3,15 @@ import { useSearchParams } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAppNavigation, type BacTab } from '@/contexts/NavigationContext';
+import { FiltresPanel } from './FiltresPanel';
 
 export const BacExercises = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { activeBacTab, setActiveBacTab, push } = useAppNavigation();
-
-  const validTabs = ['dissertation', 'ec1', 'ec2', 'ec3'];
-
+  
   const getInitialTab = () => {
     const tabFromUrl = searchParams.get('tab');
-    if (tabFromUrl && validTabs.includes(tabFromUrl)) {
+    if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3', 'filtres'].includes(tabFromUrl)) {
       return tabFromUrl as BacTab;
     }
     return activeBacTab;
@@ -20,10 +19,17 @@ export const BacExercises = () => {
 
   useEffect(() => {
     const tabFromUrl = searchParams.get('tab');
-    if (tabFromUrl && validTabs.includes(tabFromUrl)) {
+    if (tabFromUrl && ['dissertation', 'ec1', 'ec2', 'ec3', 'filtres'].includes(tabFromUrl)) {
       setActiveBacTab(tabFromUrl as BacTab);
+      return;
     }
-  }, [searchParams, setActiveBacTab]);
+
+    if (activeBacTab !== 'dissertation') {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.set('tab', activeBacTab);
+      setSearchParams(nextParams, { replace: true });
+    }
+  }, [activeBacTab, searchParams, setActiveBacTab, setSearchParams]);
 
   const handleTabChange = (value: string) => {
     const nextParams = new URLSearchParams(searchParams);
@@ -33,8 +39,7 @@ export const BacExercises = () => {
     } else {
       nextParams.set('tab', value);
     }
-    // Push (no replace) so each tab change is a history entry and Retour restores the previous tab.
-    setSearchParams(nextParams);
+    setSearchParams(nextParams, { replace: true });
   };
   
   const dissertationChapters = [
@@ -100,11 +105,12 @@ export const BacExercises = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Tabs value={getInitialTab()} onValueChange={handleTabChange} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="dissertation">Dissertation</TabsTrigger>
           <TabsTrigger value="ec1">EC1</TabsTrigger>
           <TabsTrigger value="ec2">EC2</TabsTrigger>
           <TabsTrigger value="ec3">EC3</TabsTrigger>
+          <TabsTrigger value="filtres">Filtres</TabsTrigger>
         </TabsList>
         <TabsContent value="dissertation">
           <Card>
@@ -217,6 +223,9 @@ export const BacExercises = () => {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+        <TabsContent value="filtres">
+          <FiltresPanel />
         </TabsContent>
       </Tabs>
     </div>

@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { TopicsTable } from './ec3/TopicsTable';
 import { getTopicsByChapter } from '../data/ec3Topics';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 interface EC3TopicsProps {
   chapter: string;
@@ -10,13 +11,14 @@ interface EC3TopicsProps {
 }
 
 export const EC3Topics: React.FC<EC3TopicsProps> = ({ chapter, title }) => {
+  const { back, getBacPath } = useAppNavigation();
   const topics = getTopicsByChapter(chapter);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Button 
         variant="ghost" 
-        onClick={() => window.history.back()}
+        onClick={() => back(getBacPath())}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />

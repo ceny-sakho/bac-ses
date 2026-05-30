@@ -16,14 +16,14 @@ interface EC2TopicsProps {
 }
 
 export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
-  const { push } = useAppNavigation();
+  const { back, getBacPath, push } = useAppNavigation();
   const topics = ec2Topics[chapter] || [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Button 
         variant="ghost" 
-        onClick={() => window.history.back()}
+        onClick={() => back(getBacPath())}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
       >
         <ArrowLeft className="h-4 w-4" />

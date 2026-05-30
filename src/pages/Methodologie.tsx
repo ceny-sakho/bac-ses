@@ -27,7 +27,7 @@ const Methodologie: React.FC = () => {
     <main className="max-w-7xl mx-auto px-4 py-8">
       <Button
         variant="ghost"
-        onClick={() => window.history.back()}
+        onClick={() => navigate('/', { replace: true })}
         className="flex items-center gap-2 hover:bg-gris-sideral hover:text-white mb-6"
         aria-label="Retour"
       >
