@@ -95,9 +95,9 @@ const buildAllTopics = (): AggregatedTopic[] => {
     });
   };
 
-  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Écrit - Dissertation', 'dissertation');
-  addFromMap(ec1Topics as any, 'ecrit-ec1', 'Écrit - EC1', 'ec1');
-  addFromMap(ec2Topics, 'ecrit-ec2', 'Écrit - EC2', 'ec2');
+  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Dissertation', 'dissertation');
+  addFromMap(ec1Topics as any, 'ecrit-ec1', 'EC1', 'ec1');
+  addFromMap(ec2Topics, 'ecrit-ec2', 'EC2', 'ec2');
 
   Object.keys(CHAPTER_TITLES).forEach((chapter) => {
     const topics = getEc3TopicsByChapter(chapter) || [];
