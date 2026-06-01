@@ -8,7 +8,6 @@ import { getTopicsByChapter as getEc3TopicsByChapter } from '@/data/ec3Topics';
 import {
   useAppNavigation,
   FILTER_INDIFFERENT as INDIFFERENT,
-  DEFAULT_BAC_FILTERS,
 } from '@/contexts/NavigationContext';
 
 const TYPE_OPTIONS = [
