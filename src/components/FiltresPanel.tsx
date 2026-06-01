@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { dissertationTopics } from '@/data/dissertationTopics';
 import { ec1Topics } from '@/data/ec1';
 import { ec2Topics } from '@/data/ec2Topics';
 import { getTopicsByChapter as getEc3TopicsByChapter } from '@/data/ec3Topics';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 const INDIFFERENT = 'indifferent';
 
@@ -70,6 +71,8 @@ interface AggregatedTopic {
   question: string;
   year: string;
   location: string;
+  indexInChapter: number;
+  route?: string;
 }
 
 const buildAllTopics = (): AggregatedTopic[] => {
@@ -79,26 +82,36 @@ const buildAllTopics = (): AggregatedTopic[] => {
     map: Record<string, Array<{ question: string; year: string; location: string }>>,
     type: string,
     typeLabel: string,
+    routePrefix: string,
   ) => {
     Object.entries(map).forEach(([chapter, topics]) => {
-      topics.forEach((t) => {
-        all.push({ type, typeLabel, chapter, ...t });
+      topics.forEach((t, idx) => {
+        all.push({
+          type,
+          typeLabel,
+          chapter,
+          ...t,
+          indexInChapter: idx,
+          route: `/${routePrefix}/${chapter}/sujet/${idx + 1}`,
+        });
       });
     });
   };
 
-  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Écrit - Dissertation');
-  addFromMap(ec1Topics as any, 'ecrit-ec1', 'Écrit - EC1');
-  addFromMap(ec2Topics, 'ecrit-ec2', 'Écrit - EC2');
+  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Écrit - Dissertation', 'dissertation');
+  addFromMap(ec1Topics as any, 'ecrit-ec1', 'Écrit - EC1', 'ec1');
+  addFromMap(ec2Topics, 'ecrit-ec2', 'Écrit - EC2', 'ec2');
 
   Object.keys(CHAPTER_TITLES).forEach((chapter) => {
     const topics = getEc3TopicsByChapter(chapter) || [];
-    topics.forEach((t) => {
+    topics.forEach((t, idx) => {
       all.push({
         type: 'ecrit-ec3',
         typeLabel: 'Écrit - EC3',
         chapter,
         ...t,
+        indexInChapter: idx,
+        route: `/ec3/${chapter}/sujet/${idx + 1}`,
       });
     });
   });
@@ -139,18 +152,44 @@ const RadioSection: React.FC<RadioSectionProps> = ({ title, name, options, value
 );
 
 export const FiltresPanel: React.FC = () => {
-  const [pendingType, setPendingType] = useState(INDIFFERENT);
-  const [pendingChapter, setPendingChapter] = useState(INDIFFERENT);
-  const [pendingYear, setPendingYear] = useState(INDIFFERENT);
-  const [pendingLocation, setPendingLocation] = useState(INDIFFERENT);
+  const { push } = useAppNavigation();
 
-  const [applied, setApplied] = useState({
-    type: INDIFFERENT,
-    chapter: INDIFFERENT,
-    year: INDIFFERENT,
-    location: INDIFFERENT,
-    submitted: false,
-  });
+  const STORAGE_KEY = 'bac-filtres-state-v1';
+  const initial = (() => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
+  const [pendingType, setPendingType] = useState<string>(initial?.pendingType ?? INDIFFERENT);
+  const [pendingChapter, setPendingChapter] = useState<string>(initial?.pendingChapter ?? INDIFFERENT);
+  const [pendingYear, setPendingYear] = useState<string>(initial?.pendingYear ?? INDIFFERENT);
+  const [pendingLocation, setPendingLocation] = useState<string>(initial?.pendingLocation ?? INDIFFERENT);
+
+  const [applied, setApplied] = useState(
+    initial?.applied ?? {
+      type: INDIFFERENT,
+      chapter: INDIFFERENT,
+      year: INDIFFERENT,
+      location: INDIFFERENT,
+      submitted: false,
+    },
+  );
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ pendingType, pendingChapter, pendingYear, pendingLocation, applied }),
+      );
+    } catch {
+      // ignore
+    }
+  }, [pendingType, pendingChapter, pendingYear, pendingLocation, applied]);
 
   const allTopics = useMemo(() => buildAllTopics(), []);
 
@@ -242,7 +281,23 @@ export const FiltresPanel: React.FC = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filtered.map((t, idx) => (
-                  <Card key={idx}>
+                  <Card
+                    key={idx}
+                    className={t.route ? 'cursor-pointer hover:shadow-lg transition-shadow' : ''}
+                    onClick={t.route ? () => push(t.route!) : undefined}
+                    role={t.route ? 'link' : undefined}
+                    tabIndex={t.route ? 0 : undefined}
+                    onKeyDown={
+                      t.route
+                        ? (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              push(t.route!);
+                            }
+                          }
+                        : undefined
+                    }
+                  >
                     <CardContent className="p-4 space-y-2">
                       <div className="flex flex-wrap gap-2 text-xs">
                         <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700">
