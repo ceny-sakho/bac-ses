@@ -151,7 +151,7 @@ const RadioSection: React.FC<RadioSectionProps> = ({ title, name, options, value
 export const FiltresPanel: React.FC = () => {
   const { push } = useAppNavigation();
 
-  const STORAGE_KEY = 'bac-filtres-state-v1';
+  const STORAGE_KEY = 'bac-filtres-state-v2';
   const initial = (() => {
     if (typeof window === 'undefined') return null;
     try {
