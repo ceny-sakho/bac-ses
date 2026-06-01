@@ -5,6 +5,7 @@ import { dissertationTopics } from '@/data/dissertationTopics';
 import { ec1Topics } from '@/data/ec1';
 import { ec2Topics } from '@/data/ec2Topics';
 import { getTopicsByChapter as getEc3TopicsByChapter } from '@/data/ec3Topics';
+import { useAppNavigation } from '@/contexts/NavigationContext';
 
 const INDIFFERENT = 'indifferent';
 
@@ -70,6 +71,8 @@ interface AggregatedTopic {
   question: string;
   year: string;
   location: string;
+  indexInChapter: number;
+  route?: string;
 }
 
 const buildAllTopics = (): AggregatedTopic[] => {
@@ -79,26 +82,36 @@ const buildAllTopics = (): AggregatedTopic[] => {
     map: Record<string, Array<{ question: string; year: string; location: string }>>,
     type: string,
     typeLabel: string,
+    routePrefix: string,
   ) => {
     Object.entries(map).forEach(([chapter, topics]) => {
-      topics.forEach((t) => {
-        all.push({ type, typeLabel, chapter, ...t });
+      topics.forEach((t, idx) => {
+        all.push({
+          type,
+          typeLabel,
+          chapter,
+          ...t,
+          indexInChapter: idx,
+          route: `/${routePrefix}/${chapter}/sujet/${idx + 1}`,
+        });
       });
     });
   };
 
-  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Écrit - Dissertation');
-  addFromMap(ec1Topics as any, 'ecrit-ec1', 'Écrit - EC1');
-  addFromMap(ec2Topics, 'ecrit-ec2', 'Écrit - EC2');
+  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Écrit - Dissertation', 'dissertation');
+  addFromMap(ec1Topics as any, 'ecrit-ec1', 'Écrit - EC1', 'ec1');
+  addFromMap(ec2Topics, 'ecrit-ec2', 'Écrit - EC2', 'ec2');
 
   Object.keys(CHAPTER_TITLES).forEach((chapter) => {
     const topics = getEc3TopicsByChapter(chapter) || [];
-    topics.forEach((t) => {
+    topics.forEach((t, idx) => {
       all.push({
         type: 'ecrit-ec3',
         typeLabel: 'Écrit - EC3',
         chapter,
         ...t,
+        indexInChapter: idx,
+        route: `/ec3/${chapter}/sujet/${idx + 1}`,
       });
     });
   });
