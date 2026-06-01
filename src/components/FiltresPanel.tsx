@@ -1,13 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { dissertationTopics } from '@/data/dissertationTopics';
 import { ec1Topics } from '@/data/ec1';
 import { ec2Topics } from '@/data/ec2Topics';
 import { getTopicsByChapter as getEc3TopicsByChapter } from '@/data/ec3Topics';
-import { useAppNavigation } from '@/contexts/NavigationContext';
-
-const INDIFFERENT = 'indifferent';
+import {
+  useAppNavigation,
+  FILTER_INDIFFERENT as INDIFFERENT,
+} from '@/contexts/NavigationContext';
 
 const TYPE_OPTIONS = [
   { value: INDIFFERENT, label: 'Indifférent' },
@@ -149,44 +150,24 @@ const RadioSection: React.FC<RadioSectionProps> = ({ title, name, options, value
 );
 
 export const FiltresPanel: React.FC = () => {
-  const { push } = useAppNavigation();
+  const {
+    push,
+    bacFilters: applied,
+    pendingBacFilters: pending,
+    setBacFilters,
+    setPendingBacFilters,
+    resetBacFilters,
+  } = useAppNavigation();
 
-  const STORAGE_KEY = 'bac-filtres-state-v2';
-  const initial = (() => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const raw = sessionStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  })();
+  const pendingType = pending.type;
+  const pendingChapter = pending.chapter;
+  const pendingYear = pending.year;
+  const pendingLocation = pending.location;
 
-  const [pendingType, setPendingType] = useState<string>(initial?.pendingType ?? INDIFFERENT);
-  const [pendingChapter, setPendingChapter] = useState<string>(initial?.pendingChapter ?? INDIFFERENT);
-  const [pendingYear, setPendingYear] = useState<string>(initial?.pendingYear ?? INDIFFERENT);
-  const [pendingLocation, setPendingLocation] = useState<string>(initial?.pendingLocation ?? INDIFFERENT);
-
-  const [applied, setApplied] = useState(
-    initial?.applied ?? {
-      type: INDIFFERENT,
-      chapter: INDIFFERENT,
-      year: INDIFFERENT,
-      location: INDIFFERENT,
-      submitted: false,
-    },
-  );
-
-  useEffect(() => {
-    try {
-      sessionStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ pendingType, pendingChapter, pendingYear, pendingLocation, applied }),
-      );
-    } catch {
-      // ignore
-    }
-  }, [pendingType, pendingChapter, pendingYear, pendingLocation, applied]);
+  const setPendingType = (type: string) => setPendingBacFilters({ ...pending, type });
+  const setPendingChapter = (chapter: string) => setPendingBacFilters({ ...pending, chapter });
+  const setPendingYear = (year: string) => setPendingBacFilters({ ...pending, year });
+  const setPendingLocation = (location: string) => setPendingBacFilters({ ...pending, location });
 
   const allTopics = useMemo(() => buildAllTopics(), []);
 
@@ -202,27 +183,11 @@ export const FiltresPanel: React.FC = () => {
   }, [applied, allTopics]);
 
   const handleValidate = () => {
-    setApplied({
-      type: pendingType,
-      chapter: pendingChapter,
-      year: pendingYear,
-      location: pendingLocation,
-      submitted: true,
-    });
+    setBacFilters({ ...pending, submitted: true });
   };
 
   const handleReset = () => {
-    setPendingType(INDIFFERENT);
-    setPendingChapter(INDIFFERENT);
-    setPendingYear(INDIFFERENT);
-    setPendingLocation(INDIFFERENT);
-    setApplied({
-      type: INDIFFERENT,
-      chapter: INDIFFERENT,
-      year: INDIFFERENT,
-      location: INDIFFERENT,
-      submitted: false,
-    });
+    resetBacFilters();
   };
 
   return (

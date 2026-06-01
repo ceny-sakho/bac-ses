@@ -11,6 +11,31 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export type BacTab = "dissertation" | "ec1" | "ec2" | "ec3" | "filtres";
 
+export const FILTER_INDIFFERENT = "indifferent";
+
+export interface BacFiltersState {
+  type: string;
+  chapter: string;
+  year: string;
+  location: string;
+  submitted: boolean;
+}
+
+export const DEFAULT_BAC_FILTERS: BacFiltersState = {
+  type: FILTER_INDIFFERENT,
+  chapter: FILTER_INDIFFERENT,
+  year: FILTER_INDIFFERENT,
+  location: FILTER_INDIFFERENT,
+  submitted: false,
+};
+
+const filtersAreDefault = (f: BacFiltersState) =>
+  f.type === FILTER_INDIFFERENT &&
+  f.chapter === FILTER_INDIFFERENT &&
+  f.year === FILTER_INDIFFERENT &&
+  f.location === FILTER_INDIFFERENT &&
+  !f.submitted;
+
 interface NavigationEntry {
   pathname: string;
   search: string;
@@ -35,6 +60,12 @@ interface NavigationContextValue {
   push: (to: string, options?: PushOptions) => void;
   back: (fallback?: string, options?: BackOptions) => void;
   getBacPath: (tab?: BacTab) => string;
+  bacFilters: BacFiltersState;
+  pendingBacFilters: BacFiltersState;
+  setBacFilters: (f: BacFiltersState) => void;
+  setPendingBacFilters: (f: BacFiltersState) => void;
+  resetBacFilters: () => void;
+  hasActiveBacFilters: () => boolean;
 }
 
 const NavigationContext = createContext<NavigationContextValue | null>(null);
@@ -63,6 +94,29 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [, setStack] = useState<NavigationEntry[]>([]);
   const stackRef = useRef<NavigationEntry[]>([]);
   const [activeBacTab, setActiveBacTab] = useState<BacTab>("dissertation");
+  const [bacFilters, setBacFiltersState] = useState<BacFiltersState>(DEFAULT_BAC_FILTERS);
+  const [pendingBacFilters, setPendingBacFiltersState] = useState<BacFiltersState>(DEFAULT_BAC_FILTERS);
+  const bacFiltersRef = useRef(bacFilters);
+  const pendingBacFiltersRef = useRef(pendingBacFilters);
+
+  const setBacFilters = useCallback((f: BacFiltersState) => {
+    bacFiltersRef.current = f;
+    setBacFiltersState(f);
+  }, []);
+  const setPendingBacFilters = useCallback((f: BacFiltersState) => {
+    pendingBacFiltersRef.current = f;
+    setPendingBacFiltersState(f);
+  }, []);
+  const resetBacFilters = useCallback(() => {
+    bacFiltersRef.current = DEFAULT_BAC_FILTERS;
+    pendingBacFiltersRef.current = DEFAULT_BAC_FILTERS;
+    setBacFiltersState(DEFAULT_BAC_FILTERS);
+    setPendingBacFiltersState(DEFAULT_BAC_FILTERS);
+  }, []);
+  const hasActiveBacFilters = useCallback(
+    () => !filtersAreDefault(bacFiltersRef.current) || !filtersAreDefault(pendingBacFiltersRef.current),
+    [],
+  );
 
   const updateStack = useCallback((next: NavigationEntry[]) => {
     stackRef.current = next;
@@ -135,8 +189,14 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       push,
       back,
       getBacPath: buildBacPath,
+      bacFilters,
+      pendingBacFilters,
+      setBacFilters,
+      setPendingBacFilters,
+      resetBacFilters,
+      hasActiveBacFilters,
     }),
-    [activeBacTab, back, push],
+    [activeBacTab, back, push, bacFilters, pendingBacFilters, setBacFilters, setPendingBacFilters, resetBacFilters, hasActiveBacFilters],
   );
 
   return <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>;
