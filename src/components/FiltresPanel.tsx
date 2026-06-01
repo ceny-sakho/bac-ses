@@ -11,13 +11,10 @@ const INDIFFERENT = 'indifferent';
 
 const TYPE_OPTIONS = [
   { value: INDIFFERENT, label: 'Indifférent' },
-  { value: 'ecrit-dissertation', label: 'Écrit - Dissertation' },
-  { value: 'ecrit-ec1', label: 'Écrit - EC1 - Connaissances' },
-  { value: 'ecrit-ec2', label: 'Écrit - EC2 - Étude de document' },
-  { value: 'ecrit-ec3', label: 'Écrit - EC3 - Raisonnement sur dossier documentaire' },
-  { value: 'oral-connaissances', label: 'Oral - Connaissances' },
-  { value: 'oral-question-document', label: 'Oral - Question sur document' },
-  { value: 'oral-question-principale', label: 'Oral - Question principale' },
+  { value: 'ecrit-dissertation', label: 'Dissertation' },
+  { value: 'ecrit-ec1', label: 'EC1' },
+  { value: 'ecrit-ec2', label: 'EC2' },
+  { value: 'ecrit-ec3', label: 'EC3' },
 ];
 
 const CHAPTER_TITLES: Record<string, string> = {
@@ -98,16 +95,16 @@ const buildAllTopics = (): AggregatedTopic[] => {
     });
   };
 
-  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Écrit - Dissertation', 'dissertation');
-  addFromMap(ec1Topics as any, 'ecrit-ec1', 'Écrit - EC1', 'ec1');
-  addFromMap(ec2Topics, 'ecrit-ec2', 'Écrit - EC2', 'ec2');
+  addFromMap(dissertationTopics, 'ecrit-dissertation', 'Dissertation', 'dissertation');
+  addFromMap(ec1Topics as any, 'ecrit-ec1', 'EC1', 'ec1');
+  addFromMap(ec2Topics, 'ecrit-ec2', 'EC2', 'ec2');
 
   Object.keys(CHAPTER_TITLES).forEach((chapter) => {
     const topics = getEc3TopicsByChapter(chapter) || [];
     topics.forEach((t, idx) => {
       all.push({
         type: 'ecrit-ec3',
-        typeLabel: 'Écrit - EC3',
+        typeLabel: 'EC3',
         chapter,
         ...t,
         indexInChapter: idx,
@@ -154,7 +151,7 @@ const RadioSection: React.FC<RadioSectionProps> = ({ title, name, options, value
 export const FiltresPanel: React.FC = () => {
   const { push } = useAppNavigation();
 
-  const STORAGE_KEY = 'bac-filtres-state-v1';
+  const STORAGE_KEY = 'bac-filtres-state-v2';
   const initial = (() => {
     if (typeof window === 'undefined') return null;
     try {
