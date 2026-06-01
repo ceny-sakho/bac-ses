@@ -104,7 +104,7 @@ const buildAllTopics = (): AggregatedTopic[] => {
     topics.forEach((t, idx) => {
       all.push({
         type: 'ecrit-ec3',
-        typeLabel: 'Écrit - EC3',
+        typeLabel: 'EC3',
         chapter,
         ...t,
         indexInChapter: idx,
