@@ -143,25 +143,10 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const back = useCallback(
     (fallback = "/", options?: BackOptions) => {
       const currentStack = stackRef.current;
-      const previousEntry = currentStack[currentStack.length - 1];
-
-      if (!previousEntry) {
-        navigate(fallback, { replace: true, state: options?.state });
-        return;
+      if (currentStack.length > 0) {
+        updateStack(currentStack.slice(0, -1));
       }
-
-      updateStack(currentStack.slice(0, -1));
-      setActiveBacTab(previousEntry.bacTab);
-
-      navigate(`${previousEntry.pathname}${previousEntry.search}${previousEntry.hash}`, {
-        replace: true,
-        state: {
-          ...asObject(previousEntry.state),
-          ...asObject(options?.state),
-          __navRestoreScrollY: previousEntry.scrollY,
-          __navRestoreBacTab: previousEntry.bacTab,
-        },
-      });
+      navigate(-1);
     },
     [navigate, updateStack],
   );
