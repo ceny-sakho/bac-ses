@@ -1,18 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BacExercises } from '@/components/BacExercises';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { useAppNavigation } from '@/contexts/NavigationContext';
 
 const BacSubjects = () => {
-  const { back, activeBacTab, hasActiveBacFilters, resetBacFilters } = useAppNavigation();
+  const navigate = useNavigate();
 
   const handleBack = () => {
-    if (activeBacTab === 'filtres' && hasActiveBacFilters()) {
-      resetBacFilters();
-      return;
-    }
-    back('/');
+    navigate(-1);
   };
 
   return (
