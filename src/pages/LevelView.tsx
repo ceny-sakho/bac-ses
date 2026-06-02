@@ -71,7 +71,7 @@ const LevelView = () => {
                   : subject.title === "Sociologie / Science politique"
                     ? "socio"
                     : "regards";
-                navigate(`/matiere/${subjectPath}`);
+                navigate(`/matiere/${subjectPath}${level ? `?level=${level}` : ''}`);
               }}
             >
               <div className="aspect-video relative">
