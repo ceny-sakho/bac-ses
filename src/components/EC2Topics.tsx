@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { ec2Topics } from '@/data/ec2Topics';
 import { useAppNavigation } from '@/contexts/NavigationContext';
+import { CorrigeCell } from '@/components/corrige/CorrigeCell';
 
 interface EC2Topic {
   question: string;
@@ -39,6 +40,7 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question EC2</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Corrigé</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -51,6 +53,9 @@ export const EC2Topics: React.FC<EC2TopicsProps> = ({ chapter, title }) => {
                 <td className="px-6 py-4">{topic.question}</td>
                 <td className="px-6 py-4">{topic.year}</td>
                 <td className="px-6 py-4">{topic.location}</td>
+                <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                  <CorrigeCell type="ec2" chapter={chapter} sujetNumber={index + 1} />
+                </td>
               </tr>
             ))}
           </tbody>

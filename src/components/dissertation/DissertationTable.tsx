@@ -5,10 +5,10 @@ import { CorrigeCell } from '@/components/corrige/CorrigeCell';
 interface DissertationTableProps {
   topics: DissertationTopic[];
   onTopicClick: (topic: DissertationTopic, index: number) => void;
+  chapter: string;
 }
 
-export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, onTopicClick }) => {
-  // Derive chapter from any topic location via context? Need chapter prop.
+export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, onTopicClick, chapter }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
       <table className="min-w-full">
@@ -30,6 +30,9 @@ export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, on
               <td className="px-6 py-4">{topic.question}</td>
               <td className="px-6 py-4">{topic.year}</td>
               <td className="px-6 py-4">{topic.location}</td>
+              <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                <CorrigeCell type="dissertation" chapter={chapter} sujetNumber={index + 1} />
+              </td>
             </tr>
           ))}
         </tbody>
