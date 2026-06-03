@@ -18,7 +18,7 @@ interface CorrigeCellProps {
   sujetNumber: number;
 }
 
-const SESSION_KEY = 'corrigesAccessGranted';
+const SESSION_PREFIX = 'corrigeAccess:';
 
 export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNumber }) => {
   const navigate = useNavigate();
@@ -31,9 +31,11 @@ export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNu
     navigate(`/corrige/${type}/${chapter}/${sujetNumber}`);
   };
 
+  const sessionKey = `${SESSION_PREFIX}${type}/${chapter}/${sujetNumber}`;
+
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+    if (sessionStorage.getItem(sessionKey) === 'true') {
       goToCorrige();
       return;
     }
@@ -48,9 +50,11 @@ export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNu
     try {
       const res = await fetch('/config/access-codes.json', { cache: 'no-store' });
       const data = await res.json();
-      const expected = String(data?.corriges ?? '');
+      const chapterKey = `chapitre${chapter}`;
+      const sujetKey = `sujet${sujetNumber}`;
+      const expected = String(data?.[type]?.[chapterKey]?.[sujetKey] ?? '');
       if (code.trim() === expected && expected.length > 0) {
-        sessionStorage.setItem(SESSION_KEY, 'true');
+        sessionStorage.setItem(sessionKey, 'true');
         setOpen(false);
         goToCorrige();
       } else {

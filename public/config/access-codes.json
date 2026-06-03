@@ -1,3 +1,323 @@
 {
-  "corriges": "SES2026"
+  "ec2": {
+    "chapitre1": {
+      "sujet1": "EC2CH1SU1",
+      "sujet2": "EC2CH1SU2",
+      "sujet3": "EC2CH1SU3",
+      "sujet4": "EC2CH1SU4",
+      "sujet5": "EC2CH1SU5",
+      "sujet6": "EC2CH1SU6",
+      "sujet7": "EC2CH1SU7",
+      "sujet8": "EC2CH1SU8",
+      "sujet9": "EC2CH1SU9",
+      "sujet10": "EC2CH1SU10"
+    },
+    "chapitre2": {
+      "sujet1": "EC2CH2SU1",
+      "sujet2": "EC2CH2SU2",
+      "sujet3": "EC2CH2SU3",
+      "sujet4": "EC2CH2SU4",
+      "sujet5": "EC2CH2SU5",
+      "sujet6": "EC2CH2SU6",
+      "sujet7": "EC2CH2SU7",
+      "sujet8": "EC2CH2SU8",
+      "sujet9": "EC2CH2SU9",
+      "sujet10": "EC2CH2SU10"
+    },
+    "chapitre3": {
+      "sujet1": "EC2CH3SU1",
+      "sujet2": "EC2CH3SU2",
+      "sujet3": "EC2CH3SU3",
+      "sujet4": "EC2CH3SU4",
+      "sujet5": "EC2CH3SU5",
+      "sujet6": "EC2CH3SU6",
+      "sujet7": "EC2CH3SU7",
+      "sujet8": "EC2CH3SU8",
+      "sujet9": "EC2CH3SU9"
+    },
+    "chapitre4": {
+      "sujet1": "EC2CH4SU1"
+    },
+    "chapitre5": {
+      "sujet1": "EC2CH5SU1",
+      "sujet2": "EC2CH5SU2",
+      "sujet3": "EC2CH5SU3",
+      "sujet4": "EC2CH5SU4",
+      "sujet5": "EC2CH5SU5",
+      "sujet6": "EC2CH5SU6",
+      "sujet7": "EC2CH5SU7"
+    },
+    "chapitre6": {
+      "sujet1": "EC2CH6SU1",
+      "sujet2": "EC2CH6SU2",
+      "sujet3": "EC2CH6SU3",
+      "sujet4": "EC2CH6SU4",
+      "sujet5": "EC2CH6SU5",
+      "sujet6": "EC2CH6SU6",
+      "sujet7": "EC2CH6SU7",
+      "sujet8": "EC2CH6SU8",
+      "sujet9": "EC2CH6SU9"
+    },
+    "chapitre7": {
+      "sujet1": "EC2CH7SU1",
+      "sujet2": "EC2CH7SU2"
+    },
+    "chapitre8": {
+      "sujet1": "EC2CH8SU1",
+      "sujet2": "EC2CH8SU2",
+      "sujet3": "EC2CH8SU3",
+      "sujet4": "EC2CH8SU4",
+      "sujet5": "EC2CH8SU5",
+      "sujet6": "EC2CH8SU6"
+    },
+    "chapitre9": {
+      "sujet1": "EC2CH9SU1",
+      "sujet2": "EC2CH9SU2"
+    },
+    "chapitre10": {
+      "sujet1": "EC2CH10SU1",
+      "sujet2": "EC2CH10SU2",
+      "sujet3": "EC2CH10SU3",
+      "sujet4": "EC2CH10SU4",
+      "sujet5": "EC2CH10SU5",
+      "sujet6": "EC2CH10SU6",
+      "sujet7": "EC2CH10SU7",
+      "sujet8": "EC2CH10SU8",
+      "sujet9": "EC2CH10SU9",
+      "sujet10": "EC2CH10SU10",
+      "sujet11": "EC2CH10SU11",
+      "sujet12": "EC2CH10SU12",
+      "sujet13": "EC2CH10SU13",
+      "sujet14": "EC2CH10SU14"
+    },
+    "chapitre11": {
+      "sujet1": "EC2CH11SU1",
+      "sujet2": "EC2CH11SU2"
+    },
+    "chapitre12": {
+      "sujet1": "EC2CH12SU1",
+      "sujet2": "EC2CH12SU2",
+      "sujet3": "EC2CH12SU3",
+      "sujet4": "EC2CH12SU4",
+      "sujet5": "EC2CH12SU5",
+      "sujet6": "EC2CH12SU6"
+    }
+  },
+  "dissertation": {
+    "chapitre1": {
+      "sujet1": "DICH1SU1",
+      "sujet2": "DICH1SU2",
+      "sujet3": "DICH1SU3",
+      "sujet4": "DICH1SU4",
+      "sujet5": "DICH1SU5",
+      "sujet6": "DICH1SU6",
+      "sujet7": "DICH1SU7",
+      "sujet8": "DICH1SU8",
+      "sujet9": "DICH1SU9",
+      "sujet10": "DICH1SU10",
+      "sujet11": "DICH1SU11"
+    },
+    "chapitre2": {
+      "sujet1": "DICH2SU1",
+      "sujet2": "DICH2SU2",
+      "sujet3": "DICH2SU3",
+      "sujet4": "DICH2SU4",
+      "sujet5": "DICH2SU5",
+      "sujet6": "DICH2SU6",
+      "sujet7": "DICH2SU7",
+      "sujet8": "DICH2SU8",
+      "sujet9": "DICH2SU9",
+      "sujet10": "DICH2SU10",
+      "sujet11": "DICH2SU11"
+    },
+    "chapitre3": {
+      "sujet1": "DICH3SU1",
+      "sujet2": "DICH3SU2",
+      "sujet3": "DICH3SU3",
+      "sujet4": "DICH3SU4"
+    },
+    "chapitre4": {
+      "sujet1": "DICH4SU1",
+      "sujet2": "DICH4SU2"
+    },
+    "chapitre5": {
+      "sujet1": "DICH5SU1",
+      "sujet2": "DICH5SU2",
+      "sujet3": "DICH5SU3",
+      "sujet4": "DICH5SU4"
+    },
+    "chapitre6": {
+      "sujet1": "DICH6SU1",
+      "sujet2": "DICH6SU2",
+      "sujet3": "DICH6SU3",
+      "sujet4": "DICH6SU4",
+      "sujet5": "DICH6SU5",
+      "sujet6": "DICH6SU6",
+      "sujet7": "DICH6SU7",
+      "sujet8": "DICH6SU8",
+      "sujet9": "DICH6SU9",
+      "sujet10": "DICH6SU10"
+    },
+    "chapitre7": {
+      "sujet1": "DICH7SU1",
+      "sujet2": "DICH7SU2"
+    },
+    "chapitre8": {
+      "sujet1": "DICH8SU1",
+      "sujet2": "DICH8SU2",
+      "sujet3": "DICH8SU3"
+    },
+    "chapitre9": {
+      "sujet1": "DICH9SU1",
+      "sujet2": "DICH9SU2",
+      "sujet3": "DICH9SU3",
+      "sujet4": "DICH9SU4",
+      "sujet5": "DICH9SU5",
+      "sujet6": "DICH9SU6"
+    },
+    "chapitre10": {
+      "sujet1": "DICH10SU1",
+      "sujet2": "DICH10SU2",
+      "sujet3": "DICH10SU3",
+      "sujet4": "DICH10SU4",
+      "sujet5": "DICH10SU5",
+      "sujet6": "DICH10SU6",
+      "sujet7": "DICH10SU7",
+      "sujet8": "DICH10SU8",
+      "sujet9": "DICH10SU9"
+    },
+    "chapitre11": {
+      "sujet1": "DICH11SU1",
+      "sujet2": "DICH11SU2",
+      "sujet3": "DICH11SU3",
+      "sujet4": "DICH11SU4",
+      "sujet5": "DICH11SU5",
+      "sujet6": "DICH11SU6"
+    },
+    "chapitre12": {
+      "sujet1": "DICH12SU1",
+      "sujet2": "DICH12SU2",
+      "sujet3": "DICH12SU3",
+      "sujet4": "DICH12SU4",
+      "sujet5": "DICH12SU5",
+      "sujet6": "DICH12SU6",
+      "sujet7": "DICH12SU7",
+      "sujet8": "DICH12SU8"
+    }
+  },
+  "ec3": {
+    "chapitre1": {
+      "sujet1": "EC3CH1SU1",
+      "sujet2": "EC3CH1SU2",
+      "sujet3": "EC3CH1SU3",
+      "sujet4": "EC3CH1SU4",
+      "sujet5": "EC3CH1SU5",
+      "sujet6": "EC3CH1SU6",
+      "sujet7": "EC3CH1SU7",
+      "sujet8": "EC3CH1SU8",
+      "sujet9": "EC3CH1SU9"
+    },
+    "chapitre2": {
+      "sujet1": "EC3CH2SU1",
+      "sujet2": "EC3CH2SU2",
+      "sujet3": "EC3CH2SU3",
+      "sujet4": "EC3CH2SU4",
+      "sujet5": "EC3CH2SU5",
+      "sujet6": "EC3CH2SU6",
+      "sujet7": "EC3CH2SU7",
+      "sujet8": "EC3CH2SU8",
+      "sujet9": "EC3CH2SU9",
+      "sujet10": "EC3CH2SU10",
+      "sujet11": "EC3CH2SU11",
+      "sujet12": "EC3CH2SU12",
+      "sujet13": "EC3CH2SU13",
+      "sujet14": "EC3CH2SU14"
+    },
+    "chapitre3": {
+      "sujet1": "EC3CH3SU1",
+      "sujet2": "EC3CH3SU2",
+      "sujet3": "EC3CH3SU3",
+      "sujet4": "EC3CH3SU4",
+      "sujet5": "EC3CH3SU5",
+      "sujet6": "EC3CH3SU6"
+    },
+    "chapitre4": {
+      "sujet1": "EC3CH4SU1",
+      "sujet2": "EC3CH4SU2",
+      "sujet3": "EC3CH4SU3",
+      "sujet4": "EC3CH4SU4",
+      "sujet5": "EC3CH4SU5",
+      "sujet6": "EC3CH4SU6"
+    },
+    "chapitre5": {
+      "sujet1": "EC3CH5SU1"
+    },
+    "chapitre6": {
+      "sujet1": "EC3CH6SU1",
+      "sujet2": "EC3CH6SU2",
+      "sujet3": "EC3CH6SU3",
+      "sujet4": "EC3CH6SU4",
+      "sujet5": "EC3CH6SU5",
+      "sujet6": "EC3CH6SU6",
+      "sujet7": "EC3CH6SU7",
+      "sujet8": "EC3CH6SU8",
+      "sujet9": "EC3CH6SU9",
+      "sujet10": "EC3CH6SU10",
+      "sujet11": "EC3CH6SU11",
+      "sujet12": "EC3CH6SU12",
+      "sujet13": "EC3CH6SU13",
+      "sujet14": "EC3CH6SU14"
+    },
+    "chapitre7": {
+      "sujet1": "EC3CH7SU1",
+      "sujet2": "EC3CH7SU2"
+    },
+    "chapitre8": {
+      "sujet1": "EC3CH8SU1",
+      "sujet2": "EC3CH8SU2",
+      "sujet3": "EC3CH8SU3",
+      "sujet4": "EC3CH8SU4",
+      "sujet5": "EC3CH8SU5"
+    },
+    "chapitre9": {
+      "sujet1": "EC3CH9SU1",
+      "sujet2": "EC3CH9SU2",
+      "sujet3": "EC3CH9SU3",
+      "sujet4": "EC3CH9SU4",
+      "sujet5": "EC3CH9SU5",
+      "sujet6": "EC3CH9SU6",
+      "sujet7": "EC3CH9SU7",
+      "sujet8": "EC3CH9SU8",
+      "sujet9": "EC3CH9SU9",
+      "sujet10": "EC3CH9SU10"
+    },
+    "chapitre10": {
+      "sujet1": "EC3CH10SU1",
+      "sujet2": "EC3CH10SU2",
+      "sujet3": "EC3CH10SU3",
+      "sujet4": "EC3CH10SU4",
+      "sujet5": "EC3CH10SU5",
+      "sujet6": "EC3CH10SU6",
+      "sujet7": "EC3CH10SU7",
+      "sujet8": "EC3CH10SU8",
+      "sujet9": "EC3CH10SU9",
+      "sujet10": "EC3CH10SU10",
+      "sujet11": "EC3CH10SU11"
+    },
+    "chapitre11": {
+      "sujet1": "EC3CH11SU1",
+      "sujet2": "EC3CH11SU2",
+      "sujet3": "EC3CH11SU3"
+    },
+    "chapitre12": {
+      "sujet1": "EC3CH12SU1",
+      "sujet2": "EC3CH12SU2",
+      "sujet3": "EC3CH12SU3",
+      "sujet4": "EC3CH12SU4",
+      "sujet5": "EC3CH12SU5",
+      "sujet6": "EC3CH12SU6",
+      "sujet7": "EC3CH12SU7",
+      "sujet8": "EC3CH12SU8"
+    }
+  }
 }
