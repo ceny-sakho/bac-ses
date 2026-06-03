@@ -1,12 +1,14 @@
 import React from 'react';
 import { DissertationTopic } from '@/types/dissertation';
+import { CorrigeCell } from '@/components/corrige/CorrigeCell';
 
 interface DissertationTableProps {
   topics: DissertationTopic[];
   onTopicClick: (topic: DissertationTopic, index: number) => void;
+  chapter: string;
 }
 
-export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, onTopicClick }) => {
+export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, onTopicClick, chapter }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
       <table className="min-w-full">
@@ -15,6 +17,7 @@ export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, on
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question de dissertation</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Année</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lieu</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Corrigé</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -27,6 +30,9 @@ export const DissertationTable: React.FC<DissertationTableProps> = ({ topics, on
               <td className="px-6 py-4">{topic.question}</td>
               <td className="px-6 py-4">{topic.year}</td>
               <td className="px-6 py-4">{topic.location}</td>
+              <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                <CorrigeCell type="dissertation" chapter={chapter} sujetNumber={index + 1} />
+              </td>
             </tr>
           ))}
         </tbody>

@@ -84,6 +84,7 @@ export const DissertationTopics: React.FC<DissertationTopicsProps> = ({ chapter,
       <DissertationTable
         topics={topics}
         onTopicClick={handleTopicClick}
+        chapter={chapter}
       />
     </div>
   );

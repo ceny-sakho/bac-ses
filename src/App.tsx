@@ -13,6 +13,7 @@ import DissertationSubject from "./pages/DissertationSubject";
 import EC1Subject from "./pages/EC1Subject";
 import EC3Subject from "./pages/EC3Subject";
 import EC2Subject from "./pages/EC2Subject";
+import CorrigeSubject from "./pages/CorrigeSubject";
 import DevoirPage from "./pages/DevoirPage";
 import Methodologie from "./pages/Methodologie";
 import MethodologiePdf from "./pages/MethodologiePdf";
@@ -163,6 +164,7 @@ function App() {
             <Route path="/methodologie" element={<Methodologie />} />
             <Route path="/methodologie/:type" element={<MethodologiePdf />} />
             <Route path="/objectif/:chapterId/:objectifNum" element={<ObjectifPage />} />
+            <Route path="/corrige/:type/:chapterId/:sujetId" element={<CorrigeSubject />} />
           </Routes>
         </div>
       </NavigationProvider>
