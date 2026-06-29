@@ -125,6 +125,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez comment la productivité des firmes détermine la compétitivité, et donc la capacité à exporter d'un pays.",
             year: "2022",
             location: "Nouvelle-Calédonie"
+          },
+          {
+            question: "vous montrerez que la productivité des firmes sous-tend la compétitivité d’un pays, c’est-à-dire son aptitude à exporter.",
+            year: "2026",
+            location: "France métropolitaine"
           }
         ];
       case '3':
