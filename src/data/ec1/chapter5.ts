@@ -69,6 +69,6 @@ export const chapter5Topics: EC1Topic[] = [
   {
     question: "Vous expliquerez une difficulté soulevée par les chocs asymétriques dans le cadre de la zone euro.",
     year: "2026",
-    location: "France métropolitaine J1"
+    location: "France métropolitaine"
   }
 ];
