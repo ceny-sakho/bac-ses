@@ -25,5 +25,10 @@ export const chapter8Topics: EC1Topic[] = [
     question: "Présentez deux limites des tables de mobilité comme instrument de mesure de la mobilité sociale.",
     year: "2025",
     location: "France métropolitaine"
+  },
+  {
+    question: "À l’aide de deux arguments, vous présenterez les intérêts des tables de mobilité comme instrument de mesure de la mobilité sociale.",
+    year: "2026",
+    location: "France métropolitaine"
   }
 ];
