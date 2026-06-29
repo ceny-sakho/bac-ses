@@ -127,7 +127,7 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             location: "Nouvelle-Calédonie"
           },
           {
-            question: "vous montrerez que la productivité des firmes sous-tend la compétitivité d’un pays, c’est-à-dire son aptitude à exporter.",
+            question: "Vous montrerez que la productivité des firmes sous-tend la compétitivité d’un pays, c’est-à-dire son aptitude à exporter.",
             year: "2026",
             location: "France métropolitaine"
           }
