@@ -277,6 +277,11 @@ export const getTopicsByChapter = (chapter: string): EC3Topic[] => {
             question: "Vous montrerez que la structure socioprofessionnelle en France s'est transformée depuis la seconde moitié du vingtième siècle.",
             year: "2025",
             location: "France métropolitaine"
+          },
+          {
+            question: "Vous montrerez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent l’espace social.",
+            year: "2026",
+            location: "France métropolitaine"
           }
         ];
       case '7':
