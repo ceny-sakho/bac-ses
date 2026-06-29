@@ -403,6 +403,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Quels sont les effets et limites des principaux instruments dont disposent les pouvoirs publics face aux externalités négatives sur l’environnement ?",
       year: "2025",
       location: "Asie"
+    },
+    {
+      question: "Comment les questions environnementales peuvent-elles devenir un problème public ?",
+      year: "2026",
+      location: "France métropolitaine"
     }
   ]
 };
