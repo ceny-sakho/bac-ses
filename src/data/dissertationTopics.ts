@@ -169,6 +169,11 @@ export const dissertationTopics: TopicsByChapter = {
       question: "Dans quelle mesure les politiques monétaire et budgétaires parviennent-elles à agir sur la conjoncture des pays membres de la zone euro ?",
       year: "2025",
       location: "France métropolitaine"
+    },
+    {
+      question: "Dans quelle mesure la politique européenne de la concurrence atteint-elle ses objectifs ?",
+      year: "2026",
+      location: "France métropolitaine"
     }
   ],
   '6': [
