@@ -150,6 +150,11 @@ export const ec2Topics: TopicsByChapter = {
       question: "Vous présenterez deux politiques différentes pouvant être mises en œuvre pour lutter contre le chômage.",
       year: "2025",
       location: "France métropolitaine, Remplacement"
+    },
+    {
+      question: "Vous présenterez deux sources différentes de chômage structurel.",
+      year: "2026",
+      location: "France métropolitaine"
     }
   ],
   '4': [
