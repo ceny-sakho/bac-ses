@@ -65,5 +65,10 @@ export const chapter5Topics: EC1Topic[] = [
     question: "Présentez un effet du marché unique sur la croissance économique au sein de l'Union européenne.",
     year: "2025",
     location: "Asie"
+  },
+  {
+    question: "Vous expliquerez une difficulté soulevée par les chocs asymétriques dans le cadre de la zone euro.",
+    year: "2026",
+    location: "France métropolitaine J1"
   }
 ];
