@@ -40,6 +40,10 @@ const ObjectifPage: React.FC = () => {
   const chapter = chaptersData[normalizedChapterId];
   const objectiveText = chapter?.objectives?.[parseInt(num, 10) - 1];
 
+  const handleBackToSynthesis = () => {
+    navigate(`/chapitre/${normalizedChapterId}?tab=synthese`, { replace: true });
+  };
+
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = pdfUrl;
@@ -59,9 +63,7 @@ const ObjectifPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Button
           variant="ghost"
-          onClick={() =>
-            navigate(`/chapitre/${normalizedChapterId}?tab=synthese`)
-          }
+          onClick={handleBackToSynthesis}
           className="mb-6 hover:bg-[#403E43] hover:text-white"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
