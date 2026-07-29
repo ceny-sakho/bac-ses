@@ -10,7 +10,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-export type CorrigeType = 'dissertation' | 'ec2' | 'ec3';
+export type CorrigeType = 'dissertation' | 'ec1' | 'ec2' | 'ec3';
 
 interface CorrigeCellProps {
   type: CorrigeType;
