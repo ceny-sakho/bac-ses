@@ -20,7 +20,7 @@ interface CorrigeCellProps {
 
 const SESSION_PREFIX = 'corrigeAccess:';
 
-export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNumber }) => {
+export const useCorrigeAccess = (type: CorrigeType, chapter: string, sujetNumber: number) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [code, setCode] = useState('');
@@ -33,8 +33,8 @@ export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNu
 
   const sessionKey = `${SESSION_PREFIX}${type}/${chapter}/${sujetNumber}`;
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClick = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (sessionStorage.getItem(sessionKey) === 'true') {
       goToCorrige();
       return;
@@ -67,17 +67,8 @@ export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNu
     }
   };
 
-  return (
-    <>
-      <button
-        type="button"
-        onClick={handleClick}
-        className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-800 transition-colors hover:bg-gris-sideral hover:text-white hover:border-gris-sideral cursor-pointer"
-      >
-        Corrigé-{sujetNumber}
-      </button>
-
-      <Dialog open={open} onOpenChange={setOpen}>
+  const dialog = (
+    <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent onClick={(e) => e.stopPropagation()}>
           <DialogHeader>
             <DialogTitle>Code d'accès</DialogTitle>
@@ -102,6 +93,24 @@ export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNu
           </DialogFooter>
         </DialogContent>
       </Dialog>
+  );
+
+  return { openDialog: handleClick, dialog };
+};
+
+export const CorrigeCell: React.FC<CorrigeCellProps> = ({ type, chapter, sujetNumber }) => {
+  const { openDialog, dialog } = useCorrigeAccess(type, chapter, sujetNumber);
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={openDialog}
+        className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-800 transition-colors hover:bg-gris-sideral hover:text-white hover:border-gris-sideral cursor-pointer"
+      >
+        Corrigé-{sujetNumber}
+      </button>
+      {dialog}
     </>
   );
 };

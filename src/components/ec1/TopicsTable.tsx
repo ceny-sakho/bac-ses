@@ -1,20 +1,32 @@
 import React from 'react';
 import { EC1Topic } from '@/types/ec1';
-import { useAppNavigation } from '@/contexts/NavigationContext';
-import { CorrigeCell } from '@/components/corrige/CorrigeCell';
+import { CorrigeCell, useCorrigeAccess } from '@/components/corrige/CorrigeCell';
 
 interface TopicsTableProps {
   topics: EC1Topic[];
   chapter: string;
 }
 
+const TopicRow: React.FC<{ topic: EC1Topic; chapter: string; index: number }> = ({ topic, chapter, index }) => {
+  const { openDialog, dialog } = useCorrigeAccess('ec1', chapter, index + 1);
+
+  return (
+    <tr
+      onClick={() => openDialog()}
+      className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
+    >
+      <td className="px-6 py-4">{topic.question}</td>
+      <td className="px-6 py-4">{topic.year}</td>
+      <td className="px-6 py-4">{topic.location}</td>
+      <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+        <CorrigeCell type="ec1" chapter={chapter} sujetNumber={index + 1} />
+      </td>
+      <td className="hidden">{dialog}</td>
+    </tr>
+  );
+};
+
 export const TopicsTable: React.FC<TopicsTableProps> = ({ topics, chapter }) => {
-  const { push } = useAppNavigation();
-
-  const handleTopicClick = (index: number) => {
-    push(`/ec1/${chapter}/sujet/${index + 1}`);
-  };
-
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <table className="min-w-full">
@@ -28,18 +40,7 @@ export const TopicsTable: React.FC<TopicsTableProps> = ({ topics, chapter }) => 
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {topics.map((topic, index) => (
-            <tr 
-              key={index}
-              onClick={() => handleTopicClick(index)}
-              className="hover:bg-gris-sideral hover:text-white cursor-pointer transition-colors duration-200"
-            >
-              <td className="px-6 py-4">{topic.question}</td>
-              <td className="px-6 py-4">{topic.year}</td>
-              <td className="px-6 py-4">{topic.location}</td>
-              <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
-                <CorrigeCell type="ec1" chapter={chapter} sujetNumber={index + 1} />
-              </td>
-            </tr>
+            <TopicRow key={index} topic={topic} chapter={chapter} index={index} />
           ))}
         </tbody>
       </table>
