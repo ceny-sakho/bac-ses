@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 
 const typeLabels: Record<string, string> = {
   dissertation: 'Dissertation',
+  ec1: 'EC1',
   ec2: 'EC2',
   ec3: 'EC3',
 };
